@@ -2508,7 +2508,9 @@ pre .id {
 }
 
 .article-entry strong {
-  font-weight: 700
+  /*font-size: 10px;*/
+  font-family: 'Arial', 'Microsoft Yahei', sans-serif;
+  font-weight: 500
 }
 
 .article-entry .caption {
