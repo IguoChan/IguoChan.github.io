@@ -2782,7 +2782,8 @@ pre .id {
 }
 
 .page-reward .reward-p {
-  color: #fff;
+  margin-right: 37px;
+  color: #FF0000;
   font-weight: 700;
   text-shadow: 1px 1px 1px #45b9e0
 }
@@ -2987,7 +2988,7 @@ pre .id {
 
 .tooltip-left .tooltip-content {
   position: absolute;
-  background: rgba(36, 193, 246, .9);
+  background: rgba(255, 255, 255, .9);
   z-index: 9999;
   width: 200px;
   bottom: 50%;
@@ -3044,7 +3045,7 @@ pre .id {
   height: 2em;
   top: 50%;
   margin: -1em 0 0;
-  background: url(./fonts/tooltip.4004ff.svg) no-repeat 50%;
+  background: #FFF;/*url(./fonts/tooltip.4004ff.svg) no-repeat 50%;*/
   background-size: 100%
 }
 
@@ -4364,13 +4365,13 @@ category-all-page {
   	font-family: 'Arial', 'Microsoft Yahei', sans-serif;
   	color: #696969;
   	font-weight: 600;
-    margin: 20px 0;
+    margin: 20px 10px;
   }
   .category-all-page .category-all-title {
     text-align: center;
   }
   .category-all-page .category-all {
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .category-all-page .category-list {
     margin: 0;
@@ -4378,10 +4379,14 @@ category-all-page {
     list-style: none;
   }
   .category-all-page .category-list-item-list-item {
-    margin: 10px 15px;
+    margin: 0px 30px;
   }
   .category-all-page .category-list-item-list-item a:hover {  	
-    color: #CD6600
+    color: #CD6600;
+  }
+  .category-all-page .category-list-item-list-item a {  	
+    color: #696969;
+    line-height: 10px
   }
   .category-all-page .category-list-item-list-count {
     color: $grey;
