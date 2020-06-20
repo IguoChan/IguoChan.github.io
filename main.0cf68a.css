@@ -4387,12 +4387,10 @@ category-all-page {
     color: $grey;
   }
   .category-all-page .category-list-item-list-count:before {
-  	color: #696969;
     display: inline;
     content: " (";
   }
   .category-all-page .category-list-item-list-count:after {
-  	color: #696969;
     display: inline;
     content: ") ";
   }
