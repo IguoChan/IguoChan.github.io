@@ -79,7 +79,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 2
+    		总文章数 4
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -157,6 +157,248 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linking" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/21/linking/">链接</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/21/linking/" class="archive-article-date">
+  	<time datetime="2020-06-21T09:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">0字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/编译原理/链接//" class="article-tag-list-link color3">链接</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/21/linking/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-compile-principle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/21/compile-principle/">C语言编译原理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/21/compile-principle/" class="archive-article-date">
+  	<time datetime="2020-06-21T05:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：./hello）。</p>
+<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。</p>
+        
+          <a class="article-more-a" href="/2020/06/21/compile-principle/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/21/compile-principle/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Makefile" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -179,7 +421,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">122字</span>
+        <span class="post-count">265字</span>
       </span>
     </span>
 
@@ -198,7 +440,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本文将整理本人在工作时学习总结的Makefile写法</p>
+        <p>在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile了，会不会编写Makefile也就从一个侧面说明一个工程师是否有搭建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考陈皓大神的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》，和<a href="https://www.gnu.org/software/make/manual/make.html#toc-Overview-of-make" target="_blank" rel="noopener">GNU Make</a>文档。</p>
         
           <a class="article-more-a" href="/2020/06/17/Makefile/#more">more >></a>
         
@@ -218,7 +460,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Makefile</a>
         		</li>
       		
 		</ul>
@@ -230,11 +472,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程创建//" class="article-tag-list-link color5">工程创建</a>
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程创建/Makefile//" class="article-tag-list-link color4">Makefile</a>
+        			<a href="/categories/工程构建/Makefile//" class="article-tag-list-link color4">Makefile</a>
         		</li>
       		
 		</ul>
@@ -295,7 +537,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">73字</span>
+        <span class="post-count">75字</span>
       </span>
     </span>
 
@@ -468,7 +710,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
               </li>
             
             <div class="clearfix"></div>

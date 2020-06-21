@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Archives: 2020/6 | IguoChan的博客</title>
+  <title>C语言编译原理 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IguoChan的博客">
-<meta property="og:url" content="https://iguochan.github.io/archives/2020/06/index.html">
+  <meta name="description" content="我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：.&#x2F;hello）。 可执行程序的内部是一系列二">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言编译原理">
+<meta property="og:url" content="https://iguochan.github.io/2020/06/21/compile-principle/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：.&#x2F;hello）。 可执行程序的内部是一系列二">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://iguochan.github.io/img/cpls.png">
+<meta property="article:published_time" content="2020-06-21T05:03:47.000Z">
+<meta property="article:modified_time" content="2020-06-21T09:50:58.921Z">
 <meta property="article:author" content="IguoChan">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="gcc">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iguochan.github.io/img/cpls.png">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
   
@@ -155,99 +163,148 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-compile-principle" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/21/linking/" class="archive-article-date">
-  	<time datetime="2020-06-21T09:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/21/linking/">链接</a>
+    <h1 class="article-title" itemprop="name">
+      C语言编译原理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理/链接//" class="article-tag-list-link color3">链接</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/21/compile-principle/" class="archive-article-date">
+        
+        <a href="/2020/06/21/compile-principle/" class="archive-article-date">
   	<time datetime="2020-06-21T05:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
 </a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/21/compile-principle/">C语言编译原理</a>
-    </h1>
-  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-        <div class="article-info info-on-right">
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.6k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">6分</span>
+      </span>
+    </span>
+</div>
           
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：./hello）。</p>
+<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。</p>
+<a id="more"></a>
+
+<h2 id="0-编译过程"><a href="#0-编译过程" class="headerlink" title="0 编译过程"></a>0 编译过程</h2><p>在我们初学编程的时候，初次学习的都是HelloWorld程序，这里我们就以一个最简单的例子：hello.c来阐述编译原理，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NAME <span class="meta-string">"IguoChan"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* print */</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello %s!\n"</span>, NAME);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Linux系统中输入以下指令，即可得到可执行文件hello，执行后如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o hello hello.c &amp;&amp; ./hello</span><br><span class="line">Hello IguoChan!</span><br></pre></td></tr></table></figure>
+<p>从上貌似可以看出，使用简单的一条指令就可以将高级语言转换为可执行文件，这个过程貌似很简单，其实执行了四个阶段的程序（预处理器、编译器、汇编器和链接器），这些程序一起构成了整个的编译系统，如下图所示：<br><img src="/img/cpls.png" alt="compilation system"></p>
+<p>可以看出，gcc实质上不是一个单独的程序，而是多个程序的集合，因此通常称为工具链。下面，我们将借助gcc工具链对以上过程进行详细描述。</p>
+<h2 id="1-预处理（Pre-Processing）"><a href="#1-预处理（Pre-Processing）" class="headerlink" title="1 预处理（Pre-Processing）"></a>1 预处理（Pre-Processing）</h2><p>在Linux系统中输入以下指令，预处理器将根据字符#开头的命令，修改原始C程序，并得到另一个C程序，通常以.i作为文件拓展名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -E hello.c -o hello.i &amp;&amp; vim hello.i</span><br></pre></td></tr></table></figure>
+<p>可以观察到hello.i的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span> <span class="string">"hello.c"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"&lt;built-in&gt;"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"&lt;command-line&gt;"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"hello.c"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"/usr/include/stdio.h"</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">28</span> <span class="string">"/usr/include/stdio.h"</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"/usr/include/features.h"</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">324</span> <span class="string">"/usr/include/features.h"</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"/usr/include/x86_64-linux-gnu/bits/predefs.h"</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">325</span> <span class="string">"/usr/include/features.h"</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> __u_char;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> short <span class="keyword">int</span> __u_short;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> __u_int;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> __u_long;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">printf</span> <span class="params">(__const <span class="keyword">char</span> *__restrict __format, ...)</span></span>;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span> <span class="string">"hello.c"</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"Hello %s!\n"</span>, <span class="string">"IguoChan"</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>观察以上文件中的信息，大致可以分为以下三类：</p>
+<p>1） # linenum filename flags（如1-10行，…表示中间有省略）</p>
+<p>此类信息表征的是头文件包含的关系，被称为行标记（linemarkes），意思是：以下行起源于filename的linenum行，文件名后有0-4个标志，分别是1-4，含义如下：<br>‘1’：表示新文件的开始，此时行号应该是1；<br>‘2’：表示回到一个文件（在打开一个新文件后）；<br>‘3’：表示以下文本来自系统头文件，应该禁止某些警告；<br>‘4’：表示应将以下文本视为包含在隐式extern “C”块中；<br>具体可参考<a href="https://gcc.gnu.org/onlinedocs/gcc-4.3.6/cpp/Preprocessor-Output.html" target="_blank" rel="noopener">gcc官方的解释</a>。</p>
+<p>2) 各种别名、结构体定义和函数声明等（如14-21行）</p>
+<p>这些内容都是在各头文件中的各种定义和声明，1）中即是对头文件进行解析。</p>
+<p>3） 源代码结构主体（25-34行）</p>
+<p>在预处理器处理源文件时，会将所有的预处理指令（#开头），譬如上述的文件包含，还有宏定义、条件编译等。在上图第32行，NAME宏已经被替换掉，且宏定义行已经被删除（但空行仍然被保留）。除此外，预处理器还会删除所有的注释，如上图31行。</p>
+<h2 id="2-编译（Compiling）"><a href="#2-编译（Compiling）" class="headerlink" title="2 编译（Compiling）"></a>2 编译（Compiling）</h2><p>在Linux系统中输入以下指令，即可将预处理后的源程序翻译为汇编语言程序，一般以.s作为文件拓展名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -S hello.i -o hello.s &amp;&amp; vim hello.s</span><br></pre></td></tr></table></figure>
+<p>可以看到hello.s的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">        .file   <span class="string">"hello.c"</span></span><br><span class="line">        .section        .rodata</span><br><span class="line">.LC0:</span><br><span class="line">        .<span class="built_in">string</span> <span class="string">"Hello %s!\n"</span></span><br><span class="line">.LC1:</span><br><span class="line">        .<span class="built_in">string</span> <span class="string">"IguoChan"</span></span><br><span class="line">        .<span class="built_in">text</span></span><br><span class="line">.globl main</span><br><span class="line">        .type   main, @function</span><br><span class="line">main:</span><br><span class="line">.LFB0:</span><br><span class="line">        .cfi_startproc</span><br><span class="line">        pushq   %rbp</span><br><span class="line">        .cfi_def_cfa_offset <span class="number">16</span></span><br><span class="line">        movq    %rsp, %rbp</span><br><span class="line">        .cfi_offset <span class="number">6</span>, <span class="number">-16</span></span><br><span class="line">        .cfi_def_cfa_register <span class="number">6</span></span><br><span class="line">        movl    $.LC0, %eax</span><br><span class="line">        movl    $.LC1, %esi</span><br><span class="line">        movq    %rax, %rdi</span><br><span class="line">        movl    $<span class="number">0</span>, %eax</span><br><span class="line">        call    <span class="built_in">printf</span></span><br><span class="line">        movl    $<span class="number">0</span>, %eax</span><br><span class="line">        leave</span><br><span class="line">        ret</span><br><span class="line">        .cfi_endproc</span><br><span class="line">.LFE0:</span><br><span class="line">        .<span class="built_in">size</span>   main, .-main</span><br><span class="line">        .ident  <span class="string">"GCC: (Ubuntu/Linaro 4.4.7-1ubuntu2) 4.4.7"</span></span><br><span class="line">        .section        .note.GNU-<span class="built_in">stack</span>,<span class="string">""</span>,@progbits</span><br></pre></td></tr></table></figure>
+<p>编译器将预处理完的文件进行一系列的词法分析、语法分析、语义分析及优化后产生汇编代码，这个过程是程序构建的核心部分。上图中main函数包含多条低级的机器语言指令，这些机器语言是汇编语言。汇编语言非常有用，它为不同高级语言的不同编译器提供了通用的输出语言，能看懂汇编语言，也是深入理解计算机系统的基本要求。</p>
+<h2 id="3-汇编（Assembling）"><a href="#3-汇编（Assembling）" class="headerlink" title="3 汇编（Assembling）"></a>3 汇编（Assembling）</h2><p>接下来，汇编器将hello.s翻译成机器语言指令，把这些指令打包成一种叫做可重定位目标程序的格式，并将结果保存在hello.o中。hello.o是二进制文件，当我们用vim查看时，看到的将是一堆乱码。在Linux中，输入以下指令，可以得到hello.o文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c hello.s -o hello.o</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-链接（Linking）"><a href="#4-链接（Linking）" class="headerlink" title="4 链接（Linking）"></a>4 链接（Linking）</h2><p>hello程序调用了printf函数，这个函数是标准C库提供的，其函数实现于一个名为printf.o的文件中，而这个文件必须以某种方式合并到我们的hello可执行文件中，链接器就负责这种合并。在Linux中执行以下命令，就可以得到最终的可执行文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc hello.o -o hello</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，gcc在链接到标准C库的时候不需要手动链接，而调用其他库时均需要手动链接，譬如调用了libm.so时，需要在命令后加-lm，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc hello.o -o hello -lm</span><br></pre></td></tr></table></figure>
+<p>有关链接的详细内容，可参考我的博客：<a href="http://localhost:4000/2020/06/21/linking/" target="_blank" rel="noopener">链接</a></p>
+
+      
+
+        
+        
+          <div>
+            <blockquote>
+                <strong>本文作者：</strong>
+                
+                  IguoChan
+                
+                <br>
+                <strong>本文链接：</strong>
+                https://iguochan.github.io/2020/06/21/compile-principle/
+                <br>
+                <strong>版权声明：</strong>
+                本作品采用
+                <a rel="license noopener" href="https://licensebuttons.net/l/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+                进行许可。转载请注明出处！
+                
+                  <br>
+                  <a rel="license noopener" href="https://licensebuttons.net/l/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
+                
+            </blockquote>
+            
+            
+            <hr>
+                <center><strong></strong></center>
+            <hr>
+          </div>
+        
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p">谢谢你请我吃糖果</i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -263,7 +320,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -280,99 +337,133 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://iguochan.github.io/2020/06/21/compile-principle/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/17/Makefile/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+    <a href="/2020/06/21/linking/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          链接
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/17/Makefile/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Makefile怎么写</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/17/Makefile/">Makefile怎么写</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Makefile</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/Makefile//" class="article-tag-list-link color4">Makefile</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/17/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-17T11:45:33.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/17/hello-world/">Hello World</a>
-    </h1>
-  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
+  <script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
-        <div class="article-info info-on-right">
-          
-          
+       if (typeof LivereTower === 'function') { return; }
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
   
-    </div></section>
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -405,8 +496,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
