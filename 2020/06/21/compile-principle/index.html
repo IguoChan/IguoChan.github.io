@@ -17,10 +17,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://iguochan.github.io/img/cpls.png">
 <meta property="article:published_time" content="2020-06-21T05:03:47.000Z">
-<meta property="article:modified_time" content="2020-06-21T09:50:58.921Z">
+<meta property="article:modified_time" content="2020-06-21T10:26:48.721Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="gcc">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://iguochan.github.io/img/cpls.png">
   
@@ -210,7 +211,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：./hello）。</p>
-<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。</p>
+<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。本文主要参考书籍《深入理解计算机系统》。</p>
 <a id="more"></a>
 
 <h2 id="0-编译过程"><a href="#0-编译过程" class="headerlink" title="0 编译过程"></a>0 编译过程</h2><p>在我们初学编程的时候，初次学习的都是HelloWorld程序，这里我们就以一个最简单的例子：hello.c来阐述编译原理，代码如下：</p>
@@ -315,6 +316,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
         		</li>
       		
 		</ul>
@@ -577,6 +582,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">gcc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
