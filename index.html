@@ -285,7 +285,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/21/compile-principle/">C语言编译原理</a>
+      <a class="article-title" href="/2020/06/21/compile-principle/">C语言编译原理浅析</a>
     </h1>
   
 
@@ -300,7 +300,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">1.7k字</span>
       </span>
     </span>
 
@@ -320,7 +320,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：./hello）。</p>
-<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。本文主要参考书籍《深入理解计算机系统》。</p>
+<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。本文针对C语言，并在Linux系统上进行操作演示，以简单阐述编译原理，主要参考书籍为《<a href="https://baike.baidu.com/item/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/4542223?fr=aladdin" target="_blank" rel="noopener">深入理解计算机系统</a>》。</p>
         
           <a class="article-more-a" href="/2020/06/21/compile-principle/#more">more >></a>
         
