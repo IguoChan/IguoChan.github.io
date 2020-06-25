@@ -8,17 +8,23 @@
   <link rel="dns-prefetch" href="https://iguochan.github.io">
   <title>链接 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="链接是将各种代码和数据片段收集并组合成为一个单一文件的过程。链接是软件开发中的重要过程，其使得分离编译成为可能。即我们不用将一个大型的应用程序组织成为一个巨大的源文件，而是将其分解为更小、更好管理的模块，可以独立地修改和编译这些模块。不仅如此，我们还可以链接包含某些特定函数和功能的库文件，在前人的基础上进行深度开发，而不需要每个模块都亲历亲为。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="链接">
 <meta property="og:url" content="https://iguochan.github.io/2020/06/21/linking/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="链接是将各种代码和数据片段收集并组合成为一个单一文件的过程。链接是软件开发中的重要过程，其使得分离编译成为可能。即我们不用将一个大型的应用程序组织成为一个巨大的源文件，而是将其分解为更小、更好管理的模块，可以独立地修改和编译这些模块。不仅如此，我们还可以链接包含某些特定函数和功能的库文件，在前人的基础上进行深度开发，而不需要每个模块都亲历亲为。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://iguochan.github.io/img/o_elf.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/elf_header.png">
+<meta property="og:image" content="https://iguochan.github.io/img/elf_header_magic.png">
 <meta property="article:published_time" content="2020-06-21T09:47:13.000Z">
-<meta property="article:modified_time" content="2020-06-21T09:49:50.297Z">
+<meta property="article:modified_time" content="2020-06-25T10:16:29.098Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="gcc">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iguochan.github.io/img/o_elf.jpg">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
   
@@ -186,7 +192,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">0字</span>
+        <span class="post-count">950字</span>
       </span>
     </span>
 
@@ -195,7 +201,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">1分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -205,7 +211,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>链接是将各种代码和数据片段收集并组合成为一个单一文件的过程。链接是软件开发中的重要过程，其使得分离编译成为可能。即我们不用将一个大型的应用程序组织成为一个巨大的源文件，而是将其分解为更小、更好管理的模块，可以独立地修改和编译这些模块。不仅如此，我们还可以链接包含某些特定函数和功能的库文件，在前人的基础上进行深度开发，而不需要每个模块都亲历亲为。</p>
+<a id="more"></a>
+
+<h2 id="0-目标文件"><a href="#0-目标文件" class="headerlink" title="0 目标文件"></a>0 目标文件</h2><p>目标文件一般指二进制文件。目标文件是按照特定的文件格式来组织的，各个系统的目标文件格式都不相同，Windows使用可移植可执行（Portable Executable，PE）格式，而现代x86-64Linux和Unix系统使用可执行可链接格式（Executable and Linkable Format，ELF）。目标文件有以下三种形式：</p>
+<h3 id="0-1-可重定位目标文件"><a href="#0-1-可重定位目标文件" class="headerlink" title="0.1 可重定位目标文件"></a>0.1 可重定位目标文件</h3><p>简单来说，就是源文件经过<a href="https://iguochan.github.io/2020/06/21/compile-principle/">预处理、编译和汇编</a>后生成的.o文件。典型的可重定位目标文件的格式如下图所示：<br><img src="/img/o_elf.jpg" alt="relocation file"></p>
+<h4 id="0-1-1-ELF头"><a href="#0-1-1-ELF头" class="headerlink" title="0.1.1 ELF头"></a>0.1.1 ELF头</h4><p>ELF头以一个16字节的序列开始，这个序列描述了生成该文件的系统的字的大小和字节序列。在Linux下，查看可重定位目标文件的ELF头只需执行以下指令，即有：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$ readelf -h hello.o </span><br><span class="line">ELF Header:</span><br><span class="line">  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00 </span><br><span class="line">  Class:                             ELF64</span><br><span class="line">  Data:                              2<span class="string">'s complement, little endian</span></span><br><span class="line"><span class="string">  Version:                           1 (current)</span></span><br><span class="line"><span class="string">  OS/ABI:                            UNIX - System V</span></span><br><span class="line"><span class="string">  ABI Version:                       0</span></span><br><span class="line"><span class="string">  Type:                              REL (Relocatable file)</span></span><br><span class="line"><span class="string">  Machine:                           Advanced Micro Devices X86-64</span></span><br><span class="line"><span class="string">  Version:                           0x1</span></span><br><span class="line"><span class="string">  Entry point address:               0x0</span></span><br><span class="line"><span class="string">  Start of program headers:          0 (bytes into file)</span></span><br><span class="line"><span class="string">  Start of section headers:          328 (bytes into file)</span></span><br><span class="line"><span class="string">  Flags:                             0x0</span></span><br><span class="line"><span class="string">  Size of this header:               64 (bytes)</span></span><br><span class="line"><span class="string">  Size of program headers:           0 (bytes)</span></span><br><span class="line"><span class="string">  Number of program headers:         0</span></span><br><span class="line"><span class="string">  Size of section headers:           64 (bytes)</span></span><br><span class="line"><span class="string">  Number of section headers:         13</span></span><br><span class="line"><span class="string">  Section header string table index: 10</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，Type目录显示为REL (Relocatable file)，即可重定位目标文件。另外还可以看出，其文件格式是ELF64，小端，是x86系统的目标文件等，具体信息对应如下图：<br><img src="/img/elf_header.png" alt="elf header"><br>而e_ident详见下图，有关ELF头的详细信息详细信息，可查看<a href="https://www.cnblogs.com/jiqingwu/p/elf_explore_2.html" target="_blank" rel="noopener">链接</a>。<br><img src="/img/elf_header_magic.png" alt="elf header"></p>
+<h4 id="0-1-2-节"><a href="#0-1-2-节" class="headerlink" title="0.1.2 节"></a>0.1.2 节</h4><p>.text: 已编译程序的机器代码；<br>.rodata: 只读数据；<br>.data: 已经初始化的全局和静态变量；<br>.bss: 未初始化的全局和静态变量，其实实际不占据空间，仅仅是个占位符。这是为了空间效率，即在目标文件中不需要占据任何实际的磁盘空间，且等到运行时，依据符号表存储信息，从内存中分配这些变量；<br><strong>注意</strong>：以上4个段会在程序运行时加入到内存中，是实实在在的程序段。目标文件中还有一些辅助程序进程链接和加载的信息，这些信息并不加载到内存中。实际上，这些信息在生成最终的可执行目标文件时就已经被去掉了。<br>.symtab: 一个符号表，存放程序中定义和引用的函数和全局变量信息；<br>.rel.text: 代码段中需要的重定位信息，当链接器把这个目标文件和其它文件组合时，需要修改这些定位信息；可执行目标文件中并不需要重定位信息，通常省略；<br>.rel.data: 数据段中需要的重定位信息，同上，当链接器工作时，都需要被修改……</p>
+<p>节头部表是描述以上用于描述不同节的位置和大小等信息，具体可参照《<a href="https://baike.baidu.com/item/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/4542223?fr=aladdin" target="_blank" rel="noopener">深入理解计算机系统</a>》。</p>
+<h3 id="0-2-可执行目标文件"><a href="#0-2-可执行目标文件" class="headerlink" title="0.2 可执行目标文件"></a>0.2 可执行目标文件</h3><p>将<br>+</p>
+
       
 
         
