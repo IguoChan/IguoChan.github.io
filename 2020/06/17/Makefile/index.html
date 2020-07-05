@@ -16,7 +16,7 @@
 <meta property="og:description" content="在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile了，会不会编写Makefile也就从一个侧面说明一个工程师是否有搭建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考陈皓大神的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-17T12:15:28.000Z">
-<meta property="article:modified_time" content="2020-07-04T08:40:14.736Z">
+<meta property="article:modified_time" content="2020-07-05T11:25:56.075Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="Makefile">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">620字</span>
+        <span class="post-count">4.5k字</span>
       </span>
     </span>
 
@@ -202,7 +202,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">17分</span>
       </span>
     </span>
 </div>
@@ -217,8 +217,95 @@
 
 <h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h2><p>Makefile所做的工作就是“自动化编译”，一旦写好只需一个make命令，整个工程即完全自动编译。本文默认编译器为Unix下gcc，以C语言的源码作为基础。在这里，我并不想长篇叙述Makefile的写法，如果想了解更详细的知识的，还请移步<a href="https://blog.csdn.net/haoel" target="_blank" rel="noopener">陈皓大神的博客</a>。</p>
 <p>首先我们需要知道程序的编译和链接的相关知识，这个可以参考我的博客《<a href="https://iguochan.github.io/2020/06/21/compile-principle/">C语言编译原理浅析</a>》和《<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>》。我们知道，源文件通过编译工具链（如gcc）编译、链接可以生成可执行文件。而巨大的软件工程可能拥有数量庞大的源文件，这使得在命令行中输入指令生成可执行文件的方法变得不那么容易接受。而make指令就是用来完成这项工作的工具，make指令更像是Makefile文件的解读器，会根据Makefile文件的编写逻辑生成最后的可执行文件。</p>
-<p>当初我学习Makefile编写的时候，学习的是陈皓大神的《跟我一起写Makefile》，他从基础处讲起，一点点深入，逐步介绍Makefile的各种特性和编写规则，使我一个小白收益匪浅，也写出了人生第一份Make file。今天我准备以一种倒叙的逻辑写这篇博客，首先我会给一个可以使用的Makefile例子，然后一步步解析这个例子中所用的Makefile规则，这样，如果是急于写出Makefile的小伙伴们，可以首先就接触到一份最新风格的Makefile，如果使用出现了问题，也可以来本博客或者其它地方寻求解决办法。</p>
-<h2 id="1-一个例子"><a href="#1-一个例子" class="headerlink" title="1 一个例子"></a>1 一个例子</h2><p>未完待续……</p>
+<p>当初我学习Makefile编写的时候，学习的是陈皓大神的《跟我一起写Makefile》，他从基础处讲起，一点点深入，逐步介绍Makefile的各种特性和编写规则，使我一个小白收益匪浅，也写出了人生第一份Make file。今天我准备以一种倒叙的逻辑写这篇博客，首先我会给一个可以使用的Makefile例子，然后一步步解析这个例子中所用的Makefile规则。</p>
+<h2 id="1-一个例子"><a href="#1-一个例子" class="headerlink" title="1 一个例子"></a>1 一个例子</h2><p>在下面这个例子中，生成一个名为test的可执行文件，基本涉及Makefile的基本规则、隐晦规则、变量、函数应用等，将在接下来的内容中一一介绍。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define the target</span></span><br><span class="line">TARGET = <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># define the Build Directory</span></span><br><span class="line">BUILD_DIR = build</span><br><span class="line">OBJ_DIR := $(BUILD_DIR)/objs</span><br><span class="line">DEP_DIR := $(BUILD_DIR)/deps</span><br><span class="line"></span><br><span class="line"><span class="comment"># define PATH</span></span><br><span class="line">LOCAL_PATH = $(shell <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the sources and objects</span></span><br><span class="line">SOURCES := $(shell find $(LOCAL_PATH)/ -name <span class="string">"*.c"</span>)</span><br><span class="line">OBJS := $(addprefix $(OBJ_DIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))</span><br><span class="line">DEPS := $(addprefix $(DEP_DIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))</span><br><span class="line"></span><br><span class="line"><span class="comment"># define VPATH</span></span><br><span class="line">VPATH = $(LOCAL_PATH):$(LOCAL_PATH)/source_Dir1/:$(LOCAL_PATH)/source_Dir2/</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the includes, compile and link flags</span></span><br><span class="line">INCLUDES := -I$(LOCAL_PATH) -I$(LOCAL_PATH)/source_Dir1/ -I$(LOCAL_PATH)/source_Dir2/</span><br><span class="line">CC_FLAGS := -g $(INCLUDES) </span><br><span class="line">LK_FLAGS := -L$(LOCAL_PATH)/lib_Dir</span><br><span class="line">LK_FLAGS += -ltest -lm</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the compiler</span></span><br><span class="line">CC = gcc</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the phony target</span></span><br><span class="line">.PHONY : all clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># build the target </span></span><br><span class="line">all: $(BUILD_DIR)/$(TARGET)</span><br><span class="line">$(BUILD_DIR)/$(TARGET): $(OBJS)</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(BUILD_DIR) ]; <span class="keyword">then</span> mkdir -p $(BUILD_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	$(CC) $^ $(LK_FLAGS) -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># build the objects</span></span><br><span class="line">$(OBJ_DIR)/%.o : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(OBJ_DIR) ]; <span class="keyword">then</span> mkdir -p $(OBJ_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	$(CC) -c $(CC_FLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># build the dependencies</span></span><br><span class="line">$(DEP_DIR)/%.d : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(DEP_DIR) ]; <span class="keyword">then</span> mkdir -p $(DEP_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	<span class="built_in">set</span> -e; rm -f <span class="variable">$@</span>;\</span><br><span class="line">	$(CC) -MM $(CC_FLAGS) $&lt; &gt; <span class="variable">$@</span>.$$$$;\</span><br><span class="line">	sed <span class="string">'s,\($*\)\.o[ :]*,$(OBJ_DIR)/\1.o $@ : ,g'</span> &lt; <span class="variable">$@</span>.$$$$ &gt; <span class="variable">$@</span>;\</span><br><span class="line">	rm -f <span class="variable">$@</span>.$$$$</span><br><span class="line"></span><br><span class="line"><span class="comment"># when *.h file changes, remake the project</span></span><br><span class="line">-include $(DEPS)</span><br><span class="line"></span><br><span class="line"><span class="comment"># clean all products</span></span><br><span class="line">clean:</span><br><span class="line">	-rm -r $(BUILD_DIR)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Makefile的基本规则"><a href="#2-Makefile的基本规则" class="headerlink" title="2 Makefile的基本规则"></a>2 Makefile的基本规则</h2><p>make是一个解释器，其会根据Makefile的内容，调用编译器等Linux命令，最终生成编译产物。Makefile的基本规则如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">	<span class="built_in">command</span></span><br><span class="line">	...</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>target：目标文件，可以是可重定位目标文件、可执行文件或动态库文件，还可以是标签（后续伪目标中会讲到）；可以是一个或多个文件；</li>
+<li>prerequisites：即生成target所需的文件，可以是一个或多个；</li>
+<li>command：是make需执行的命令，前需要空一个制表符（Tab键）；</li>
+</ul>
+<p>以上描述的是一个文件的依赖关系，target这目标文件依赖于prerequisites中的文件，生成规则定义在command中。即当prerequisites中有一个以上的文件要比target中的文件要新的话，command命令就会被执行，这也是Makefile最核心的规则。<br>make在工作时的执行有以下步骤（摘自陈皓的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》）：</p>
+<ul>
+<li>1、将所有的Makefile和include包含的Makefile读入，包括include包含的依赖文件；</li>
+<li>2、初始化所有变量；</li>
+<li>3、推导隐晦规则，并分析所有规则，依据规则为所有目标文件创建依赖关系链；</li>
+<li>4、根据依赖关系，确定哪些目标需要重新生成，并执行生成命令。 </li>
+</ul>
+<p>值得注意的是，针对变量，如果定义的变量被使用了，那么，make会把其展开在使用的位置。但make并不会完全马上展开，make使用的是拖延战术，如果变量出现在依赖关系的规则中，那么仅当这条依赖被决定要使用了，变量才会在其内部展开。<br>在确定哪些目标需要重新生成遵循以下规则：</p>
+<ul>
+<li>当我们执行make命令时，它会首先找到文件中的第一个目标文件（target），在上面的例子里，第一个文件就是伪目标all，伪目标all代表了<code>$(BUILD_DIR)/$(TARGET)</code>，根据变量定义，即test，也就是最终的可执行文件，后面会根据依赖关系找到生成目标文件所需的各级依赖文件；</li>
+<li>test依赖于$(OBJS)（也就是.o）文件，.o文件依赖于源文件；在上述例子的第34-36行，test是目标文件，.o文件是依赖文件；在39-41行，.o文件目标文件，.c源文件是依赖文件；而是否重新生成目标文件取决于依赖文件是否要比目标文件新；在首次编译时（或执行完make clean后），根据依赖关系，.o文件不存在，即.c源文件的改动要比对应的.o新，那么会生成所有的.o文件，而test文件也不存在，那么所有生成的.o文件都会比test文件新，故而会生成test文件，那么最终构造可执行文件的过程也就完成了。在其后，如果我们修改了某一个所依赖的a.c文件，再次执行make命令时，会检查到a.c比a.o新，所以会生成a.o文件，其后再检查到a.o比test要新，所以也会重新链接生成test文件。</li>
+</ul>
+<p>也许有小伙伴会有疑问，为什么不使用<code>gcc -o test *.c</code>这种形式一步就生成可执行文件呢？原因在编译过程中，编译器会事先将每个源文件编译成可重定位目标文件（.o），然后链接器将所有的可重定位目标文件链接为可执行文件，那么根据以上规则，每一个.c的改动都会完完全全执行一遍所有的编译链接过程，而第1章例子中的写法可以在修改了某个模块后只编译此模块并重新链接到可执行文件，这在编译大型工程的时候有利于节省资源。<br>还有就是，上述例子中，只有33-41行的语法是无法做到头文件修改后，引用此头文件的源文件生成的模块重新编译的，因此需要44-52行的语法，这个后续会详细讲。<br>在大致了解了make在解析Makefile时候的工作机制后，后面我将一句第一章的例子涉及到的要素进行讲解。</p>
+<h2 id="3-伪目标"><a href="#3-伪目标" class="headerlink" title="3 伪目标"></a>3 伪目标</h2><p>我们注意到在第33行，有<code>.PHONY : all clean</code>的定义，表示all和clean都是伪目标。伪目标并不是一个文件，只是一个标签，先然make不需要也无法根据依赖关系去生成这个标签，一般显式地通过关键字<code>.PHONY</code>去指明这是伪目标。<br>make执行的时候，如果不指定生成目标，会默认生成第一个可执行文件，如果需要生成多个可执行文件，但是不想敲过多的命令，可以定义一个名为all的的伪目标，指向几个可执行文件，这样直接执行<code>make all</code>的指令即可，本文例子中虽然只有一个可执行文件，但是还是定义了all。<br>对于clean这个伪目标也是一样，我们需要一个标签来删除生成的目标文件（包括中间产物），clean后不需要跟依赖文件，直接跟command指令即可。</p>
+<h2 id="4-变量"><a href="#4-变量" class="headerlink" title="4 变量"></a>4 变量</h2><p>形如<code>TARGET = test</code>的形式是变量定义，在Makefile中定义的变量，就像是C语言中的宏一样，代表了一个文本字串，在Makefile中执行的时候会展开在所使用的地方，譬如在第33行，<code>$(BUILD_DIR)/$(TARGET)</code>就会被展开为<code>build/test</code>。不同于宏的是，变量可以在Makefile中改变值。在变量中，我们使用<code>$</code>符号取变量值，在使用时，最好用“（）”或“{}”将变量括起来，这样会更安全。<br>变量的赋值符号除了“=”号还有几种，以下是它们的区别：</p>
+<ul>
+<li>“=”：变量的值是整个Makefile中最后被指定的值；</li>
+<li>“:=”：变量的值是当前位置的值；</li>
+<li>“?=”：如果该变量没有被赋值，则赋予等号后的值；</li>
+<li>“+=”：追加变量值，将等号后面的值添加到前面的变量上；</li>
+</ul>
+<h3 id="4-1-VPATH"><a href="#4-1-VPATH" class="headerlink" title="4.1 VPATH"></a>4.1 VPATH</h3><p>VPATH是Makefile中的特殊变量，不同于一般变量是用户自定义并在执行命令或解析依赖关系时再展开一样，VPATH是给Makefile用做寻找文件的依赖关系时的路径。如果没有设置此变量，那么make只会在当前的目录中去寻找依赖文件和目标文件；只有定义了这个变量，make会在当前目录找不到的情况下去指定的目录中寻找。<br>另一个设置文件搜索路径的方法是使用make的“vpath”关键字（注意，它是全小写的），这不是变量，这是一个make的关键字，这和上面提到的那个VPATH变量很类似，但是它更为灵活。它可以指定不同的文件在不同的搜索目录中。这是一个很灵活的功能。它的使用方法有三种：</p>
+<ul>
+<li>1、vpath &lt;pattern&gt; &lt;directories&gt;：为符合模式&lt;pattern&gt;的文件指定搜索目录&lt;directories&gt;，&lt;pattern&gt;需要包含“%”通配符；</li>
+<li>2、vpath &lt;pattern&gt;：清除符合模式&lt;pattern&gt;的文件的搜索目录；</li>
+<li>3、vpath：清除所有已被设置好了的文件搜索目录；</li>
+</ul>
+<h3 id="4-2-隐含规则下的变量"><a href="#4-2-隐含规则下的变量" class="headerlink" title="4.2 隐含规则下的变量"></a>4.2 隐含规则下的变量</h3><p>在隐含规则下，基本会使用一些预先设置的变量，我们既可以使用这些变量，也可以重新定义这些变量，在编译时，可以利用make的“-R”或“–no–builtin-variables”参数来取消你所定义的变量对隐含规则的作用。</p>
+<h4 id="4-2-1-命令相关的变量"><a href="#4-2-1-命令相关的变量" class="headerlink" title="4.2.1 命令相关的变量"></a>4.2.1 命令相关的变量</h4><ul>
+<li>AR：函数库打包程序，默认命令是“ar”；</li>
+<li>AS：汇编语言编译程序，默认命令是“as”；</li>
+<li>CC：C语言编译程序，默认命令是“cc”，这里被重构为gcc，其实是一个命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ll /etc/alternatives/cc /usr/bin/cc </span><br><span class="line">lrwxrwxrwx 1 root root 12 Nov 12  2014 /etc/alternatives/cc -&gt; /usr/bin/gcc*</span><br><span class="line">lrwxrwxrwx 1 root root 20 Nov 12  2014 /usr/bin/cc -&gt; /etc/alternatives/cc*</span><br></pre></td></tr></table></figure></li>
+<li>RM：删除文件命令，默认是“rm -f”；<br>还有许多就不一一列了。</li>
+</ul>
+<h4 id="4-2-2-命令参数的变量"><a href="#4-2-2-命令参数的变量" class="headerlink" title="4.2.2 命令参数的变量"></a>4.2.2 命令参数的变量</h4><ul>
+<li>CFLAGS：C语言编译器参数；</li>
+<li>LDFLAGS：链接器参数；</li>
+<li>……</li>
+</ul>
+<h2 id="5-函数"><a href="#5-函数" class="headerlink" title="5 函数"></a>5 函数</h2><p>在Makefile中使用函数来处理变量会使得命令更加的智能。函数调用的语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&lt;<span class="keyword">function</span>&gt; &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">LOCAL_PATH &#x3D; $(shell pwd)</span><br><span class="line">SOURCES :&#x3D; $(shell find $(LOCAL_PATH)&#x2F; -name &quot;*.c&quot;)</span><br><span class="line">OBJS :&#x3D; $(addprefix $(OBJ_DIR)&#x2F;, $(patsubst %.c, %.o, $(notdir $(SOURCES))))</span><br><span class="line">DEPS :&#x3D; $(addprefix $(DEP_DIR)&#x2F;, $(patsubst %.c, %.d, $(notdir $(SOURCES))))</span><br></pre></td></tr></table></figure>
+<p>都用到了函数。下面就针对这几个函数讲讲，更多的函数定义还参考《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》。</p>
+<h3 id="5-1-shell函数"><a href="#5-1-shell函数" class="headerlink" title="5.1 shell函数"></a>5.1 shell函数</h3><p>shell函数的参数是操作系统的shell命令，如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH = $(shell <span class="built_in">pwd</span>)</span><br><span class="line">SOURCES := $(shell find $(LOCAL_PATH)/ -name <span class="string">"*.c"</span>)</span><br></pre></td></tr></table></figure>
+<p>第一行中，pwd指令会返回当前Makefile所在目录的路径，即将此路径指定为LOCAL_PATH，第二行中，表示在此路径及子路径下查找所有的源文件，并将其赋值给SOURCES。</p>
+<h3 id="5-2-addprefix函数"><a href="#5-2-addprefix函数" class="headerlink" title="5.2 addprefix函数"></a>5.2 addprefix函数</h3><p>addprefix属于文件名操作函数，其基本格式如下，功能是把前缀<code>&lt;prefix&gt;</code>添加到<code>&lt;name&gt;</code>中的每个单词前面，并返回加过前缀的文件名序列。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(addprefix &lt;prefix&gt;,&lt;names...&gt;)</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-patsubst函数"><a href="#5-3-patsubst函数" class="headerlink" title="5.3 patsubst函数"></a>5.3 patsubst函数</h3><p>patsubst函数属于字符串处理函数，基本格式如下，功能是查找&lt;text&gt;中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式&lt;pattern&gt;，如果匹配的话，则以&lt;replacement&gt;替换。这里，&lt;pattern&gt;可以包括通配符“%”， 表示任意长度的字串。 如果&lt;replacement&gt;中也包含“%”， 那么， &lt;replacement&gt;中的这个“%”将是&lt;pattern&gt;中的那个“%”所代表的字串。（可以用“\”来转义， 以“%”来表示真实含义的“%”字符）。并返回被替换后的字符串。</p>
+<h3 id="5-4-notdir函数"><a href="#5-4-notdir函数" class="headerlink" title="5.4 notdir函数"></a>5.4 notdir函数</h3><p>notdir函数用于取出文件名称中的非目录部分，并返回此部分，基本格式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(notdir &lt;names...&gt;)</span><br></pre></td></tr></table></figure>
+<p>所以结合以上三个函数的含义，就能解析以下语句的定义，即取出每个源文件替换成.o(.d)文件并添加上<code>$(OBJ_DIR)</code>（<code>$(DEP_DIR)</code>）的路径前缀，并返回给<code>OBJS</code>（<code>DEPS</code>）变量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OBJS := $(addprefix $(OBJ_DIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))</span><br><span class="line">DEPS := $(addprefix $(DEP_DIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-符号定义"><a href="#6-符号定义" class="headerlink" title="6 符号定义"></a>6 符号定义</h2><h3 id="6-1-通配符"><a href="#6-1-通配符" class="headerlink" title="6.1 通配符"></a>6.1 通配符</h3><p>在Makefile中，% 表示的是通配符，和Unix系统中的 * 通配符有着不同的含义，我在网上找到的描述我觉得都不是很好理解，下面是我的理解：</p>
+<ul>
+<li>% 是Makefile的规则通配符，它会对后面的集合进行二次定义，当make准备生成test时，会发现其依赖于许多.o，当看到类似于<code>%.o : %.c</code>的语句时，会将前面所依赖的.o逐一展开，并将.c前的%替换为相应名称前缀的.c，如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%.o : %.c</span><br><span class="line">	gcc -c $&lt; -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line">等价于</span><br><span class="line"></span><br><span class="line">a.o : a.c</span><br><span class="line">	gcc -c a.c -o a.o</span><br><span class="line">b.o : b.c</span><br><span class="line">	gcc -c b.c -o b.o</span><br><span class="line">……</span><br></pre></td></tr></table></figure></li>
+<li><ul>
+<li>符号是Unix系统的通配符，表示所有。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-2-特殊符号"><a href="#6-2-特殊符号" class="headerlink" title="6.2 特殊符号"></a>6.2 特殊符号</h3><ul>
+<li>$@：目标的名字；</li>
+<li>$&lt;：第一个依赖目标；</li>
+<li>$^：依赖目标集；</li>
+<li>$?：依赖目标集中更新过的文件；</li>
+<li>-command：忽略当前命令行所遇到的错误；</li>
+<li>@command：command指令将不会回显。</li>
+</ul>
+<h3 id="6-3-gcc选项"><a href="#6-3-gcc选项" class="headerlink" title="6.3 gcc选项"></a>6.3 gcc选项</h3><p>在以上例子中还有一些gcc的选项符号，譬如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -I 表示去以下路径寻找头文件，一般头文件的查找在本目录以及编译器自带的目录下寻找，这是指定私有头文件目录</span></span><br><span class="line">INCLUDES := -I$(LOCAL_PATH) -I$(LOCAL_PATH)/source_Dir1/ -I$(LOCAL_PATH)/source_Dir2/</span><br><span class="line"></span><br><span class="line"><span class="comment"># -L 表示去此路径下寻找链接库文件，一般标准库文件会在标准路径下，如果用到私有库，应指定 </span></span><br><span class="line">LK_FLAGS := -L$(LOCAL_PATH)/lib_Dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># -l 表示链接此库，ltest表示库名称为libtest.so或libtest.a，lm是libm.so，标准math库</span></span><br><span class="line">LK_FLAGS += -ltest -lm</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-自动生成依赖性"><a href="#7-自动生成依赖性" class="headerlink" title="7 自动生成依赖性"></a>7 自动生成依赖性</h2><p>源文件中包含了头文件，即源文件依赖于头文件，当工程较大时，一一写出依赖性是不合适的。大多数提供了“-M”选项，用于自动寻找源文件包含的头文件，并生成依赖关系，但是GNU C的编译器中，“-M”选项会将标准头文件也包含进来，我们使用“-MM”参数，只包含自定义的头文件，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ cc -M main.c </span><br><span class="line">main.o: main.c /usr/include/stdio.h /usr/include/features.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/predefs.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/sys/cdefs.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/wordsize.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/gnu/stubs.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \</span><br><span class="line"> /usr/lib/gcc/x86_64-linux-gnu/4.4.7/include/stddef.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/types.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \</span><br><span class="line"> /usr/include/_G_config.h /usr/include/wchar.h \</span><br><span class="line"> /usr/lib/gcc/x86_64-linux-gnu/4.4.7/include/stdarg.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/sys_errlist.h list.h</span><br><span class="line"></span><br><span class="line">$ cc -MM main.c </span><br><span class="line">main.o: main.c list.h</span><br></pre></td></tr></table></figure>
+<p>要让Makefile自动检测依赖头文件有些困难，不过GNU组织建议把编译器为每一个源文件的自动生成的依赖关系放到一个文件中，为每一个“name.c”的文件都生成一个“name.d”的Makefile文件，[.d]文件中就存放对应[.c]文件的依赖关系。于是，我们可以写出[.c]文件和[.d]文件的依赖关系，并让make自动更新或自成[.d]文件，并把其包含在我们的主Makefile中，这样，我们就可以自动化地生成每个文件的依赖关系了。以下语句体现了这个规则。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(DEP_DIR)/%.d : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(DEP_DIR) ]; <span class="keyword">then</span> mkdir -p $(DEP_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	<span class="built_in">set</span> -e; rm -f <span class="variable">$@</span>;\</span><br><span class="line">	$(CC) -MM $(CC_FLAGS) $&lt; &gt; <span class="variable">$@</span>.$$$$;\</span><br><span class="line">	sed <span class="string">'s,\($*\)\.o[ :]*,$(OBJ_DIR)/\1.o $@ : ,g'</span> &lt; <span class="variable">$@</span>.$$$$ &gt; <span class="variable">$@</span>;\</span><br><span class="line">	rm -f <span class="variable">$@</span>.$$$$</span><br><span class="line"></span><br><span class="line"><span class="comment"># when *.h file changes, remake the project</span></span><br><span class="line">-include $(DEPS)</span><br></pre></td></tr></table></figure>
+<p>这个规则的意思是，所有的[.d]文件依赖于[.c]文件，“rm -f $@”的意思是删除所有的目标，也就是[.d]文件，第二行的意思是，为每个依赖文件“$&lt;”，也就是[.c]文件生成依赖文件，“$@”表示模式“%.d” 文件，如果有一个 C 文件是 name.c，那么“%”就是“name”，“$$$$”意为一个随机编号，第二行生成的文件有可能是“name.d.12345”，第三行使用 sed 命令做了一个替换，关于 sed 命令的用法请参看相关的使用文档。第四行就是删除临时文件。<br>以上语句可以保证每次生成新的依赖文件，要用include命令包含进Makefile，这样在头文件更新后，也会编译相应的目标。</p>
 
       
 
@@ -409,7 +496,7 @@
 
   
   <!-- 来必力City版安装代码 -->
-<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA">
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
 <script type="text/javascript">
    (function(d, s) {
        var j, e = d.getElementsByTagName(s)[0];
