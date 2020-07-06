@@ -16,7 +16,7 @@
 <meta property="og:description" content="在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile来构建工程了，会不会编写Makefile也就从一个侧面说明一个工程师是否有构建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-17T12:15:28.000Z">
-<meta property="article:modified_time" content="2020-07-06T14:46:16.471Z">
+<meta property="article:modified_time" content="2020-07-06T14:51:06.577Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="Makefile">
 <meta name="twitter:card" content="summary">
@@ -282,6 +282,8 @@
 <h3 id="5-2-addprefix函数"><a href="#5-2-addprefix函数" class="headerlink" title="5.2 addprefix函数"></a>5.2 addprefix函数</h3><p>addprefix属于文件名操作函数，其基本格式如下，功能是把前缀<code>&lt;prefix&gt;</code>添加到<code>&lt;name&gt;</code>中的每个单词前面，并返回加过前缀的文件名序列。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(addprefix &lt;prefix&gt;,&lt;names...&gt;)</span><br></pre></td></tr></table></figure>
 <h3 id="5-3-patsubst函数"><a href="#5-3-patsubst函数" class="headerlink" title="5.3 patsubst函数"></a>5.3 patsubst函数</h3><p>patsubst函数属于字符串处理函数，基本格式如下，功能是查找&lt;text&gt;中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式&lt;pattern&gt;，如果匹配的话，则以&lt;replacement&gt;替换。这里，&lt;pattern&gt;可以包括通配符“%”， 表示任意长度的字串。 如果&lt;replacement&gt;中也包含“%”， 那么， &lt;replacement&gt;中的这个“%”将是&lt;pattern&gt;中的那个“%”所代表的字串。（可以用“\”来转义， 以“%”来表示真实含义的“%”字符）。并返回被替换后的字符串。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;)</span><br></pre></td></tr></table></figure>
+
 <h3 id="5-4-notdir函数"><a href="#5-4-notdir函数" class="headerlink" title="5.4 notdir函数"></a>5.4 notdir函数</h3><p>notdir函数用于取出文件名称中的非目录部分，并返回此部分，基本格式如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(notdir &lt;names...&gt;)</span><br></pre></td></tr></table></figure>
 <p>所以结合以上三个函数的含义，就能解析以下语句的定义，即取出每个源文件替换成.o(.d)文件并添加上<code>$(OBJ_DIR)</code>（<code>$(DEP_DIR)</code>）的路径前缀，并返回给<code>OBJS</code>（<code>DEPS</code>）变量。</p>
@@ -312,7 +314,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(DEP_DIR)/%.d : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(DEP_DIR) ]; <span class="keyword">then</span> mkdir -p $(DEP_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	<span class="built_in">set</span> -e; rm -f <span class="variable">$@</span>;\</span><br><span class="line">	$(CC) -MM $(CC_FLAGS) $&lt; &gt; <span class="variable">$@</span>.$$$$;\</span><br><span class="line">	sed <span class="string">'s,\($*\)\.o[ :]*,$(OBJ_DIR)/\1.o $@ : ,g'</span> &lt; <span class="variable">$@</span>.$$$$ &gt; <span class="variable">$@</span>;\</span><br><span class="line">	rm -f <span class="variable">$@</span>.$$$$</span><br><span class="line"></span><br><span class="line"><span class="comment"># when *.h file changes, remake the project</span></span><br><span class="line">-include $(DEPS)</span><br></pre></td></tr></table></figure>
 <p>这个规则的意思是，所有的[.d]文件依赖于[.c]文件，“rm -f $@”的意思是删除所有的目标，也就是[.d]文件，第二行的意思是，为每个依赖文件“$&lt;”，也就是[.c]文件生成依赖文件，“$@”表示模式“%.d” 文件，如果有一个 C 文件是 name.c，那么“%”就是“name”，“$$$$”意为一个随机编号，第二行生成的文件有可能是“name.d.12345”，第三行使用 sed 命令做了一个替换，关于sed命令的用法请参看相关的使用文档。第四行就是删除临时文件。</p>
 <p>以上语句可以保证每次生成新的依赖文件，要用include命令包含进Makefile，这样在头文件更新后，也会编译相应的目标。</p>
-<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8 总结"></a>8 总结</h2><p>以上就是我对于Makefile的一些学习的笔记和总结，虽然没有针对Makefile进行十分详细且深入的研究，但是对于平时工作中对于Makefile的编写和阅读，应该也是足够应付的。想对Makefile的编写有更深入了解的，欢迎移步陈皓大神的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》。</p>
+<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8 总结"></a>8 总结</h2><p>以上就是我对于Makefile的一些学习的笔记和总结，虽然没有针对Makefile进行十分详细且深入的研究，但是对于平时工作中对于Makefile的编写和阅读，应该也是足够应付的。想对Makefile的编写有更深入了解的，请移步陈皓大神的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》。</p>
 
       
 
