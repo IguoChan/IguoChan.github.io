@@ -81,7 +81,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 5
+    		总文章数 6
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -163,6 +163,124 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-cmake" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/06/cmake/">CMakeLists.txt 怎么写</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/06/cmake/" class="archive-article-date">
+  	<time datetime="2020-07-06T15:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">319字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过<a href="https://iguochan.github.io/2020/06/21/compile-principle/">预处理、编译和汇编</a>生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件都<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>成可执行文件。</p>
+<p>但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是<a href="https://iguochan.github.io/2020/06/17/Makefile/">Makefile</a>。</p>
+<p>而对于一个大型程序，编写Makefile也是一件复杂的事情，于是人们设计了一个工具，自动生成Makefile，也就是cmake工具。另外，cmake不仅可以生成Unix环境下的GNU Make，也可以生成QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等，也就是说，CMake是一种跨平台的Make maker，它根据平台无关的CMakeLists.txt文件来指定整个编译过程，再根据平台生成所需的Makefile或project文件，本文就简单介绍一下Linux下CMakeLists.txt文件的编写。</p>
+        
+          <a class="article-more-a" href="/2020/07/06/cmake/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/cmake//" class="article-tag-list-link color1">cmake</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/06/cmake/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-list" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -204,7 +322,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们将形如A<sub>1</sub>,A<sub>2</sub>,…,A<sub>N</sub>的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这回造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。</p>
+        <p>我们将形如A<sub>1</sub>,A<sub>2</sub>,…,A<sub>N</sub>的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。</p>
 <p>为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而链表就是这样的结构。</p>
         
           <a class="article-more-a" href="/2020/06/27/list/#more">more >></a>
@@ -535,7 +653,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/17/Makefile/">Makefile怎么写</a>
+      <a class="article-title" href="/2020/06/17/Makefile/">Makefile 怎么写</a>
     </h1>
   
 
@@ -850,11 +968,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -867,6 +985,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
