@@ -200,7 +200,7 @@
       
         <p>写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过<a href="https://iguochan.github.io/2020/06/21/compile-principle/">预处理、编译和汇编</a>生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>成可执行文件。</p>
 <p>但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是<a href="https://iguochan.github.io/2020/06/17/Makefile/">Makefile</a>。</p>
-<p>而对于一个大型程序，编写Makefile也是一件复杂的事情，于是人们设计了一个工具，自动生成Makefile，也就是CMake工具。另外，CMake不仅可以生成Unix环境下的GNU Make，也可以生成QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等，也就是说，CMake是一种跨平台的Make maker，它根据平台无关的CMakeLists.txt文件来指定整个编译过程，再根据平台生成所需的Makefile或project文件，本文就简单介绍一下Linux下CMakeLists.txt文件的编写。</p>
+<p>而对于一个大型程序，编写Makefile也是一件复杂的事情，于是人们设计了一个工具，自动生成Makefile，也就是CMake工具。另外，CMake不仅可以生成Unix环境下的GNU Make，也可以生成QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等。也就是说，CMake是一种跨平台的Make maker，它根据平台无关的CMakeLists.txt文件来指定整个编译过程，再根据平台生成所需的Makefile或project文件，本文就简单介绍一下Linux下CMakeLists.txt文件的编写。</p>
         
           <a class="article-more-a" href="/2020/07/06/cmake/#more">more >></a>
         
