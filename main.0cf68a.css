@@ -988,7 +988,7 @@ html {
 .left-col #header .header-menu {
   font-weight: 300;
   line-height: 31px;
-  text-transform: uppercase;
+  text-transform: none;
   float: none;
   min-height: 150px;
   margin-left: -12px;
@@ -2371,7 +2371,7 @@ pre .id {
 
 .article-inner h4 {
   letter-spacing: .140625em;
-  text-transform: uppercase
+  text-transform: none
 }
 
 .article-inner h6 {
