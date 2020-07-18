@@ -6,25 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>链表的C语言实现 | IguoChan的博客</title>
+  <title>C语言编译原理浅析 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我们将形如A1,A2,…,AN的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。 为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而">
+  <meta name="description" content="我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：.&#x2F;hello）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表的C语言实现">
-<meta property="og:url" content="https://iguochan.github.io/2020/06/27/list/index.html">
+<meta property="og:title" content="C语言编译原理浅析">
+<meta property="og:url" content="https://iguochan.github.io/2020/06/21/C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="我们将形如A1,A2,…,AN的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。 为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而">
+<meta property="og:description" content="我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：.&#x2F;hello）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://iguochan.github.io/img/l1.png">
-<meta property="og:image" content="https://iguochan.github.io/img/l_create.png">
-<meta property="og:image" content="https://iguochan.github.io/img/l_append.png">
-<meta property="og:image" content="https://iguochan.github.io/img/l_prepend.png">
-<meta property="article:published_time" content="2020-06-27T10:45:46.000Z">
-<meta property="article:modified_time" content="2020-07-07T12:52:45.425Z">
+<meta property="og:image" content="https://iguochan.github.io/img/cpls.png">
+<meta property="article:published_time" content="2020-06-21T05:03:47.000Z">
+<meta property="article:modified_time" content="2020-07-05T02:03:18.823Z">
 <meta property="article:author" content="IguoChan">
-<meta property="article:tag" content="list">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="gcc">
+<meta property="article:tag" content="C语言">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://iguochan.github.io/img/l1.png">
+<meta name="twitter:image" content="https://iguochan.github.io/img/cpls.png">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
   
@@ -69,8 +68,6 @@
 	        
 				<li><a href="/categories/">分类</a></li>
 	        
-				<li><a href="/tags/Linux/">Linux</a></li>
-	        
 				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
@@ -91,7 +88,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 7
+    		总文章数 8
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -132,8 +129,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -150,13 +145,11 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/categories/">分类</a></li>
+					<li style="width: 33.333333333333336%"><a href="/categories/">分类</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Linux/">Linux</a></li>
-		        
-					<li style="width: 25%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -171,20 +164,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-list" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C语言编译原理浅析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      链表的C语言实现
+      C语言编译原理浅析
     </h1>
   
 
         
-        <a href="/2020/06/27/list/" class="archive-article-date">
-  	<time datetime="2020-06-27T10:45:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
+        <a href="/2020/06/21/C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" class="archive-article-date">
+  	<time datetime="2020-06-21T05:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
 </a>
 
         <!-- 不蒜子统计 -->
@@ -198,7 +191,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.3k字</span>
+        <span class="post-count">1.7k字</span>
       </span>
     </span>
 
@@ -207,7 +200,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">13分</span>
+        <span class="post-count">6分</span>
       </span>
     </span>
 </div>
@@ -217,102 +210,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们将形如A<sub>1</sub>,A<sub>2</sub>,…,A<sub>N</sub>的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。</p>
-<p>为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而链表就是这样的结构。</p>
+        <p>我们平时所说的程序，在Windows系统上一般是后缀为.exe，双击后即可运行的程序文件；在类Unix系统上，可执行程序没有特定的后缀名，一般输入名称即可执行（shell命令认为输入命令的第一个单词是可执行文件的名字。内置命令在PATH目录下，shell可以直接找到，所以输入名称即可；系统一般无法找到私有可执行文件，所以需要指明路径，如当前目录下执行：./hello）。</p>
 <a id="more"></a>
-<h2 id="0-基本概念"><a href="#0-基本概念" class="headerlink" title="0 基本概念"></a>0 基本概念</h2><p>链表的基本样式如下图所示，在C语言中，我们可以用指针表示图中所示的箭头。如图所示，链表分为单向链表和双向链表（还有循环链表，这里未表），双向链表相对于单项链表，以倒序扫描链表的时候会更方便，但是增加了空间的需求和插入、删除的开销。下面将介绍双向链表的代码实现。<br><img src="/img/l1.png" alt="list"></p>
-<h2 id="1-创建链表"><a href="#1-创建链表" class="headerlink" title="1 创建链表"></a>1 创建链表</h2><p>上图所示的链表没有表头，而没有表头会带来问题：从第一个位置进行插入和删除都需要特殊的判断和处理。为解决这个问题，我们引入一个表头或哑节点。首先，我们定义每个节点的结构体为node，如下，两个指针分别指向前驱和后继节点，数据用void类型的指针表示，可以指向任意类型的数据。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">prev</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">    <span class="keyword">void</span> *data;</span><br><span class="line">&#125; <span class="keyword">node_t</span>;</span><br></pre></td></tr></table></figure>
-<p>定义表头或哑节点如下，其中两个指针分别指向链表的头节点和尾节点，带有数据为节点计数cnt，如下，这个头节点也就用来表征此链表，故而用list给其命名。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">list</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">tail</span>;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> cnt;</span><br><span class="line">&#125; <span class="keyword">list_t</span>;</span><br></pre></td></tr></table></figure>
-<p>接下来创建一个链表，这很简单，就是一个空链表，没有数据节点，头和尾指针都指向NULL，如下图所示。<br><img src="/img/l_create.png" alt="list"><br>代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">list_t</span> *<span class="title">list_create</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">list_t</span> *<span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span> = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">list_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;head = <span class="built_in">list</span>-&gt;tail = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-插入元素"><a href="#2-插入元素" class="headerlink" title="2 插入元素"></a>2 插入元素</h2><h3 id="2-1-尾部插入"><a href="#2-1-尾部插入" class="headerlink" title="2.1 尾部插入"></a>2.1 尾部插入</h3><p>在链表尾部添加元素的逻辑如下所示，当在链表尾部添加一个节点时，有以下四个步骤：</p>
-<ul>
-<li>1、将该节点的后继节点（node-&gt;next）设为空（NULL）；</li>
-<li>2、如果链表为空，即此节点为第一个节点，将链表头指针（list-&gt;head）指向此节点；若链表不为空，则将链表尾指针指向的节点的后继节点（list-&gt;tail-&gt;next）设为此节点；</li>
-<li>3、将此节点的前驱节点设为链表的尾指针指向的节点；</li>
-<li>4、将链表的尾指针指向此节点；<br>其基本逻辑如下图所示：<br><img src="/img/l_append.png" alt="list"></li>
-</ul>
-<p>代码如下所示，函数参数为此链表及添加的数据，当代码返回0时添加成功，返回-1时失败。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_append</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">node_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (!node)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    node-&gt;data = data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 1 */</span></span><br><span class="line">    node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 2 */</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>-&gt;head)</span><br><span class="line">        <span class="built_in">list</span>-&gt;head = node;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">list</span>-&gt;tail-&gt;next = node;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 3 */</span></span><br><span class="line">    node-&gt;prev = <span class="built_in">list</span>-&gt;tail;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 4 */</span></span><br><span class="line">    <span class="built_in">list</span>-&gt;tail = node;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="2-2-头部插入"><a href="#2-2-头部插入" class="headerlink" title="2.2 头部插入"></a>2.2 头部插入</h3><p>在链表头部添加元素的逻辑如下所示，当在链表头部添加一个节点时，有以下四个步骤：</p>
-<ul>
-<li>1、将该节点的前驱节点（node-&gt;prev）设为空（NULL）；</li>
-<li>2、如果链表为空，即此节点为第一个节点，将链表尾指针（list-&gt;tail）指向此节点；若链表不为空，则将链表头指针指向的节点的前驱节点（list-&gt;head-&gt;prev）设为此节点；</li>
-<li>3、将此节点的后继节点设为链表的头指针指向的节点；</li>
-<li>4、将链表的头指针指向此节点；<br>其基本逻辑如下所示：<br><img src="/img/l_prepend.png" alt="list"></li>
-</ul>
-<p>代码如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_prepend</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">node_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (!node)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    node-&gt;data = data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 1 */</span></span><br><span class="line">    node-&gt;prev = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 2 */</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>-&gt;tail)</span><br><span class="line">        <span class="built_in">list</span>-&gt;tail = node;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">list</span>-&gt;head-&gt;prev = node;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 3 */</span></span><br><span class="line">    node-&gt;next = <span class="built_in">list</span>-&gt;head;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 4 */</span></span><br><span class="line">    <span class="built_in">list</span>-&gt;head = node;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-3-中间插入"><a href="#2-3-中间插入" class="headerlink" title="2.3 中间插入"></a>2.3 中间插入</h3><p>在中间插入元素有两种格式，一种是在特定位置插入，另一种是在特定的node前（或后）插入，下面将代码实现这两种不同的插入方式。</p>
-<h4 id="2-3-1-在特定位置插入"><a href="#2-3-1-在特定位置插入" class="headerlink" title="2.3.1 在特定位置插入"></a>2.3.1 在特定位置插入</h4><p>类似于数组，我们将链表的位置定义为0~Count-1（Count表示链表的节点数），即我们可以将数据插入位置pos的范围为0~Count（取0时即插入到头，取Count时即表示插在末尾）。插入的逻辑如下：</p>
-<ul>
-<li>1、如果pos为0，即调用list_prepend函数；如果pos为list-&gt;cnt，则调用list_append函数；并返回；</li>
-<li>2、寻找到位置为pos的节点，记为f_node；</li>
-<li>3、将插入节点（记为i_node）的前驱节点设为f_node的前驱节点，后继节点设置为f_node；</li>
-<li>4、将f_node前驱节点的后继节点设为i_node；</li>
-<li>5、将f_node的前驱节点设为i_node；<br>代码如下：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_insert_at</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span> pos, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">node_t</span> *f_node;</span><br><span class="line">    <span class="keyword">node_t</span> *i_node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !data || pos &gt; <span class="built_in">list</span>-&gt;cnt) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 1 */</span></span><br><span class="line">    <span class="keyword">if</span> (pos == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> list_prepend(<span class="built_in">list</span>, data);</span><br><span class="line">    <span class="keyword">if</span> (pos == <span class="built_in">list</span>-&gt;cnt)</span><br><span class="line">        <span class="keyword">return</span> list_append(<span class="built_in">list</span>, data);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 2 */</span></span><br><span class="line">    f_node = <span class="built_in">list</span>-&gt;head;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; pos &amp;&amp; f_node; i++)</span><br><span class="line">        f_node = f_node-&gt;next;</span><br><span class="line">    <span class="keyword">if</span> (!f_node) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    i_node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">node_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (!i_node) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 3-5 */</span></span><br><span class="line">    i_node-&gt;data = data;</span><br><span class="line">    i_node-&gt;prev = f_node-&gt;prev;</span><br><span class="line">    i_node-&gt;next = f_node;</span><br><span class="line">    f_node-&gt;prev-&gt;next = i_node;</span><br><span class="line">    f_node-&gt;prev = i_node;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可执行程序的内部是一系列二进制形式的计算机指令和数据的集合，CPU可以直接识别，而程序员所接触的一般是高级语言，如C语言。将高级语言转化为低级机器语言指令，并将这些指令按照一定的格式进行打包，并以二进制磁盘文件的格式组成可执行文件的过程称为编译，完成这些过程的工具称为编译器，<a href="http://gcc.gnu.org/" target="_blank" rel="noopener">gcc</a>就是Unix系统常用的编译器。本文针对C语言，并在Linux系统上进行操作演示，以简单阐述编译原理，主要参考书籍为《<a href="https://baike.baidu.com/item/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/4542223?fr=aladdin" target="_blank" rel="noopener">深入理解计算机系统</a>》。</p>
+<h2 id="0-编译过程"><a href="#0-编译过程" class="headerlink" title="0 编译过程"></a>0 编译过程</h2><p>在我们初学编程的时候，初次学习的都是HelloWorld程序，这里我们就以一个最简单的例子：hello.c来阐述编译原理，代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NAME <span class="meta-string">"IguoChan"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* print */</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello %s!\n"</span>, NAME);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Linux系统中输入以下指令，即可得到可执行文件hello，执行后如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -o hello hello.c &amp;&amp; ./hello</span><br><span class="line">Hello IguoChan!</span><br></pre></td></tr></table></figure>
+<p>从上貌似可以看出，使用简单的一条指令就可以将高级语言转换为可执行文件，这个过程貌似很简单，其实执行了四个阶段的程序（预处理器、编译器、汇编器和链接器），这些程序一起构成了整个的编译系统，如下图所示：<br><img src="/img/cpls.png" alt="compilation system"></p>
+<p>可以看出，gcc实质上不是一个单独的程序，而是多个程序的集合，因此通常称为工具链。下面，我们将借助gcc工具链对以上过程进行详细描述。</p>
+<h2 id="1-预处理（Pre-Processing）"><a href="#1-预处理（Pre-Processing）" class="headerlink" title="1 预处理（Pre-Processing）"></a>1 预处理（Pre-Processing）</h2><p>在Linux系统中输入以下指令，预处理器将根据字符#开头的命令，修改原始C程序，并得到另一个C程序，通常以.i作为文件拓展名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -E hello.c -o hello.i &amp;&amp; vim hello.i</span><br></pre></td></tr></table></figure>
+<p>可以观察到hello.i的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"># <span class="number">1</span> <span class="string">"hello.c"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"&lt;built-in&gt;"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"&lt;command-line&gt;"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"hello.c"</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"/usr/include/stdio.h"</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">28</span> <span class="string">"/usr/include/stdio.h"</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"/usr/include/features.h"</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">324</span> <span class="string">"/usr/include/features.h"</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">1</span> <span class="string">"/usr/include/x86_64-linux-gnu/bits/predefs.h"</span> <span class="number">1</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"># <span class="number">325</span> <span class="string">"/usr/include/features.h"</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">char</span> __u_char;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> short <span class="keyword">int</span> __u_short;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> __u_int;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> __u_long;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">printf</span> <span class="params">(__const <span class="keyword">char</span> *__restrict __format, ...)</span></span>;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"># <span class="number">2</span> <span class="string">"hello.c"</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">"Hello %s!\n"</span>, <span class="string">"IguoChan"</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>观察以上文件中的信息，大致可以分为以下三类：</p>
+<p>1） # linenum filename flags（如1-10行，…表示中间有省略）</p>
+<p>此类信息表征的是头文件包含的关系，被称为行标记（linemarkes），意思是：以下行起源于filename的linenum行，文件名后有0-4个标志，分别是1-4，含义如下：<br>‘1’：表示新文件的开始，此时行号应该是1；<br>‘2’：表示回到一个文件（在打开一个新文件后）；<br>‘3’：表示以下文本来自系统头文件，应该禁止某些警告；<br>‘4’：表示应将以下文本视为包含在隐式extern “C”块中；<br>具体可参考<a href="https://gcc.gnu.org/onlinedocs/gcc-4.3.6/cpp/Preprocessor-Output.html" target="_blank" rel="noopener">gcc官方的解释</a>。</p>
+<p>2) 各种别名、结构体定义和函数声明等（如14-21行）</p>
+<p>这些内容都是在各头文件中的各种定义和声明，1）中即是对头文件进行解析。</p>
+<p>3） 源代码结构主体（25-34行）</p>
+<p>在预处理器处理源文件时，会将所有的预处理指令（#开头），譬如上述的文件包含，还有宏定义、条件编译等。在上图第32行，NAME宏已经被替换掉，且宏定义行已经被删除（但空行仍然被保留）。除此外，预处理器还会删除所有的注释，如上图31行。</p>
+<h2 id="2-编译（Compiling）"><a href="#2-编译（Compiling）" class="headerlink" title="2 编译（Compiling）"></a>2 编译（Compiling）</h2><p>在Linux系统中输入以下指令，即可将预处理后的源程序翻译为汇编语言程序，一般以.s作为文件拓展名。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -S hello.i -o hello.s &amp;&amp; vim hello.s</span><br></pre></td></tr></table></figure>
+<p>可以看到hello.s的内容为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">        .file   <span class="string">"hello.c"</span></span><br><span class="line">        .section        .rodata</span><br><span class="line">.LC0:</span><br><span class="line">        .<span class="built_in">string</span> <span class="string">"Hello %s!\n"</span></span><br><span class="line">.LC1:</span><br><span class="line">        .<span class="built_in">string</span> <span class="string">"IguoChan"</span></span><br><span class="line">        .<span class="built_in">text</span></span><br><span class="line">.globl main</span><br><span class="line">        .type   main, @function</span><br><span class="line">main:</span><br><span class="line">.LFB0:</span><br><span class="line">        .cfi_startproc</span><br><span class="line">        pushq   %rbp</span><br><span class="line">        .cfi_def_cfa_offset <span class="number">16</span></span><br><span class="line">        movq    %rsp, %rbp</span><br><span class="line">        .cfi_offset <span class="number">6</span>, <span class="number">-16</span></span><br><span class="line">        .cfi_def_cfa_register <span class="number">6</span></span><br><span class="line">        movl    $.LC0, %eax</span><br><span class="line">        movl    $.LC1, %esi</span><br><span class="line">        movq    %rax, %rdi</span><br><span class="line">        movl    $<span class="number">0</span>, %eax</span><br><span class="line">        call    <span class="built_in">printf</span></span><br><span class="line">        movl    $<span class="number">0</span>, %eax</span><br><span class="line">        leave</span><br><span class="line">        ret</span><br><span class="line">        .cfi_endproc</span><br><span class="line">.LFE0:</span><br><span class="line">        .<span class="built_in">size</span>   main, .-main</span><br><span class="line">        .ident  <span class="string">"GCC: (Ubuntu/Linaro 4.4.7-1ubuntu2) 4.4.7"</span></span><br><span class="line">        .section        .note.GNU-<span class="built_in">stack</span>,<span class="string">""</span>,@progbits</span><br></pre></td></tr></table></figure>
+<p>编译器将预处理完的文件进行一系列的词法分析、语法分析、语义分析及优化后产生汇编代码，这个过程是程序构建的核心部分。上图中main函数包含多条低级的机器语言指令，这些机器语言是汇编语言。汇编语言非常有用，它为不同高级语言的不同编译器提供了通用的输出语言，能看懂汇编语言，也是深入理解计算机系统的基本要求。</p>
+<h2 id="3-汇编（Assembling）"><a href="#3-汇编（Assembling）" class="headerlink" title="3 汇编（Assembling）"></a>3 汇编（Assembling）</h2><p>接下来，汇编器将hello.s翻译成机器语言指令，把这些指令打包成一种叫做可重定位目标程序的格式，并将结果保存在hello.o中。hello.o是二进制文件，当我们用vim查看时，看到的将是一堆乱码。在Linux中，输入以下指令，可以得到hello.o文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c hello.s -o hello.o</span><br></pre></td></tr></table></figure>
 
-</li>
-</ul>
-<h4 id="2-3-2-在特定节点前插入"><a href="#2-3-2-在特定节点前插入" class="headerlink" title="2.3.2 在特定节点前插入"></a>2.3.2 在特定节点前插入</h4><p>有以下步骤：</p>
-<ul>
-<li>1、判断特定节点是否是链表头节点，如果是，直接调用list_prepend函数，并直接返回；</li>
-<li>2、将插入节点的前驱节点设为特定节点的前驱节点，后继节点设置为特定节点；</li>
-<li>3、将特定节点前驱节点的后继节点设置为插入节点；</li>
-<li>4、将特定节点的前驱节点设置为插入节点；<br>代码如下：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_insert_before</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">node_t</span> *node, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">node_t</span> *i_node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !node || !data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 1 */</span></span><br><span class="line">    <span class="keyword">if</span> (node == <span class="built_in">list</span>-&gt;head)</span><br><span class="line">        <span class="keyword">return</span> list_prepend(<span class="built_in">list</span>, data);</span><br><span class="line"></span><br><span class="line">    i_node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">node_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (!i_node) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 2-4 */</span></span><br><span class="line">    i_node-&gt;data = data;</span><br><span class="line">    i_node-&gt;prev = node-&gt;prev;</span><br><span class="line">    i_node-&gt;next = node;</span><br><span class="line">    node-&gt;prev-&gt;next = i_node;</span><br><span class="line">    node-&gt;prev = i_node;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4-链接（Linking）"><a href="#4-链接（Linking）" class="headerlink" title="4 链接（Linking）"></a>4 链接（Linking）</h2><p>hello程序调用了printf函数，这个函数是标准C库提供的，其函数实现于一个名为printf.o的文件中，而这个文件必须以某种方式合并到我们的hello可执行文件中，链接器就负责这种合并。在Linux中执行以下命令，就可以得到最终的可执行文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc hello.o -o hello</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，gcc在链接到标准C库的时候不需要手动链接，而调用其他库时均需要手动链接，譬如调用了libm.so时，需要在命令后加-lm，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc hello.o -o hello -lm</span><br></pre></td></tr></table></figure>
+<p>有关链接的详细内容，可参考我的博客：<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a></p>
 
-</li>
-</ul>
-<h4 id="2-3-3-在特定节点后插入"><a href="#2-3-3-在特定节点后插入" class="headerlink" title="2.3.3 在特定节点后插入"></a>2.3.3 在特定节点后插入</h4><p>原理类似于2.3.2，有以下步骤：</p>
-<ul>
-<li>1、判断特定节点是否是链表尾节点，如果是，直接调用list_append函数，并直接返回；</li>
-<li>2、将插入节点的前驱节点设为特定节点，后继节点设置为特定节点的后继节点；</li>
-<li>3、将特定节点后继节点的前驱节点设置为插入节点；</li>
-<li>4、将特定节点的后继节点设置为插入节点；<br>代码如下：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_insert_after</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">node_t</span> *node, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">node_t</span> *i_node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !node || !data)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 1 */</span></span><br><span class="line">    <span class="keyword">if</span> (node == <span class="built_in">list</span>-&gt;tail)</span><br><span class="line">        <span class="keyword">return</span> list_append(<span class="built_in">list</span>, data);</span><br><span class="line"></span><br><span class="line">    i_node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">node_t</span>));</span><br><span class="line">    <span class="keyword">if</span> (!i_node) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 2-4 */</span></span><br><span class="line">    i_node-&gt;data = data;</span><br><span class="line">    i_node-&gt;prev = node;</span><br><span class="line">    i_node-&gt;next = node-&gt;next;</span><br><span class="line">    node-&gt;next-&gt;prev = i_node;</span><br><span class="line">    node-&gt;next = i_node;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="3-删除（提取）元素"><a href="#3-删除（提取）元素" class="headerlink" title="3 删除（提取）元素"></a>3 删除（提取）元素</h2><p>删除有许多中不同的操作，譬如删除已知节点并提取数据、删除对应数据的节点，下面就代码实现这两种删除或提取数据方式。</p>
-<h3 id="3-1-已知节点"><a href="#3-1-已知节点" class="headerlink" title="3.1 已知节点"></a>3.1 已知节点</h3><p>对于链表中的已知节点，我们提取数据的同时删除节点。基本逻辑如下：</p>
-<ul>
-<li>1、如果被删除节点是头节点，则将头指针指向该节点的后继节点；若不是头节点，则将该指针的前驱节点的后继节点设为该节点的后继节点；</li>
-<li>2、如果被删除节点是尾节点，则将尾指针指向该节点的前驱节点；若不是尾节点，则将该指针的后继节点的前驱节点设为该指针的前驱节点；<br>代码如下：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_retrieve_data</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">node_t</span> *node)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> *data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !node)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 1 */</span></span><br><span class="line">    <span class="keyword">if</span> (node == <span class="built_in">list</span>-&gt;head)</span><br><span class="line">        <span class="built_in">list</span>-&gt;head = node-&gt;next;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        node-&gt;prev-&gt;next = node-&gt;next;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* step 2 */</span></span><br><span class="line">    <span class="keyword">if</span> (node == <span class="built_in">list</span>-&gt;tail)</span><br><span class="line">        <span class="built_in">list</span>-&gt;tail = node-&gt;prev;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        node-&gt;next-&gt;prev = node-&gt;prev;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span>-&gt;cnt--;</span><br><span class="line">    data = node-&gt;data;</span><br><span class="line">    <span class="built_in">free</span>(node);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="3-2-已知位置"><a href="#3-2-已知位置" class="headerlink" title="3.2 已知位置"></a>3.2 已知位置</h3><p>对于链表中已知位置的节点，先找到该位置的节点，再调用list_retrieve_data函数删除该节点，代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_retrieve_data_at</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    node = <span class="built_in">list</span>-&gt;head;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; pos &amp;&amp; node; i++)</span><br><span class="line">        node = node-&gt;next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> list_retrieve_data(<span class="built_in">list</span>, node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3-删除数据"><a href="#3-3-删除数据" class="headerlink" title="3.3 删除数据"></a>3.3 删除数据</h3><p>对相关数据的删除，应当传入对应数据的指针，遍历指针找到该数据的节点后，再调用list_retrieve_data函数删除该节点，成功返回0，失败返回-1，代码如下。list_for_each_entry可遍历链表，详见5.2。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_remove_data</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">void</span> *data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> *f_data;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !data) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    list_for_each_entry(f_data, <span class="built_in">list</span>, node)</span><br><span class="line">        <span class="keyword">if</span> (f_data == data)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> list_retrieve_data(<span class="built_in">list</span>, node) ? <span class="number">0</span> : <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-4-销毁整个链表"><a href="#3-4-销毁整个链表" class="headerlink" title="3.4 销毁整个链表"></a>3.4 销毁整个链表</h3><p>当我们想要销毁整个链表的时候，我们需要删除所有的节点并释放内存，最后再释放头节点的内存，有如下代码。以下用法有点危险的就是，如果data所在内存是通过动态申请的堆空间，则以下用法很可能造成data数据的内存泄漏，建议当data内存通过动态申请得到时，通过循环list_retrieve_data函数取出数据后一一释放内存后再调用list_destory函数。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">list_destory</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> *data;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    list_for_each_entry(data, <span class="built_in">list</span>, node) &#123;</span><br><span class="line">        list_retrieve_data(<span class="built_in">list</span>, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(<span class="built_in">list</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="4-查找"><a href="#4-查找" class="headerlink" title="4 查找"></a>4 查找</h2><h3 id="4-1-特定位置查找"><a href="#4-1-特定位置查找" class="headerlink" title="4.1 特定位置查找"></a>4.1 特定位置查找</h3><p>下面给出已知位置，返回对应节点的数据，与list_retrieve_data_at函数的区别在于其不删除节点，只提取数据，代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_get_data</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    node = <span class="built_in">list</span>-&gt;head;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; pos &amp;&amp; node; i ++)</span><br><span class="line">        node = node-&gt;next;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> node ? node-&gt;data : <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>特殊地，当我们想取头或者尾的数据时有以下代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_get_head</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">list</span> &amp;&amp; <span class="built_in">list</span>-&gt;head) ? <span class="built_in">list</span>-&gt;head-&gt;data : <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_get_tail</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">list</span> &amp;&amp; <span class="built_in">list</span>-&gt;tail) ? <span class="built_in">list</span>-&gt;tail-&gt;data : <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-2-自定义方法查找"><a href="#4-2-自定义方法查找" class="headerlink" title="4.2 自定义方法查找"></a>4.2 自定义方法查找</h3><p>用户可以将函数指针作为查找参数，自行构造match函数，用于匹配查找，具体形式如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_find</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">void</span> *key, <span class="keyword">int</span> (*match)(<span class="keyword">void</span> *, <span class="keyword">void</span> *))</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !match) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (node = <span class="built_in">list</span>-&gt;head; node; node = node-&gt;next)</span><br><span class="line">        <span class="keyword">if</span> (match(node-&gt;data, key))</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> node ? node-&gt;data : <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-其它功能"><a href="#5-其它功能" class="headerlink" title="5 其它功能"></a>5 其它功能</h2><h3 id="5-1-返回链表大小"><a href="#5-1-返回链表大小" class="headerlink" title="5.1 返回链表大小"></a>5.1 返回链表大小</h3><p>在初始化时，我们将链表大小（list-&gt;cnt）初始化为0，当添加数据时，会将链表大小加1，删除时会减1，因此可以通过该数值表征链表大小，代码如下。当链表不存在时，返回-1；当链表存在时，返回链表大小（0表示链表无数据节点，只有头节点）。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">list_size</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>-&gt;cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-2-链表遍历"><a href="#5-2-链表遍历" class="headerlink" title="5.2 链表遍历"></a>5.2 链表遍历</h3><p>在上述代码中，我们已经用到了链表遍历的函数，即list_for_each_entry。其定义如下所示，pos表示数据（之所以不用data表示，是因为会将node成员data识别为此data），node表示节点，这两个参数都是遍历过程中的变量，list表示被遍历的表。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_for_each_entry(pos, list, node)                                                    \</span></span><br><span class="line">    <span class="keyword">for</span> (node = (<span class="literal">NULL</span> != (<span class="keyword">void</span>*)<span class="built_in">list</span>) ? (<span class="built_in">list</span>)-&gt;head : <span class="literal">NULL</span>, pos = (node ? node-&gt;data : <span class="literal">NULL</span>);  \</span><br><span class="line">        pos;                                                                                    \</span><br><span class="line">        node = node-&gt;next, pos = node ? node-&gt;data : <span class="literal">NULL</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-3-安全地遍历链表"><a href="#5-3-安全地遍历链表" class="headerlink" title="5.3 安全地遍历链表"></a>5.3 安全地遍历链表</h3><p>在5.2中的链表遍历中，如果我们在操作过程中删除了此节点，将不能继续向下遍历，此时，我们可以采用以下的安全遍历方法，将下一节点的指针信息暂存在nex（之所以不用next表示，是因为会将node成员next识别为此next）指针中，使得遍历可以继续走下去。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> list_for_each_entry_safe(pos, list, node, nex)                                          \</span></span><br><span class="line">    <span class="keyword">for</span> (node = (<span class="literal">NULL</span> != (<span class="keyword">void</span>*)<span class="built_in">list</span>) ? (<span class="built_in">list</span>)-&gt;head : <span class="literal">NULL</span>, pos = (node ? node-&gt;data : <span class="literal">NULL</span>),  \</span><br><span class="line">    	nex = (node ? node-&gt;next : <span class="literal">NULL</span>);                                                       \</span><br><span class="line">        pos;                                                                                    \</span><br><span class="line">        node = nex, pos = node ? node-&gt;data : <span class="literal">NULL</span>, nex = (node ? node-&gt;next : <span class="literal">NULL</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="6-链表实现队列"><a href="#6-链表实现队列" class="headerlink" title="6 链表实现队列"></a>6 链表实现队列</h2><p>队列是一种先进先出的数据结构，利用以上链表，可以简单地实现队列（栈亦可）功能，如以下所示，可以实现队列的创建、入队、出队和销毁。首先创建一个类似于头节点的队列头节点，结构定义完全可以相同，然后利用链表的一系列函数即可实现功能。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">queue</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">tail</span>;</span></span><br><span class="line">    <span class="keyword">int</span> cnt;</span><br><span class="line">&#125; <span class="keyword">queue_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> queue_create()          (queue_t *)list_create()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> enqueue(que, data)      list_append((list_t*)(que), (data))</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> dequeue(que)            list_retrieve_data((list_t*)(que), (que) ? (que)-&gt;head : NULL)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> queue_destory(que)      list_destory((list_t*)que)</span></span><br></pre></td></tr></table></figure>
       
 
         
@@ -325,7 +257,7 @@
                 
                 <br>
                 <strong>本文链接：</strong>
-                https://iguochan.github.io/2020/06/27/list/
+                https://iguochan.github.io/2020/06/21/C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/
                 <br>
                 <strong>版权声明：</strong>
                 本作品采用
@@ -384,7 +316,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">list</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
         		</li>
       		
 		</ul>
@@ -396,11 +336,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构/链表//" class="article-tag-list-link color3">链表</a>
+        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
         		</li>
       		
 		</ul>
@@ -455,7 +395,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/06/27/list/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/06/21/C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -469,18 +409,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/06/cmake/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/21/%E9%93%BE%E6%8E%A5/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          CMakeLists.txt 怎么写
+          链接
         
       </div>
     </a>
   
   
-    <a href="/2020/06/21/linking/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">链接</div>
+    <a href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Makefile 怎么写</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -642,7 +582,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,19 +598,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+                <a href="javascript:void(0)" class="js-tag color3">指针</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">list</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
               </li>
             
             <div class="clearfix"></div>

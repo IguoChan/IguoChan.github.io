@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Category: Makefile | IguoChan的博客</title>
+  <title>指针 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IguoChan的博客">
-<meta property="og:url" content="https://iguochan.github.io/categories/%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA/Makefile/index.html">
+  <meta name="description" content="指针是C语言的核心概念，也是C语言的特色和精华所在，只有掌握了指针，才算的上真正地掌握了C语言。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针">
+<meta property="og:url" content="https://iguochan.github.io/2020/07/18/%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="指针是C语言的核心概念，也是C语言的特色和精华所在，只有掌握了指针，才算的上真正地掌握了C语言。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-18T01:54:56.000Z">
+<meta property="article:modified_time" content="2020-07-18T11:45:23.998Z">
 <meta property="article:author" content="IguoChan">
+<meta property="article:tag" content="C&#x2F;C++">
+<meta property="article:tag" content="指针">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
@@ -155,76 +161,349 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-指针" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/">Makefile 怎么写</a>
+    <h1 class="article-title" itemprop="name">
+      指针
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2020/07/18/%E6%8C%87%E9%92%88/" class="archive-article-date">
+  	<time datetime="2020-07-18T01:54:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
+</a>
+
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">13分</span>
+      </span>
+    </span>
+</div>
           
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>指针是C语言的核心概念，也是C语言的特色和精华所在，只有掌握了指针，才算的上真正地掌握了C语言。</p>
+<a id="more"></a>
+
+<h2 id="0-指针简介"><a href="#0-指针简介" class="headerlink" title="0 指针简介"></a>0 指针简介</h2><p>指针是一个值为内存地址的变量，其声明形式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pi;            <span class="comment">// pi is a pointer point to a value of type int</span></span><br><span class="line"><span class="keyword">char</span> *pc;           <span class="comment">// pc is a pointer point to a value of type char</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Array</span> *<span class="title">ps</span>;</span>   <span class="comment">// ps is a pointer point to a value of type struct Array</span></span><br></pre></td></tr></table></figure>
+<p>可以总结指针的声明格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type *ptr;			<span class="comment">// ptr是指向type类型变量的指针</span></span><br></pre></td></tr></table></figure>
+<p>这里有几点需要声明：</p>
+<ul>
+<li>指针是一个变量，这个变量存储的是一个内存地址，这个变量的类型就是指针，绝不是Type；</li>
+<li>Type指的是这个内存地址（指针变量）上存储的变量类型；</li>
+<li>星号（*）表明声明的变量是一个指针，和<em>解引用运算符<em>、</em>二元乘法运算符</em> 有区别；</li>
+</ul>
+<p>所以我认为可以用以下声明格式来更好地理解指针（个人理解），Pointer表明是指针类型；Type表示类型，如int、char；ptr就是变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Pointer &lt;Type&gt; ptr;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-1-取址运算符（-amp-）"><a href="#0-1-取址运算符（-amp-）" class="headerlink" title="0.1 取址运算符（&amp;）"></a>0.1 取址运算符（&amp;）</h3><p>取址运算符（&amp;）用来取得其操作数的地址，如下，操作数a的类型为Type，则表达式&amp;a的类型是Type类型的指针。取址运算符的操作数必须是在内存中可以寻址的变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Type a;</span><br><span class="line">Type *p = &amp;a;</span><br></pre></td></tr></table></figure>
+
+<h3 id="0-2-解引用运算符（-）"><a href="#0-2-解引用运算符（-）" class="headerlink" title="0.2 解引用运算符（*）"></a>0.2 解引用运算符（*）</h3><p>解引用运算符（*）用来取出指向地址上存储的值，其操作数必须是指针类型，如下，b的值和即为a，记住第三行的星号（*）为解引用运算符，第二行的星号（*）是声明指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Type a = ...;</span><br><span class="line">Type *p = &amp;a;</span><br><span class="line">Type b = *p;</span><br></pre></td></tr></table></figure>
+<h4 id="0-2-1-不能解引用未初始化的指针！！！"><a href="#0-2-1-不能解引用未初始化的指针！！！" class="headerlink" title="0.2.1 不能解引用未初始化的指针！！！"></a>0.2.1 不能解引用未初始化的指针！！！</h4><p>如下，第二行的意思是把100这个数存储在pi指向的位置，但是pi没有被初始化，其值是一个随机地址（局部变量，在栈区，值为随机值），这是一件十分危险的事情，因为地址是随机的，所以这个操作可能会擦写数据或代码，导致程序崩溃。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pi;</span><br><span class="line">*pi = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>切记</strong>：创建一个指针时，系统只分配了储存指针本身的内存，并未分配存储数据的内存，因此，在使用指针前，必须使用已分配的地址进行初始化，同理，同样不可以访问未初始化指针指向的结构体的成员。</p>
+<h3 id="0-3-指针运算"><a href="#0-3-指针运算" class="headerlink" title="0.3 指针运算"></a>0.3 指针运算</h3><h4 id="0-3-1-指针与整数相加减"><a href="#0-3-1-指针与整数相加减" class="headerlink" title="0.3.1 指针与整数相加减"></a>0.3.1 指针与整数相加减</h4><p>可以用<code>+</code>运算符把指针与整数相加，或整数与指针相加（加法符合交换律）。无论何种情况，整数都会和指针所指向的类型大小（字节为单位）相乘，然后把结果与初始指针（初始地址）相加，如果相加的结果超出了初始指针指向的有效范围，计算结果则是未定义的。</p>
+<p>可以用<code>-</code>从一个指针中减去一个整数（减法不符合交换律）。该整数将乘以指针所指向的类型大小（字节为单位），然后用初始化地址减去乘积。如果相减的结果超出了初始指针所指向的有效范围，计算结果则是未定义的。</p>
+<p>在增减指针时还要注意一些问题，编译器不会检查指针是否越界，所以指针运算的时候应当注意指针是否越界。</p>
+<h4 id="0-3-2-指针求差"><a href="#0-3-2-指针求差" class="headerlink" title="0.3.2 指针求差"></a>0.3.2 指针求差</h4><p>可以计算两个指针的差值，如下，p1和p2是指向同意数组不同元素的指针，注意：其相减的值表示两个元素相隔的是2个int，而不是2个字节。只要两个指针都指向相同的数组（或者其中一个指针指向数组后面的第1一个地址），C都能保证运算有效。如果指向两个不同数组，则求差可能会得到一个值，也可能会导致运行时错误。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">100</span>, <span class="number">85</span>, <span class="number">1554</span>, <span class="number">4575</span>, <span class="number">25</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *p1, *p2;</span><br><span class="line">    p1 = a;</span><br><span class="line">    p2 = &amp;a[<span class="number">2</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"p1 = %p\n"</span>, p1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"p2 = %p\n"</span>, p2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"p1 - p2 = %ld\n"</span>, p1 - p2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"p2 - p1 = %ld\n"</span>, p2 - p1);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">p1 = 0x7fff88e01700</span><br><span class="line">p2 = 0x7fff88e01708</span><br><span class="line">p1 - p2 = -2</span><br><span class="line">p2 - p1 = 2</span><br></pre></td></tr></table></figure>
+<h3 id="0-4-NULL指针"><a href="#0-4-NULL指针" class="headerlink" title="0.4 NULL指针"></a>0.4 NULL指针</h3><p>NULL指针在C语言中表示空指针，如下第2行所示，NULL被定义为是void*类型指针，大小为0，由于C语言是弱类型语言，可以隐式转换，如<code>int *p = NULL</code>或者<code>char *p = NULL</code>都是合法的。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __cplusplus</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL ((void *)0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span>   <span class="comment">/* C++ */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NULL 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>  <span class="comment">/* C++ */</span></span></span><br></pre></td></tr></table></figure>
+<p>但是在C++中，NULL被定义为0，因为C++不能将void*类型指针隐式转换为其它类型的指针，为了兼容，C++中直接将NULL定义为0.</p>
+<p>在C++中，如果继续使用NULL代替空指针，那么C++的重载特性会使得NULL存在这二义性的问题，为了防止此类问题出现，在C++11中特意引进了nullptr这一关键字以表征空指针。因此，在C++中，还是用nullptr代替NULL会更好。</p>
+<h2 id="1-指针与数组"><a href="#1-指针与数组" class="headerlink" title="1 指针与数组"></a>1 指针与数组</h2><p>数组和指针的关系十分密切，C语言实际上借助指针去描述数组的表示法，对于指向数组的指针，我们既可以使用数组描述法去使用指针，也可以使用指针描述的方式去使用数组，如下所示。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">100</span>, <span class="number">85</span>, <span class="number">1554</span>, <span class="number">4575</span>, <span class="number">25</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *p = a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"*p = %d, p[0] = %d, a[0] = %d, *a = %d\n"</span>, *p, p[<span class="number">0</span>], a[<span class="number">0</span>], *a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"*(p + 3) = %d, p[3] = %d, a[3] = %d, *(a + 3) = %d\n"</span>, *(p + <span class="number">3</span>), p[<span class="number">3</span>], a[<span class="number">3</span>], *(a + <span class="number">3</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">*p = 100, p[0] = 100, a[0] = 100, *a = 100</span><br><span class="line">*(p + 3) = 4575, p[3] = 4575, a[3] = 4575, *(a + 3) = 4575</span><br></pre></td></tr></table></figure>
+<p>看以上的例子，看上去a就是一个指针，它指向了一个数组内存，但是他和指针是有区别的。指针是一个变量，其自身是有地址的，其值存的是a的地址；a是这个数组的标识，它并非声明出来的指针变量，所以其自身的地址就是其本身，也是整个数组的起始地址。但是对其本身取址，则和指针是不一样的概念了，如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">100</span>, <span class="number">85</span>, <span class="number">1554</span>, <span class="number">4575</span>, <span class="number">25</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> *p = a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"p = %p, &amp;p = %p\n"</span>, p, &amp;p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a = %p, &amp;a = %p\n"</span>, a, &amp;a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">p = 0x7fff15d99290, &amp;p = 0x7fff15d992a8</span><br><span class="line">a = 0x7fff15d99290, &amp;a = 0x7fff15d99290</span><br></pre></td></tr></table></figure>
+<p>可以看到，p和a的值都是一样的，这个地址也是数组的起始地址；&amp;p指的是指针p这个变量的地址，而&amp;a没有什么实际意义，但是大多数编译器将其设置为与a的值一样。</p>
+<h3 id="1-1-指针数组"><a href="#1-1-指针数组" class="headerlink" title="1.1 指针数组"></a>1.1 指针数组</h3><p>我们将形如以下形式的定义称为指针数组，指针数组的每一个元素都是指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type *ptr[n];</span><br></pre></td></tr></table></figure>
+<p>在上述声明中，由于“[]”的优先级比“*”高，故ptr首先与[]结合，成为一个数组，再由Type指明这是一个Type类型的指针数组，数组中的元素都是Type类型的指针，可以看例子如下，声明一个char类型的指针数组，每个指针指向一个常量字符串，然后将其打印出来。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">char</span> *a[<span class="number">3</span>] = &#123;<span class="string">"Hello"</span>, <span class="string">"Everyone"</span>,<span class="string">"!"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s "</span>, a[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">Hello Everyone !</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-数组指针"><a href="#1-2-数组指针" class="headerlink" title="1.2 数组指针"></a>1.2 数组指针</h3><p>数组指针是一个指针，它指向一个数组，声明的方式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type (*ptr)[n];</span><br></pre></td></tr></table></figure>
+<p>ptr是一个指针，它指向一个Type类型的数组，这个数组的长度是n，这也是指针ptr的步长，即执行p+1时，会跨过n个Type类型数据的长度。数组指针和二维数组的联系密切，可以用数组指针指向一个二维数组，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">3</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> (*p)[<span class="number">3</span>] = a;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"(*p)[0] = %d, (*p)[1] = %d, (*p)[2] = %d\n"</span>, (*p)[<span class="number">0</span>], (*p)[<span class="number">1</span>], (*p)[<span class="number">2</span>]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"(*(p+1))[0] = %d, (*(p+1))[1] = %d, (*(p+1))[2] = %d\n"</span>, (*(p+<span class="number">1</span>))[<span class="number">0</span>], (*(p+<span class="number">1</span>))[<span class="number">1</span>], (*(p+<span class="number">1</span>))[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">(*p)[0] = 1, (*p)[1] = 2, (*p)[2] = 3</span><br><span class="line">(*(p+1))[0] = 4, (*(p+1))[1] = 5, (*(p+1))[2] = 6</span><br></pre></td></tr></table></figure>
+<p>注意以上用法，(*p)指的是数组。</p>
+<h2 id="2-指针和结构体"><a href="#2-指针和结构体" class="headerlink" title="2 指针和结构体"></a>2 指针和结构体</h2><p>结构体指针是指向结构体的指针，结构体访问成员时用的是<code>.</code>，而指针访问成员用的是<code>-&gt;</code>，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> b;</span><br><span class="line">&#125; A_t;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    A_t x = &#123;</span><br><span class="line">        .a = <span class="number">10</span>,</span><br><span class="line">        .b = <span class="string">'A'</span>,</span><br><span class="line">    &#125;;</span><br><span class="line">    A_t *p = &amp;x;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"x.a = %d, x.b = %c\n"</span>, x.a, x.b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"p-&gt;a = %d, p-&gt;b = %c\n"</span>, p-&gt;a, p-&gt;b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ./main </span><br><span class="line">x.a = 10, x.b = A</span><br><span class="line">p-&gt;a = 10, p-&gt;b = A</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-指针和函数"><a href="#3-指针和函数" class="headerlink" title="3 指针和函数"></a>3 指针和函数</h2><h3 id="3-1-指针传参"><a href="#3-1-指针传参" class="headerlink" title="3.1 指针传参"></a>3.1 指针传参</h3><p>C语言所有的参数均是以“传值调用”的方式进行传递的，这意味者函数将获得参数值的一份拷贝。</p>
+<p>指针传参并不违背以上原则，只是传递的参数变成了指针变量，而函数只不过拷贝了一份指针变量，但是指针变量的值是地址，所以函数操作的是这个值，即地址，从而对存储在此地址值的任何操作都会改变指针指向的参数值。所以如果我们需要被调函数回传一个值给调用函数，我们可以使用指针传参。</p>
+<p>另外，指针传参也能大大提高函数执行的效率，在值传递时，需要把数据的一份拷贝传递入函数的形参表，并存储会栈中，函数返回后弹出栈，拷贝被删除，这就是深拷贝。而指针传递则不然，函数会在执行是直接去指针指向的地址中获取数据直接进行操作，这也就是浅拷贝。这对于参数是一些复杂的结构体的函数而言，会大大的提升效率。</p>
+<p>指针传参的例子许多C语言的书上都会有，这里我就不赘言了，需要注意的是，对于数组而言，数组名是该数组首元素的地址，所以利用数组名传参等同于指针传参，如下例所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printb</span><span class="params">(<span class="keyword">int</span> b[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"b = %p, &amp;b = %p\n"</span>, b, &amp;b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printc</span><span class="params">(<span class="keyword">int</span> *c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"c = %p, &amp;c = %p\n"</span>, c, &amp;c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">100</span>, <span class="number">85</span>, <span class="number">1554</span>, <span class="number">4575</span>, <span class="number">25</span>&#125;;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"a = %p, &amp;a = %p\n"</span>, a, &amp;a);</span><br><span class="line">    printb(a);</span><br><span class="line">    printc(a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果如下，值得注意的是，虽然在printb函数中，形参用的数组形式，但是其和使用指针形式的printc函数一样，都相当于利用指针传值将a的地址传递过来，但是这个指针却是在各自的函数中却是有地址的。主要记住这两种函数定义或声明的形式是等价的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ./main </span><br><span class="line">a = 0x7fffaa13c240, &amp;a = 0x7fffaa13c240</span><br><span class="line">b = 0x7fffaa13c240, &amp;b = 0x7fffaa13c228</span><br><span class="line">c = 0x7fffaa13c240, &amp;c = 0x7fffaa13c228</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-函数指针"><a href="#3-2-函数指针" class="headerlink" title="3.2 函数指针"></a>3.2 函数指针</h3><p>在C语言中，函数指针指向函数的入口地址，声明一个函数指针的形式如下所示。函数指针在回调函数中比较常见。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Type (*ptr)(Type1 *, Type2 *)</span><br></pre></td></tr></table></figure>
+<p>以上声明了一个函数指针ptr，指向一个函数，函数具有两个参数为Type1*和Type2*的参数，且返回值类型为Type。</p>
+<p>下面举一个例子，在我的博客《<a href="https://iguochan.github.io/2020/06/27/list/">链表的C语言实现</a>》里，曾经声明了一种函数指针的类型，具体如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*<span class="keyword">match_t</span>)</span><span class="params">(<span class="keyword">void</span> *, <span class="keyword">void</span> *)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">list_find</span><span class="params">(<span class="keyword">list_t</span> *<span class="built_in">list</span>, <span class="keyword">void</span> *key, <span class="keyword">match_t</span> match)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">node_t</span> *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span> || !match) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (node = <span class="built_in">list</span>-&gt;head; node; node = node-&gt;next)</span><br><span class="line">        <span class="keyword">if</span> (match(node-&gt;data, key))</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> node ? node-&gt;data : <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们实现如下的主函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"list.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">match</span><span class="params">(<span class="keyword">void</span> *data, <span class="keyword">void</span> *key)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (*(<span class="keyword">int</span>*)data + <span class="number">10</span> == *(<span class="keyword">int</span>*)key)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ret, i, a[<span class="number">100</span>], *data;</span><br><span class="line">    <span class="keyword">list_t</span> *<span class="built_in">list</span>;</span><br><span class="line">    <span class="keyword">match_t</span> p = match;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)</span><br><span class="line">        a[i] = i;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">list</span> = list_create();</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">list</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"create failed.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        ret = list_append(<span class="built_in">list</span>, a + i);</span><br><span class="line">        <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"append failed.\n"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((data = list_find(<span class="built_in">list</span>, &amp;a[<span class="number">19</span>], p)) == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Find failed.\n"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"data = %d\n"</span>, *data);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，函数指针p指向函数match，其实将第37行的p指针直接替换为match传入函数亦可，和数组一样，函数名也可以理解为是指针。执行结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./main</span><br><span class="line">data = 9</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p>有关指针的概念和用法还有很多，譬如多级指针等。初学C语言的时候，总会被指针这个概念搞懵，网上的很多解释也是停留在指针的用法上，很难找到一种统一的、从根本上的解释。</p>
+<p>我觉得明白一个核心概念：<strong>指针变量也是变量</strong>，和一般的变量没有区别，只是此变量的值是其它变量的地址，甚至也可以是指针的地址（那就是二级指针咯！）。明白这个概念后，对指针的特性也就理解的更彻底，有些疑问也就迎刃而解了。</p>
+
+      
+
+        
+        
+          <div>
+            <blockquote>
+                <strong>本文作者：</strong>
+                
+                  IguoChan
+                
+                <br>
+                <strong>本文链接：</strong>
+                https://iguochan.github.io/2020/07/18/%E6%8C%87%E9%92%88/
+                <br>
+                <strong>版权声明：</strong>
+                本作品采用
+                <a rel="license noopener" href="https://licensebuttons.net/l/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+                进行许可。转载请注明出处！
+                
+                  <br>
+                  <a rel="license noopener" href="https://licensebuttons.net/l/by-nc-sa/4.0/" target="_blank"><img alt="知识共享许可协议" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"/></a>
+                
+            </blockquote>
+            
+            
+            <hr>
+                <center><strong></strong></center>
+            <hr>
+          </div>
+        
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p">谢谢你请我吃糖果</i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Makefile</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">指针</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/Makefile//" class="article-tag-list-link color4">Makefile</a>
+        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/07/18/%E6%8C%87%E9%92%88/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">学习Shell脚本</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -257,10 +536,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

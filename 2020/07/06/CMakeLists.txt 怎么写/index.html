@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Makefile 怎么写 | IguoChan的博客</title>
+  <title>CMakeLists.txt 怎么写 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile来构建工程了，会不会编写Makefile也就从一个侧面说明一个工程师是否有构建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考">
+  <meta name="description" content="写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过预处理、编译和汇编生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件链接成可执行文件。 但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Makefile 怎么写">
-<meta property="og:url" content="https://iguochan.github.io/2020/06/17/Makefile/index.html">
+<meta property="og:title" content="CMakeLists.txt 怎么写">
+<meta property="og:url" content="https://iguochan.github.io/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile来构建工程了，会不会编写Makefile也就从一个侧面说明一个工程师是否有构建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考">
+<meta property="og:description" content="写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过预处理、编译和汇编生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件链接成可执行文件。 但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-17T12:15:28.000Z">
-<meta property="article:modified_time" content="2020-07-06T15:43:14.462Z">
+<meta property="article:published_time" content="2020-07-06T15:12:30.000Z">
+<meta property="article:modified_time" content="2020-07-18T01:42:33.493Z">
 <meta property="article:author" content="IguoChan">
-<meta property="article:tag" content="Makefile">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="cmake">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
@@ -64,8 +65,6 @@
 	        
 				<li><a href="/categories/">分类</a></li>
 	        
-				<li><a href="/tags/Linux/">Linux</a></li>
-	        
 				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
@@ -86,7 +85,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 7
+    		总文章数 8
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -127,8 +126,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -145,13 +142,11 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 25%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 25%"><a href="/categories/">分类</a></li>
+					<li style="width: 33.333333333333336%"><a href="/categories/">分类</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Linux/">Linux</a></li>
-		        
-					<li style="width: 25%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -166,20 +161,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Makefile" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CMakeLists.txt 怎么写" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Makefile 怎么写
+      CMakeLists.txt 怎么写
     </h1>
   
 
         
-        <a href="/2020/06/17/Makefile/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
+  	<time datetime="2020-07-06T15:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
 </a>
 
         <!-- 不蒜子统计 -->
@@ -193,7 +188,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">4.6k字</span>
+        <span class="post-count">2.7k字</span>
       </span>
     </span>
 
@@ -202,7 +197,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">17分</span>
+        <span class="post-count">11分</span>
       </span>
     </span>
 </div>
@@ -212,109 +207,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile来构建工程了，会不会编写Makefile也就从一个侧面说明一个工程师是否有构建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考陈皓大神的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》，和<a href="https://www.gnu.org/software/make/manual/make.html#toc-Overview-of-make" target="_blank" rel="noopener">GNU Make</a>文档。</p>
+        <p>写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过<a href="https://iguochan.github.io/2020/06/21/compile-principle/">预处理、编译和汇编</a>生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>成可执行文件。</p>
+<p>但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是<a href="https://iguochan.github.io/2020/06/17/Makefile/">Makefile</a>。</p>
 <a id="more"></a>
 
-<h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0 前言"></a>0 前言</h2><p>Makefile所做的工作就是“自动化编译”，一旦写好只需一个make命令，整个工程即完全自动编译。本文默认编译器为Unix下gcc，以C语言的源码作为基础。在这里，我并不想长篇叙述Makefile的写法，如果想了解更详细的知识的，还请移步<a href="https://blog.csdn.net/haoel" target="_blank" rel="noopener">陈皓大神的博客</a>。</p>
-<p>首先我们需要知道程序的编译和链接的相关知识，这个可以参考我的博客《<a href="https://iguochan.github.io/2020/06/21/compile-principle/">C语言编译原理浅析</a>》和《<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>》。我们知道，源文件通过编译工具链（如gcc）编译、链接可以生成可执行文件。而巨大的软件工程可能拥有数量庞大的源文件，这使得在命令行中输入指令生成可执行文件的方法变得不那么容易接受。而make就是用来完成这项工作的工具，make指令更像是Makefile文件的解释器，会根据Makefile文件的编写逻辑生成可执行文件。</p>
-<p>当初我学习Makefile编写的时候，参照的是陈皓大神的《跟我一起写Makefile》，他从基础处讲起，一点点深入，逐步介绍Makefile的各种特性和编写规则，使我一个小白收益匪浅，也写出了人生第一份Makefile。今天我准备以一种倒叙的逻辑写这篇博客，首先我会给一个可以使用的Makefile例子，然后一步步解析这个例子中所用的Makefile规则。</p>
-<h2 id="1-一个例子"><a href="#1-一个例子" class="headerlink" title="1 一个例子"></a>1 一个例子</h2><p>在下面这个例子中，生成一个名为test的可执行文件，基本涉及Makefile的基本规则、隐晦规则、变量、函数应用等，将在接下来的内容中一一介绍。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define the target</span></span><br><span class="line">TARGET = <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># define the Build Directory</span></span><br><span class="line">BUILD_DIR = build</span><br><span class="line">OBJ_DIR := $(BUILD_DIR)/objs</span><br><span class="line">DEP_DIR := $(BUILD_DIR)/deps</span><br><span class="line"></span><br><span class="line"><span class="comment"># define PATH</span></span><br><span class="line">LOCAL_PATH = $(shell <span class="built_in">pwd</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the sources and objects</span></span><br><span class="line">SOURCES := $(shell find $(LOCAL_PATH)/ -name <span class="string">"*.c"</span>)</span><br><span class="line">OBJS := $(addprefix $(OBJ_DIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))</span><br><span class="line">DEPS := $(addprefix $(DEP_DIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))</span><br><span class="line"></span><br><span class="line"><span class="comment"># define VPATH</span></span><br><span class="line">VPATH = $(LOCAL_PATH):$(LOCAL_PATH)/source_Dir1/:$(LOCAL_PATH)/source_Dir2/</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the includes, compile and link flags</span></span><br><span class="line">INCLUDES := -I$(LOCAL_PATH) -I$(LOCAL_PATH)/source_Dir1/ -I$(LOCAL_PATH)/source_Dir2/</span><br><span class="line">CC_FLAGS := -g $(INCLUDES) </span><br><span class="line">LK_FLAGS := -L$(LOCAL_PATH)/lib_Dir</span><br><span class="line">LK_FLAGS += -ltest -lm</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the compiler</span></span><br><span class="line">CC = gcc</span><br><span class="line"></span><br><span class="line"><span class="comment"># define the phony target</span></span><br><span class="line">.PHONY : all clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># build the target </span></span><br><span class="line">all: $(BUILD_DIR)/$(TARGET)</span><br><span class="line">$(BUILD_DIR)/$(TARGET): $(OBJS)</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(BUILD_DIR) ]; <span class="keyword">then</span> mkdir -p $(BUILD_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	$(CC) $^ $(LK_FLAGS) -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># build the objects</span></span><br><span class="line">$(OBJ_DIR)/%.o : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(OBJ_DIR) ]; <span class="keyword">then</span> mkdir -p $(OBJ_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	$(CC) -c $(CC_FLAGS) -o <span class="variable">$@</span> $&lt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># build the dependencies</span></span><br><span class="line">$(DEP_DIR)/%.d : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(DEP_DIR) ]; <span class="keyword">then</span> mkdir -p $(DEP_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	<span class="built_in">set</span> -e; rm -f <span class="variable">$@</span>;\</span><br><span class="line">	$(CC) -MM $(CC_FLAGS) $&lt; &gt; <span class="variable">$@</span>.$$$$;\</span><br><span class="line">	sed <span class="string">'s,\($*\)\.o[ :]*,$(OBJ_DIR)/\1.o $@ : ,g'</span> &lt; <span class="variable">$@</span>.$$$$ &gt; <span class="variable">$@</span>;\</span><br><span class="line">	rm -f <span class="variable">$@</span>.$$$$</span><br><span class="line"></span><br><span class="line"><span class="comment"># when *.h file changes, remake the project</span></span><br><span class="line">-include $(DEPS)</span><br><span class="line"></span><br><span class="line"><span class="comment"># clean all products</span></span><br><span class="line">clean:</span><br><span class="line">	-rm -r $(BUILD_DIR)</span><br></pre></td></tr></table></figure>
+<p>而对于一个大型程序，编写Makefile也是一件复杂的事情，于是人们设计了一个工具，自动生成Makefile，也就是CMake工具。另外，CMake不仅可以生成Unix环境下的GNU Make，也可以生成QT的qmake，微软的MS nmake，BSD Make（pmake），Makepp，等等。也就是说，CMake是一种跨平台的Make maker，它根据平台无关的CMakeLists.txt文件来指定整个编译过程，再根据平台生成所需的Makefile或project文件，本文就简单介绍一下Linux下CMakeLists.txt文件的编写。</p>
+<h2 id="1-一个简单的例子"><a href="#1-一个简单的例子" class="headerlink" title="1 一个简单的例子"></a>1 一个简单的例子</h2><p>假设我们只有一个源文件，如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">~                                                                               </span><br><span class="line">                                                                             </span><br><span class="line"><span class="string">"main.c"</span></span><br></pre></td></tr></table></figure>
+<p>我们在源文件所在的目录下写一个CMakeLists.txt文件，如下所示，其中：</p>
+<ul>
+<li>cmake_minimum_required(VERSION 3.3)：指定此文件运行的所需的cmake最低版本是3.3；</li>
+<li>project(test)：表示该项目的名字为test；</li>
+<li>add_executable(test main.c)：表示将源文件main.c编译生成test；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Check the version of cmake</span><br><span class="line">cmake_minimum_required(VERSION <span class="number">3.3</span>)</span><br><span class="line"></span><br><span class="line"># Project name</span><br><span class="line">project(test)</span><br><span class="line"></span><br><span class="line"># Generate project</span><br><span class="line">add_executable(test main.c)</span><br></pre></td></tr></table></figure>
+<p>这个时候，我们执行以下指令（新建一个build目录用于生成一系列产物很有必要，因为cmake的执行过程中会生成很多的中间产物和文件，这些文件并不属于工程，放在build目录下便于管理）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir build &amp;&amp; <span class="built_in">cd</span> build &amp;&amp; cmake ../</span><br><span class="line">-- The C compiler identification is GNU 4.4.7</span><br><span class="line">-- The CXX compiler identification is GNU 4.4.7</span><br><span class="line">-- Detecting C compiler ABI info</span><br><span class="line">-- Detecting C compiler ABI info - <span class="keyword">done</span></span><br><span class="line">-- Check <span class="keyword">for</span> working C compiler: /usr/bin/cc - skipped</span><br><span class="line">-- Detecting C compile features</span><br><span class="line">-- Detecting C compile features - <span class="keyword">done</span></span><br><span class="line">-- Detecting CXX compiler ABI info</span><br><span class="line">-- Detecting CXX compiler ABI info - <span class="keyword">done</span></span><br><span class="line">-- Check <span class="keyword">for</span> working CXX compiler: /usr/bin/c++ - skipped</span><br><span class="line">-- Detecting CXX compile features</span><br><span class="line">-- Detecting CXX compile features - <span class="keyword">done</span></span><br><span class="line">-- Configuring <span class="keyword">done</span></span><br><span class="line">-- Generating <span class="keyword">done</span></span><br><span class="line">-- Build files have been written to: /home/……/build</span><br></pre></td></tr></table></figure>
+<p>这个时候我们发现build目录下生成了多个文件，其中就有Makefile，这个时候我们执行以下指令，可以看到输出了打印结果。可以看到，通过在CMakeLists.txt中简单的几行代码，就可以构建代码工程。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ make &amp;&amp; ./<span class="built_in">test</span></span><br><span class="line">Scanning dependencies of target <span class="built_in">test</span></span><br><span class="line">[ 50%] Building C object CMakeFiles/test.dir/main.c.o</span><br><span class="line">[100%] Linking C executable <span class="built_in">test</span></span><br><span class="line">[100%] Built target <span class="built_in">test</span></span><br><span class="line">Hello World!</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，在cmake中，所有的内置命令是不区分大小写的；但是cmake的变量是区分大小写的！</p>
+<h2 id="2-多个源文件"><a href="#2-多个源文件" class="headerlink" title="2 多个源文件"></a>2 多个源文件</h2><h3 id="2-1-指定源文件"><a href="#2-1-指定源文件" class="headerlink" title="2.1 指定源文件"></a>2.1 指定源文件</h3><p>当同一目录下有多个源文件时，我们可以有多种方式，譬如均写在add_executable后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_executable(<span class="built_in">test</span> main.c a.c b.c)</span><br></pre></td></tr></table></figure>
+<p>但是当源文件太多时，这样写明显不方便，这时有多种方式解决。</p>
+<h4 id="2-1-1-aux-source-directory命令"><a href="#2-1-1-aux-source-directory命令" class="headerlink" title="2.1.1 aux_source_directory命令"></a>2.1.1 aux_source_directory命令</h4><p>aux_source_directory命令形式如下，表示收集指定目录下（不包括子目录）所有源文件的名称，并将链表存储在&lt;variable&gt;中，我测试的时候发现，后缀为.cpp、.c和.cc的源文件都会被收录进来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aux_source_directory(&lt;dir&gt; &lt;variable&gt;)</span><br></pre></td></tr></table></figure>
+<p>这个时候，我们只需要将CMakeLists.txt修改成以下即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check the version of cmake</span></span><br><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Project name</span></span><br><span class="line">project(<span class="built_in">test</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Collect all source file in current directory</span></span><br><span class="line">aux_source_directory(. SRC)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate project</span></span><br><span class="line">add_executable(<span class="built_in">test</span> <span class="variable">$&#123;SRC&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p>“.”表示当前目录，即CMakeLists.txt所在的目录，也可以用CMAKE_SOURCE_DIR（cmake定义了很多的常用变量，大家可以去cmake的文档中查找，很好用）；和shell脚本、Makefile规则一样，“$”符号用作取变量值。</p>
+<h4 id="2-1-2-file命令"><a href="#2-1-2-file命令" class="headerlink" title="2.1.2 file命令"></a>2.1.2 file命令</h4><p>file命令用于文件操作，功能强大，大家可以通过查看<a href="https://cmake.org/cmake/help/v3.18/command/file.html?highlight=file" target="_blank" rel="noopener">cmake官方手册</a>查看。在这里，我们用到file命令查找的功能，即：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file(GLOB &lt;variable&gt;</span><br><span class="line">     [LIST_DIRECTORIES <span class="literal">true</span>|<span class="literal">false</span>] [RELATIVE &lt;path&gt;] [CONFIGURE_DEPENDS]</span><br><span class="line">     [&lt;globbing-expressions&gt;...])</span><br><span class="line">file(GLOB_RECURSE &lt;variable&gt; [FOLLOW_SYMLINKS]</span><br><span class="line">     [LIST_DIRECTORIES <span class="literal">true</span>|<span class="literal">false</span>] [RELATIVE &lt;path&gt;] [CONFIGURE_DEPENDS]</span><br><span class="line">     [&lt;globbing-expressions&gt;...])</span><br></pre></td></tr></table></figure>
+<p>file命令以上的用法是生成match正则表达式&lt;globbing-expressions&gt;的文件链表，并将其储存在变量&lt;variable&gt;中。LIST_DIRECTORIES、RELATIVE和CONFIGURE_DEPENDS都是标志，这里不表。我们可以使用以下的命令生成在该文件夹下后缀为.c的源文件list（如果还想要子文件夹下的源文件，将关键字替换为GLOB_RECURSE），并存入SRC变量中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check the version of cmake</span></span><br><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Project name</span></span><br><span class="line">project(<span class="built_in">test</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Collect all source file in current directory</span></span><br><span class="line">file(GLOB SRC *.c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate project</span></span><br><span class="line">add_executable(<span class="built_in">test</span> <span class="variable">$&#123;SRC&#125;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-Makefile的基本规则"><a href="#2-Makefile的基本规则" class="headerlink" title="2 Makefile的基本规则"></a>2 Makefile的基本规则</h2><p>make是一个解释器，其会根据Makefile的内容，调用编译器等Linux命令，最终生成编译产物。Makefile的基本规则如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">	<span class="built_in">command</span></span><br><span class="line">	...</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
-<ul>
-<li>target：目标文件，可以是可重定位目标文件、可执行文件或动态库文件，还可以是标签（后续伪目标中会讲到）；可以是一个或多个文件；</li>
-<li>prerequisites：即生成target所需的文件，可以是一个或多个；</li>
-<li>command：是make需执行的命令，前需要空一个制表符（Tab键）；</li>
-</ul>
-<p>以上描述的是一个文件的依赖关系，target这目标文件依赖于prerequisites中的文件，生成规则定义在command中。即当prerequisites中有一个以上的文件要比target中的文件要新的话，command命令就会被执行，这也是Makefile最核心的规则：</p>
-<ul>
-<li>当我们执行make命令时，它会首先找到文件中的第一个目标文件（target），在上面的例子里，第一个文件就是伪目标all，伪目标all代表了<code>$(BUILD_DIR)/$(TARGET)</code>，根据变量定义，即test，也就是最终的可执行文件，后面会根据依赖关系找到生成目标文件所需的各级依赖文件；</li>
-<li>test依赖于$(OBJS)（也就是.o）文件，.o文件依赖于源文件；在上述例子的第34-36行，test是目标文件，.o文件是依赖文件；在39-41行，.o文件目标文件，.c源文件是依赖文件；而是否重新生成目标文件取决于依赖文件是否要比目标文件新；在首次编译时（或执行完make clean后），根据依赖关系，.o文件不存在，即.c源文件的改动要比对应的.o新，那么会生成所有的.o文件，而test文件也不存在，那么所有生成的.o文件都会比test文件新，故而会生成test文件，那么最终构造可执行文件的过程也就完成了。在其后，如果我们修改了某一个所依赖的a.c文件，再次执行make命令时，会检查到a.c比a.o新，所以会生成a.o文件，其后再检查到a.o比test要新，所以也会重新链接生成test文件。</li>
-</ul>
-<p>也许有小伙伴会有疑问，为什么不使用<code>gcc -o test *.c</code>这种形式一步就生成可执行文件呢？原因在编译过程中，编译器会事先将每个源文件编译成可重定位目标文件（.o），然后链接器将所有的可重定位目标文件链接为可执行文件，那么根据以上规则，每一个.c的改动都会完完全全执行一遍所有的编译链接过程，而第1章例子中的写法可以在修改了某个模块后只编译此模块并重新链接到可执行文件，这在编译大型工程的时候有利于节省资源。</p>
-<p>还有就是，上述例子中，只有33-41行的语法是无法做到头文件修改后，引用此头文件的源文件生成的模块重新编译的，因此需要44-52行的语法，这个后续会详细讲。<br>在大致了解了make在解析Makefile时候的工作机制后，后面我将一句第一章的例子涉及到的要素进行讲解。</p>
-<p>make在工作时的执行有以下步骤（摘自陈皓的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》）：</p>
-<ul>
-<li>1、将所有的Makefile和include包含的Makefile读入，包括include包含的依赖文件；</li>
-<li>2、初始化所有变量；</li>
-<li>3、推导隐晦规则，并分析所有规则，依据规则为所有目标文件创建依赖关系链；</li>
-<li>4、根据依赖关系，确定哪些目标需要重新生成，并执行生成命令。 </li>
-</ul>
-<p>值得注意的是，针对变量，如果定义的变量被使用了，那么，make会把其展开在使用的位置。但make并不会完全马上展开，make使用的是拖延战术，如果变量出现在依赖关系的规则中，那么仅当这条依赖被决定要使用了，变量才会在其内部展开。</p>
-<h2 id="3-伪目标"><a href="#3-伪目标" class="headerlink" title="3 伪目标"></a>3 伪目标</h2><p>我们注意到在第33行，有<code>.PHONY : all clean</code>的定义，表示all和clean都是伪目标。伪目标并不是一个文件，只是一个标签，先然make不需要也无法根据依赖关系去生成这个标签，一般显式地通过关键字<code>.PHONY</code>去指明这是伪目标。<br>make执行的时候，如果不指定生成目标，会默认生成第一个可执行文件，如果需要生成多个可执行文件，但是不想敲过多的命令，可以定义一个名为all的的伪目标，指向几个可执行文件，这样直接执行<code>make all</code>的指令即可，本文例子中虽然只有一个可执行文件，但是还是定义了all。</p>
-<p>对于clean这个伪目标也是一样，我们需要一个标签来删除生成的目标文件（包括中间产物），clean后不需要跟依赖文件，直接跟command指令即可。</p>
-<h2 id="4-变量"><a href="#4-变量" class="headerlink" title="4 变量"></a>4 变量</h2><p>形如<code>TARGET = test</code>的形式是变量定义，在Makefile中定义的变量，就像是C语言中的宏一样，代表了一个文本字串，在Makefile中执行的时候会展开在所使用的地方，譬如在第33行，<code>$(BUILD_DIR)/$(TARGET)</code>就会被展开为<code>build/test</code>。不同于宏的是，变量可以在Makefile中改变值。在变量中，我们使用<code>$</code>符号取变量值，在使用时，最好用“（）”或“{}”将变量括起来，这样会更安全。</p>
-<p>变量的赋值符号除了“=”号还有几种，以下是它们的区别：</p>
-<ul>
-<li>“=”：变量的值是整个Makefile中最后被指定的值；</li>
-<li>“:=”：变量的值是当前位置的值；</li>
-<li>“?=”：如果该变量没有被赋值，则赋予等号后的值；</li>
-<li>“+=”：追加变量值，将等号后面的值添加到前面的变量上；</li>
-</ul>
-<h3 id="4-1-VPATH"><a href="#4-1-VPATH" class="headerlink" title="4.1 VPATH"></a>4.1 VPATH</h3><p>VPATH是Makefile中的特殊变量，不同于一般变量是用户自定义并在执行命令或解析依赖关系时再展开一样，VPATH是给Makefile用做寻找文件的依赖关系时的路径。如果没有设置此变量，那么make只会在当前的目录中去寻找依赖文件和目标文件；只有定义了这个变量，make会在当前目录找不到的情况下去指定的目录中寻找。</p>
-<p>另一个设置文件搜索路径的方法是使用make的“vpath”关键字（注意，它是全小写的），这不是变量，这是一个make的关键字，这和上面提到的那个VPATH变量很类似，但是它更为灵活。它可以指定不同的文件在不同的搜索目录中。这是一个很灵活的功能。它的使用方法有三种：</p>
-<ul>
-<li>1、vpath &lt;pattern&gt; &lt;directories&gt;：为符合模式&lt;pattern&gt;的文件指定搜索目录&lt;directories&gt;，&lt;pattern&gt;需要包含“%”通配符；</li>
-<li>2、vpath &lt;pattern&gt;：清除符合模式&lt;pattern&gt;的文件的搜索目录；</li>
-<li>3、vpath：清除所有已被设置好了的文件搜索目录；</li>
-</ul>
-<h3 id="4-2-隐含规则下的变量"><a href="#4-2-隐含规则下的变量" class="headerlink" title="4.2 隐含规则下的变量"></a>4.2 隐含规则下的变量</h3><p>在隐含规则下，基本会使用一些预先设置的变量，我们既可以使用这些变量，也可以重新定义这些变量，在编译时，可以利用make的“-R”或“–no–builtin-variables”参数来取消你所定义的变量对隐含规则的作用。</p>
-<h4 id="4-2-1-命令相关的变量"><a href="#4-2-1-命令相关的变量" class="headerlink" title="4.2.1 命令相关的变量"></a>4.2.1 命令相关的变量</h4><ul>
-<li>AR：函数库打包程序，默认命令是“ar”；</li>
-<li>AS：汇编语言编译程序，默认命令是“as”；</li>
-<li>CC：C语言编译程序，默认命令是“cc”，这里被重构为gcc，其实是一个命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ll /etc/alternatives/cc /usr/bin/cc </span><br><span class="line">lrwxrwxrwx 1 root root 12 Nov 12  2014 /etc/alternatives/cc -&gt; /usr/bin/gcc*</span><br><span class="line">lrwxrwxrwx 1 root root 20 Nov 12  2014 /usr/bin/cc -&gt; /etc/alternatives/cc*</span><br></pre></td></tr></table></figure></li>
-<li>RM：删除文件命令，默认是“rm -f”；<br>还有许多就不一一列了。</li>
-</ul>
-<h4 id="4-2-2-命令参数的变量"><a href="#4-2-2-命令参数的变量" class="headerlink" title="4.2.2 命令参数的变量"></a>4.2.2 命令参数的变量</h4><ul>
-<li>CFLAGS：C语言编译器参数；</li>
-<li>LDFLAGS：链接器参数；</li>
-<li>……</li>
-</ul>
-<h2 id="5-函数"><a href="#5-函数" class="headerlink" title="5 函数"></a>5 函数</h2><p>在Makefile中使用函数来处理变量会使得命令更加的智能。函数调用的语法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&lt;<span class="keyword">function</span>&gt; &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">LOCAL_PATH &#x3D; $(shell pwd)</span><br><span class="line">SOURCES :&#x3D; $(shell find $(LOCAL_PATH)&#x2F; -name &quot;*.c&quot;)</span><br><span class="line">OBJS :&#x3D; $(addprefix $(OBJ_DIR)&#x2F;, $(patsubst %.c, %.o, $(notdir $(SOURCES))))</span><br><span class="line">DEPS :&#x3D; $(addprefix $(DEP_DIR)&#x2F;, $(patsubst %.c, %.d, $(notdir $(SOURCES))))</span><br></pre></td></tr></table></figure>
-<p>都用到了函数。下面就针对这几个函数讲讲，更多的函数定义还参考《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》。</p>
-<h3 id="5-1-shell函数"><a href="#5-1-shell函数" class="headerlink" title="5.1 shell函数"></a>5.1 shell函数</h3><p>shell函数的参数是操作系统的shell命令，如</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LOCAL_PATH = $(shell <span class="built_in">pwd</span>)</span><br><span class="line">SOURCES := $(shell find $(LOCAL_PATH)/ -name <span class="string">"*.c"</span>)</span><br></pre></td></tr></table></figure>
-<p>第一行中，pwd指令会返回当前Makefile所在目录的路径，即将此路径指定为LOCAL_PATH，第二行中，表示在此路径及子路径下查找所有的源文件，并将其赋值给SOURCES。</p>
-<h3 id="5-2-addprefix函数"><a href="#5-2-addprefix函数" class="headerlink" title="5.2 addprefix函数"></a>5.2 addprefix函数</h3><p>addprefix属于文件名操作函数，其基本格式如下，功能是把前缀<code>&lt;prefix&gt;</code>添加到<code>&lt;name&gt;</code>中的每个单词前面，并返回加过前缀的文件名序列。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(addprefix &lt;prefix&gt;,&lt;names...&gt;)</span><br></pre></td></tr></table></figure>
-<h3 id="5-3-patsubst函数"><a href="#5-3-patsubst函数" class="headerlink" title="5.3 patsubst函数"></a>5.3 patsubst函数</h3><p>patsubst函数属于字符串处理函数，基本格式如下，功能是查找&lt;text&gt;中的单词（单词以“空格”、“Tab”或“回车”“换行”分隔）是否符合模式&lt;pattern&gt;，如果匹配的话，则以&lt;replacement&gt;替换。这里，&lt;pattern&gt;可以包括通配符“%”， 表示任意长度的字串。 如果&lt;replacement&gt;中也包含“%”， 那么， &lt;replacement&gt;中的这个“%”将是&lt;pattern&gt;中的那个“%”所代表的字串。（可以用“\”来转义， 以“%”来表示真实含义的“%”字符）。并返回被替换后的字符串。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(patsubst &lt;pattern&gt;,&lt;replacement&gt;,&lt;text&gt;)</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，在file的文档中，有以下说明：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Note We <span class="keyword">do</span> not recommend using GLOB to collect a list of <span class="built_in">source</span> files from your <span class="built_in">source</span> tree. If no CMakeLists.txt file changes when a <span class="built_in">source</span> is added or removed <span class="keyword">then</span> the generated build system cannot know when to ask CMake to regenerate.</span><br></pre></td></tr></table></figure>
+<p>大意就是官方不建议使用file的GLOB指令来收集工程的源文件，因为当收集的源文件增加或删除，且CMakeLists.txt没有发生修改时，CMake不能识别这些文件。其实，在aux_source_directory命令的说明中，也有如下同样的一段，表达相同的意思，如下。所以我们使用这两者进行文件收集时，应当注意在文件发生增删时，需重新使用cmake命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aux_source_directory(&lt;dir&gt; &lt;variable&gt;)</span><br><span class="line">...</span><br><span class="line">It is tempting to use this <span class="built_in">command</span> to avoid writing the list of <span class="built_in">source</span> files <span class="keyword">for</span> a library or executable target. While this seems to work, there is no way <span class="keyword">for</span> CMake to generate a build system that knows when a new <span class="built_in">source</span> file has been added. Normally the generated build system knows when it needs to rerun CMake because the CMakeLists.txt file is modified to add a new <span class="built_in">source</span>. When the <span class="built_in">source</span> is just added to the directory without modifying this file, one would have to manually rerun CMake to generate a build system incorporating the new file.</span><br></pre></td></tr></table></figure>
 
-<h3 id="5-4-notdir函数"><a href="#5-4-notdir函数" class="headerlink" title="5.4 notdir函数"></a>5.4 notdir函数</h3><p>notdir函数用于取出文件名称中的非目录部分，并返回此部分，基本格式如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(notdir &lt;names...&gt;)</span><br></pre></td></tr></table></figure>
-<p>所以结合以上三个函数的含义，就能解析以下语句的定义，即取出每个源文件替换成.o(.d)文件并添加上<code>$(OBJ_DIR)</code>（<code>$(DEP_DIR)</code>）的路径前缀，并返回给<code>OBJS</code>（<code>DEPS</code>）变量。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OBJS := $(addprefix $(OBJ_DIR)/, $(patsubst %.c, %.o, $(notdir $(SOURCES))))</span><br><span class="line">DEPS := $(addprefix $(DEP_DIR)/, $(patsubst %.c, %.d, $(notdir $(SOURCES))))</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-3-set命令"><a href="#2-1-3-set命令" class="headerlink" title="2.1.3 set命令"></a>2.1.3 set命令</h4><p>set命令是cmake最常用的命令之一，用于将变量设置为给定值，常用的原型如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span>(&lt;variable&gt; &lt;value&gt;... [PARENT_SCOPE])</span><br></pre></td></tr></table></figure>
+<p>即用于将&lt;value&gt;值赋给当前&lt;variable&gt;，作用域默认在当前函数或目录，但是当PARENT_SCOPE标志设置后，作用域将扩大到上一级目录或范围。我们可以改写CMakeLists.txt如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Check the version of cmake</span></span><br><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Project name</span></span><br><span class="line">project(<span class="built_in">test</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Collect all source file in current directory</span></span><br><span class="line"><span class="built_in">set</span>(SRC ./main.c ./a.c ./b.c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Generate project</span></span><br><span class="line">add_executable(<span class="built_in">test</span> <span class="variable">$&#123;SRC&#125;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="6-符号定义"><a href="#6-符号定义" class="headerlink" title="6 符号定义"></a>6 符号定义</h2><h3 id="6-1-通配符"><a href="#6-1-通配符" class="headerlink" title="6.1 通配符"></a>6.1 通配符</h3><p>在Makefile中，% 表示的是通配符，和Unix系统中的 * 通配符有着不同的含义，我在网上找到的描述我觉得都不是很好理解，下面是我的理解：</p>
-<ul>
-<li>% 是Makefile的规则通配符，它会对后面的集合进行二次定义，当make准备生成test时，会发现其依赖于许多.o，当看到类似于<code>%.o : %.c</code>的语句时，会将前面所依赖的.o逐一展开，并将.c前的%替换为相应名称前缀的.c，如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%.o : %.c</span><br><span class="line">	gcc -c $&lt; -o <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line">等价于</span><br><span class="line"></span><br><span class="line">a.o : a.c</span><br><span class="line">	gcc -c a.c -o a.o</span><br><span class="line">b.o : b.c</span><br><span class="line">	gcc -c b.c -o b.o</span><br><span class="line">……</span><br></pre></td></tr></table></figure></li>
-<li><ul>
-<li>符号是Unix系统的通配符，表示所有。</li>
-</ul>
-</li>
-</ul>
-<h3 id="6-2-特殊符号"><a href="#6-2-特殊符号" class="headerlink" title="6.2 特殊符号"></a>6.2 特殊符号</h3><ul>
-<li>$@：目标的名字；</li>
-<li>$&lt;：第一个依赖目标；</li>
-<li>$^：依赖目标集；</li>
-<li>$?：依赖目标集中更新过的文件；</li>
-<li>-command：忽略当前命令行所遇到的错误；</li>
-<li>@command：command指令将不会回显。</li>
-</ul>
-<h3 id="6-3-gcc选项"><a href="#6-3-gcc选项" class="headerlink" title="6.3 gcc选项"></a>6.3 gcc选项</h3><p>在以上例子中还有一些gcc的选项符号，譬如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -I 表示去以下路径寻找头文件，一般头文件的查找在本目录以及编译器自带的目录下寻找，这是指定私有头文件目录</span></span><br><span class="line">INCLUDES := -I$(LOCAL_PATH) -I$(LOCAL_PATH)/source_Dir1/ -I$(LOCAL_PATH)/source_Dir2/</span><br><span class="line"></span><br><span class="line"><span class="comment"># -L 表示去此路径下寻找链接库文件，一般标准库文件会在标准路径下，如果用到私有库，应指定 </span></span><br><span class="line">LK_FLAGS := -L$(LOCAL_PATH)/lib_Dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># -l 表示链接此库，ltest表示库名称为libtest.so或libtest.a，lm是libm.so，标准math库</span></span><br><span class="line">LK_FLAGS += -ltest -lm</span><br></pre></td></tr></table></figure>
+<p>以上三种方式其实大同小异，都是利用变量存储源文件，最后利用add_executable函数生成可执行文件。</p>
+<h3 id="2-2-多目录下引用、链接路径"><a href="#2-2-多目录下引用、链接路径" class="headerlink" title="2.2 多目录下引用、链接路径"></a>2.2 多目录下引用、链接路径</h3><p>大多数时候工程源代码都会分布在不同的目录下，这个时候的源文件的查找下使用2.1中方法进行查找，但是切不可在最高目录（一般CMakeLists.txt在此）使用GLOB_RECURSE关键字的file命令，这会将build目录下由CMake生成的源文件也包含进去，其中在<code>build/CMakeFiles/3.18.0-rc3/CompilerIdC/CMakeCCompilerId.c</code>文件中，还包含main函数，会造成<code>multiple definition of `main&#39;</code>的错误。</p>
+<p>在多目录的工程下，需要指定头文件和库文件的引用目录，分别类似于Makefile文件中“-I”和“-L”的用法。</p>
+<h4 id="2-2-1-include-directories命令"><a href="#2-2-1-include-directories命令" class="headerlink" title="2.2.1 include_directories命令"></a>2.2.1 include_directories命令</h4><p>在CMake中，使用include_directories命令来指定头文件的路径，类似于Makefile中使用<code>-I</code>指定路径。命令将给定目录添加到编译器用于搜索包含文件的目录中，相对路径被解释为相对于当前源目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include_directories([AFTER|BEFORE] [SYSTEM] dir1 [dir2 ...])</span><br></pre></td></tr></table></figure>
+<p>这里需要注意，CMake中的include命令类似于C语言的include命令，用于载入其它模块的CMake代码，和include_directories的区别需厘清。</p>
+<h4 id="2-2-2-link-directories命令"><a href="#2-2-2-link-directories命令" class="headerlink" title="2.2.2 link_directories命令"></a>2.2.2 link_directories命令</h4><p>和include_directories一样，link_directories命令用于指定链接库文件的搜索路径，类似于Makefile中使用<code>-L</code>，用于添加链接器应在其中搜索库的路径。赋予此命令的相对路径被解释为相对于当前源目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link_directories([AFTER|BEFORE] directory1 [directory2 ...])</span><br></pre></td></tr></table></figure>
 
-<h2 id="7-自动生成依赖性"><a href="#7-自动生成依赖性" class="headerlink" title="7 自动生成依赖性"></a>7 自动生成依赖性</h2><p>源文件中包含了头文件，即源文件依赖于头文件，当工程较大时，一一写出依赖性是不合适的。大多数提供了“-M”选项，用于自动寻找源文件包含的头文件，并生成依赖关系，但是GNU C的编译器中，“-M”选项会将标准头文件也包含进来，我们使用“-MM”参数，只包含自定义的头文件，如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ cc -M main.c </span><br><span class="line">main.o: main.c /usr/include/stdio.h /usr/include/features.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/predefs.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/sys/cdefs.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/wordsize.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/gnu/stubs.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \</span><br><span class="line"> /usr/lib/gcc/x86_64-linux-gnu/4.4.7/include/stddef.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/types.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/typesizes.h /usr/include/libio.h \</span><br><span class="line"> /usr/include/_G_config.h /usr/include/wchar.h \</span><br><span class="line"> /usr/lib/gcc/x86_64-linux-gnu/4.4.7/include/stdarg.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \</span><br><span class="line"> /usr/include/x86_64-linux-gnu/bits/sys_errlist.h list.h</span><br><span class="line"></span><br><span class="line">$ cc -MM main.c </span><br><span class="line">main.o: main.c list.h</span><br></pre></td></tr></table></figure>
-<p>要让Makefile自动检测依赖头文件有些困难，不过GNU组织建议把编译器为每一个源文件的自动生成的依赖关系放到一个文件中，为每一个“name.c”的文件都生成一个“name.d”的Makefile文件，[.d]文件中就存放对应[.c]文件的依赖关系。于是，我们可以写出[.c]文件和[.d]文件的依赖关系，并让make自动更新或自成[.d]文件，并把其包含在我们的主Makefile中，这样，我们就可以自动化地生成每个文件的依赖关系了。以下语句体现了这个规则。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(DEP_DIR)/%.d : %.c</span><br><span class="line">	@<span class="keyword">if</span> [ ! -d $(DEP_DIR) ]; <span class="keyword">then</span> mkdir -p $(DEP_DIR); <span class="keyword">fi</span>;\</span><br><span class="line">	<span class="built_in">set</span> -e; rm -f <span class="variable">$@</span>;\</span><br><span class="line">	$(CC) -MM $(CC_FLAGS) $&lt; &gt; <span class="variable">$@</span>.$$$$;\</span><br><span class="line">	sed <span class="string">'s,\($*\)\.o[ :]*,$(OBJ_DIR)/\1.o $@ : ,g'</span> &lt; <span class="variable">$@</span>.$$$$ &gt; <span class="variable">$@</span>;\</span><br><span class="line">	rm -f <span class="variable">$@</span>.$$$$</span><br><span class="line"></span><br><span class="line"><span class="comment"># when *.h file changes, remake the project</span></span><br><span class="line">-include $(DEPS)</span><br></pre></td></tr></table></figure>
-<p>这个规则的意思是，所有的[.d]文件依赖于[.c]文件，“rm -f $@”的意思是删除所有的目标，也就是[.d]文件，第二行的意思是，为每个依赖文件“$&lt;”，也就是[.c]文件生成依赖文件，“$@”表示模式“%.d” 文件，如果有一个 C 文件是 name.c，那么“%”就是“name”，“$$$$”意为一个随机编号，第二行生成的文件有可能是“name.d.12345”，第三行使用 sed 命令做了一个替换，关于sed命令的用法请参看相关的使用文档。第四行就是删除临时文件。</p>
-<p>以上语句可以保证每次生成新的依赖文件，要用include命令包含进Makefile，这样在头文件更新后，也会编译相应的目标。</p>
-<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8 总结"></a>8 总结</h2><p>以上就是我对于Makefile的一些学习的笔记和总结，虽然没有针对Makefile进行十分详细且深入的研究，但是对于平时工作中对于Makefile的编写和阅读，应该也是足够应付的。想对Makefile的编写有更深入了解的，请移步陈皓大神的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》。</p>
+<h2 id="3-库文件的链接"><a href="#3-库文件的链接" class="headerlink" title="3 库文件的链接"></a>3 库文件的链接</h2><h3 id="3-1-link-libraries命令"><a href="#3-1-link-libraries命令" class="headerlink" title="3.1 link_libraries命令"></a>3.1 link_libraries命令</h3><p>如果说link_directories类似于gcc中的“-L”，那么link_libraries就像gcc中的“-L… -l…”，不仅指定了链接文件的路径，还指定了链接文件名。命令应该在add_executable命令前执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">link_libraries([item1 [item2 [...]]]</span><br><span class="line">               [[debug|optimized|general] &lt;item&gt;] ...)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-target-link-libraries命令"><a href="#3-2-target-link-libraries命令" class="headerlink" title="3.2 target_link_libraries命令"></a>3.2 target_link_libraries命令</h3><p>其形式如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">target_link_libraries(&lt;target&gt; ... &lt;item&gt;... ...)</span><br></pre></td></tr></table></figure>
+<p>相比于link_libraries，CMake更加推荐使用target_link_libraries，如下，大意就是target_link_libraries不需要指定路径，除非是自己定义的私有库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Note The target_link_libraries() <span class="built_in">command</span> should be preferred whenever possible. Library dependencies are chained automatically, so directory-wide specification of link libraries is rarely needed.</span><br></pre></td></tr></table></figure>
+
+<p>如果我们需要链接某个库文件，可能有以下两种方法，如果是标准库，使用target_link_libraries就显得更方便了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line">project(<span class="built_in">test</span>)</span><br><span class="line"></span><br><span class="line">link_libraries(<span class="string">"/libpath/libhello.so"</span>)</span><br><span class="line"></span><br><span class="line">add_executable(<span class="built_in">test</span> main.c)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line">project(<span class="built_in">test</span>)</span><br><span class="line"></span><br><span class="line">link_directories(<span class="string">"/libpath/"</span>)</span><br><span class="line"></span><br><span class="line">add_executable(<span class="built_in">test</span> main.c)</span><br><span class="line"></span><br><span class="line">target_link_libraries(<span class="built_in">test</span> libhello.so)</span><br><span class="line"><span class="comment"># or target_link_libraries(test hello)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-添加子目录的方法"><a href="#4-添加子目录的方法" class="headerlink" title="4 添加子目录的方法"></a>4 添加子目录的方法</h2><p>在大型工程中，如果按照以上方法一一添加源文件会显得很麻烦，我们也可以将各个子文件夹中的内容编译成子模块，并利用add_subdirectory命令来添加该子模块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])</span><br></pre></td></tr></table></figure>
+<p>而在子模块中，我们将源文件编译为静态库，这时无需指定链接路径。如下例子，在主文件夹下（即最高目录）的CMakeLists.txt如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line">project(<span class="built_in">test</span>)</span><br><span class="line"></span><br><span class="line">include_directories(</span><br><span class="line">    ./source_Dir1</span><br><span class="line">    ./source_Dir2</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">add_subdirectory(source_Dir1)</span><br><span class="line">add_subdirectory(source_Dir2)</span><br><span class="line"></span><br><span class="line">add_executable(<span class="built_in">test</span> main.c)</span><br><span class="line"></span><br><span class="line">target_link_libraries(<span class="built_in">test</span> aaa bbb m)</span><br></pre></td></tr></table></figure>
+<p>在source_Dir1和source_Dir2的子文件夹下，其CMakeLists.txt分别如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line">aux_source_directory(. DIR_LIB_SRCS)</span><br><span class="line"></span><br><span class="line">add_library(aaa STATIC <span class="variable">$&#123;DIR_LIB_SRCS&#125;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.3)</span><br><span class="line"></span><br><span class="line">aux_source_directory(. DIR_LIB_SRCS)</span><br><span class="line"></span><br><span class="line">add_library(bbb STATIC <span class="variable">$&#123;DIR_LIB_SRCS&#125;</span>)</span><br></pre></td></tr></table></figure>
+<p>基本按照以上的形式构建一个工程就差不多搞定了。编译动态库时将以上STATIC关键字改成SHARED即可。</p>
+<p>值得注意的是，对于有些需要库文件（譬如libaaa.a）需要完全编译到最后的可执行代码中的情况，需要在target_link_libraries命令下做如下处理（一行写也行，我是为了看起来直观），-Wl,–whole-archive和-Wl,–no-whole-archive是gcc的链接选项，可以在CMake中直接使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">target_link_libraries(<span class="built_in">test</span></span><br><span class="line">	-Wl,--whole-archive</span><br><span class="line">	aaa</span><br><span class="line">	-Wl,--no-whole-archive</span><br><span class="line">	bbb</span><br><span class="line">	m)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-小结"><a href="#5-小结" class="headerlink" title="5 小结"></a>5 小结</h2><p>CMakeLists.txt的简单写法就介绍到这里，还有关其很多的关键字和内置变量的用法这里就不一一介绍了，百度的资料良莠不齐，因此去<a href="https://cmake.org/cmake/help/v3.18/search.html?q=" target="_blank" rel="noopener">官网</a>学习和搜索是一种很好的学习习惯。</p>
 
       
 
@@ -328,7 +295,7 @@
                 
                 <br>
                 <strong>本文链接：</strong>
-                https://iguochan.github.io/2020/06/17/Makefile/
+                https://iguochan.github.io/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/
                 <br>
                 <strong>版权声明：</strong>
                 本作品采用
@@ -387,7 +354,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Makefile</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
         		</li>
       		
 		</ul>
@@ -403,7 +374,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/Makefile//" class="article-tag-list-link color4">Makefile</a>
+        			<a href="/categories/工程构建/cmake//" class="article-tag-list-link color1">cmake</a>
         		</li>
       		
 		</ul>
@@ -458,7 +429,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/06/17/Makefile/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -472,18 +443,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/21/compile-principle/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C语言编译原理浅析
+          学习Shell脚本
         
       </div>
     </a>
   
   
-    <a href="/2020/06/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">一路走来的流水账</div>
+    <a href="/2020/06/27/%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">链表的C语言实现</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -645,7 +616,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -657,19 +632,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
+                <a href="javascript:void(0)" class="js-tag color3">指针</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">list</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
               </li>
             
             <div class="clearfix"></div>
