@@ -16,7 +16,7 @@
 <meta property="og:description" content="C和C++最大的区别就是C语言是面向过程的语言，而C++是面向对象的语言。C++最初叫做“带类的C”，顾名思义，理论上C++可以认为是C语言的超集。 类和对象是C++的重要特性，它们使得C++成为面向对象的编程语言，可以用来开发中大型项目。C++中的类（class）可以看作C语言中结构体（struct）的升级版，不同的是，类的成员不但可以是变量，还可以是函数。通过类定义出来的变量被称作对象。 本文">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-16T11:21:20.000Z">
-<meta property="article:modified_time" content="2020-08-23T07:57:10.401Z">
+<meta property="article:modified_time" content="2020-09-08T13:43:53.320Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -187,7 +187,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">8.5k字</span>
+        <span class="post-count">9.1k字</span>
       </span>
     </span>
 
@@ -196,7 +196,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">33分</span>
+        <span class="post-count">35分</span>
       </span>
     </span>
 </div>
@@ -287,7 +287,17 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student::Student(<span class="built_in">string</span> name, <span class="keyword">int</span> age, <span class="keyword">float</span> score) : name(name), age(age), score(score) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>值得注意的是：this指针属于对象，初始化列表在构造函数之前执行，在对象还没有构造完成前，使用this指针，编译器无法识别，所以构造函数初始化列表时不能使用this指针。</p>
 <p>初始化 const 成员变量的唯一方法就是使用初始化列表，这个会在后面讲到。</p>
-<h2 id="1-2-析构函数"><a href="#1-2-析构函数" class="headerlink" title="1.2 析构函数"></a>1.2 析构函数</h2><p>创建对象时系统会自动调用构造函数进行初始化工作，同样，销毁对象时系统也会自动调用一个函数来进行清理工作，例如释放分配的内存、关闭打开的文件等，这个函数就是析构函数。</p>
+<h4 id="1-1-3-拷贝构造函数"><a href="#1-1-3-拷贝构造函数" class="headerlink" title="1.1.3 拷贝构造函数"></a>1.1.3 拷贝构造函数</h4><p>如果一个构造函数的第一个参数是自身类类型的引用，且任何额外的参数都有默认值，则此构造函数是拷贝构造函数，拷贝构造函数也叫复制构造函数。例如我们在student.cpp中添加如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student(<span class="keyword">const</span> Student &amp;stu);</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，拷贝构造函数只有一个参数，它的类型是当前类的引用，而且一般都是 const 引用。</p>
+<p><strong>1）为什么必须是当前类的引用呢？</strong></p>
+<p>如果拷贝构造函数的参数不是当前类的引用，而是当前类的对象，那么在调用拷贝构造函数时，会将另外一个对象直接传递给形参，这本身就是一次拷贝，会再次调用拷贝构造函数，然后又将一个对象直接传递给了形参，将继续调用拷贝构造函数……这个过程会一直持续下去，没有尽头，陷入死循环。</p>
+<p><strong>2) 为什么是 const 引用呢？</strong></p>
+<p>拷贝构造函数的目的是用其它对象的数据来初始化当前对象，并没有期望更改其它对象的数据，添加 const 限制后，这个含义更加明确了。</p>
+<p>另外一个原因是，添加 const 限制后，可以将 const 对象和非 const 对象传递给形参了，因为非 const 类型可以转换为 const 类型。如果没有 const 限制，就不能将 const 对象传递给形参，因为 const 类型不能转换为非 const 类型，这就意味着，不能使用 const 对象来初始化当前对象了。</p>
+<p>如果我们没有为一个类定义拷贝构造函数，那么编译器会为我们定义一个，这个默认的拷贝构造函数很简单，就是使用“老对象”的成员变量对“新对象”的成员变量进行一一赋值，和上面 Student 类的拷贝构造函数非常类似。对于简单的类，默认拷贝构造函数一般是够用的，我们也没有必要再显式地定义一个功能类似的拷贝构造函数。但是当类持有其它资源时，如动态分配的内存、打开的文件、指向其他数据的指针、网络连接等，默认拷贝构造函数就不能拷贝这些资源，我们必须显式地定义拷贝构造函数，以完整地拷贝对象的所有数据。</p>
+<h3 id="1-2-析构函数"><a href="#1-2-析构函数" class="headerlink" title="1.2 析构函数"></a>1.2 析构函数</h3><p>创建对象时系统会自动调用构造函数进行初始化工作，同样，销毁对象时系统也会自动调用一个函数来进行清理工作，例如释放分配的内存、关闭打开的文件等，这个函数就是析构函数。</p>
 <p>析构函数（Destructor）也是一种特殊的成员函数，没有返回值，不需要程序员显式调用（程序员也没法显式调用），而是在销毁对象时自动执行。构造函数的名字和类名相同，而析构函数的名字是在类名前面加一个~符号。</p>
 <p>注意：析构函数没有参数，不能被重载，因此一个类只能有一个析构函数。如果用户没有定义，编译器会自动生成一个默认的析构函数。</p>
 <p>C++ 中的 new 和 delete 分别用来分配和释放内存，它们与C语言中 malloc()、free() 最大的一个不同之处在于：用 new 分配内存时会调用构造函数，用 delete 释放内存时会调用析构函数。构造函数和析构函数对于类来说是不可或缺的，所以在C++中我们非常鼓励使用 new 和 delete。</p>
@@ -706,23 +716,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">指针</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Shell</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">指针</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -735,6 +737,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">gcc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C语言</a>
               </li>
             
             <div class="clearfix"></div>
