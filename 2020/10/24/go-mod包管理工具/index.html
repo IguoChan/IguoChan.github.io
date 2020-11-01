@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Tag: 指针 | IguoChan的博客</title>
+  <title>Go go.mod包管理工具 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IguoChan的博客">
-<meta property="og:url" content="https://iguochan.github.io/tags/%E6%8C%87%E9%92%88/index.html">
+  <meta name="description" content="近来入职旷厂转行做后端开发，开始接触Go语言，刚入手时学习的是Go语言圣经，其中利用GOPATH这个变量来管理Go工程，但是这样会很麻烦，不管是在Linux环境中还是Windows中，都需要在不同的工程中设置该变量。 go modules是Golang 1.11新加的特性，是Go包的集合。modules是源代码交换和版本控制的单元。 go命令直接支持使用modules，包括记录和解析对其他模块的依">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go go.mod包管理工具">
+<meta property="og:url" content="https://iguochan.github.io/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="近来入职旷厂转行做后端开发，开始接触Go语言，刚入手时学习的是Go语言圣经，其中利用GOPATH这个变量来管理Go工程，但是这样会很麻烦，不管是在Linux环境中还是Windows中，都需要在不同的工程中设置该变量。 go modules是Golang 1.11新加的特性，是Go包的集合。modules是源代码交换和版本控制的单元。 go命令直接支持使用modules，包括记录和解析对其他模块的依">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://iguochan.github.io/img/go-mod-commond.png">
+<meta property="article:published_time" content="2020-10-24T07:44:13.000Z">
+<meta property="article:modified_time" content="2020-11-01T08:32:53.638Z">
 <meta property="article:author" content="IguoChan">
+<meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iguochan.github.io/img/go-mod-commond.png">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
   
@@ -155,76 +162,294 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-go-mod包管理工具" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/18/%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2020-07-18T01:54:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/18/%E6%8C%87%E9%92%88/">指针</a>
+    <h1 class="article-title" itemprop="name">
+      Go go.mod包管理工具
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="archive-article-date">
+  	<time datetime="2020-10-24T07:44:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-24</time>
+</a>
+
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.4k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
           
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近来入职旷厂转行做后端开发，开始接触Go语言，刚入手时学习的是<a href="http://shouce.jb51.net/gopl-zh/index.html" target="_blank" rel="noopener">Go语言圣经</a>，其中利用<code>GOPATH</code>这个变量来管理Go工程，但是这样会很麻烦，不管是在Linux环境中还是Windows中，都需要在不同的工程中设置该变量。</p>
+<p>go modules是Golang 1.11新加的特性，是Go包的集合。modules是源代码交换和版本控制的单元。 go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于<code>GOPATH</code>的方法来指定在给定构建中使用哪些源文件。</p>
+<p>Modules和传统的GOPATH不同，不需要包含例如src，bin这样的子目录，一个源代码目录甚至是空目录都可以作为Modules，只要其中包含有go.mod文件。</p>
+<a id="more"></a>
+
+<h2 id="0-使用go-mod条件"><a href="#0-使用go-mod条件" class="headerlink" title="0 使用go.mod条件"></a>0 使用go.mod条件</h2><p>1）首先将go的版本升级到1.11以上</p>
+<p>2）设置GO111MODULE（off/on/auto）</p>
+<ul>
+<li>GO111MODULE=off，go命令行将不会支持module功能，寻找依赖包的方式将会沿用旧版本那种通过vendor目录或者GOPATH模式来查找；</li>
+<li>GO111MODULE=on，go命令行会使用modules，而一点也不会去GOPATH目录下查找；</li>
+<li>GO111MODULE=auto，默认值，go命令行将会根据当前目录来决定是否启用module功能。这种情况下可以分为两种情形：<ul>
+<li>当前目录在GOPATH/src之外且该目录包含go.mod文件；</li>
+<li>当前文件在包含go.mod文件的目录下面。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-go-mod初探"><a href="#1-go-mod初探" class="headerlink" title="1 go.mod初探"></a>1 go.mod初探</h2><p>go为用户提供了<code>go mod</code>命令来管理包，其子命令有以下几种：<br><img src="/img/go-mod-commond.png" alt="go mod command"></p>
+<p>首先，我们在GOPATH/src外新建一个工程，或者将老工程从GOPATH/src拷贝出来。go.mod文件一旦创建，它的内容将会被go toolchain全面掌控。</p>
+<ul>
+<li>go.mod文档中有module, require、replace和exclude四个命令：<ul>
+<li>module语句指定包的名字（路径）</li>
+<li>require语句指定的依赖项模块</li>
+<li>replace语句可以替换依赖项模块</li>
+<li>exclude语句可以忽略依赖项模块</li>
+</ul>
+</li>
+</ul>
+<p>首先我们在新建一个文件夹，名为hellomod，然后在文件夹下新建名为main的文件夹，然后我们在main文件夹中添加main.go文件，内容如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"Hello world!"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在hellomod文件夹下执行<code>go mod init hello</code>指令，得到如下所示的go.mod文件（子目录里是不需要init的，所有的子目录里的依赖都会组织在根目录hellomod的go.mod文件里）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module hello</span><br><span class="line"></span><br><span class="line">go 1.15</span><br></pre></td></tr></table></figure>
+<p>后续可以直接执行运行命令等:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">Hello world!</span><br></pre></td></tr></table></figure>
+<p>这个时候go.mod的作用并没有体现出来，我们接着往下看。</p>
+<h2 id="2-私有包"><a href="#2-私有包" class="headerlink" title="2 私有包"></a>2 私有包</h2><p>在hellomod文件夹中新建aaa文件夹，然后在aaa文件加中添加任意名字的<code>.go</code>文件，如<code>aaa.go</code>，内容如下（注意package名称一定要和文件夹相同，但是go文件的名称无所谓）：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> aaa</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AaaPrint</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"Hello AAA"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改main.go如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"hello/aaa"</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"Hello, world!"</span>)</span><br><span class="line">    aaa.AaaPrint()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意在导入包的时候，一定要用模块名充当路径名，即第5行的<code>&quot;hello/aaa&quot;</code>，这样才能找到aaa包。这是再次运行代码，得到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">Hello, world!</span><br><span class="line">Hello AAA</span><br></pre></td></tr></table></figure>
+<p>这时候可以发现go.mod文件内容并没有改变，但是我们不需要和之前一样必须在GOPATH路径下才能找到依赖包了，这大大方便了go工程管理。</p>
+<h2 id="3-github上的包"><a href="#3-github上的包" class="headerlink" title="3 github上的包"></a>3 github上的包</h2><p>我们修改main.go代码如下，随意找一个github上的包名，如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"hello/aaa"</span></span><br><span class="line">	_ <span class="string">"github.com/gohouse/gorose"</span></span><br><span class="line">)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"Hello, world!"</span>)</span><br><span class="line">    aaa.AaaPrint()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再次运行代码，得到：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">go: finding module <span class="keyword">for</span> package github.com/gohouse/gorose</span><br><span class="line">go: found github.com/gohouse/gorose <span class="keyword">in</span> github.com/gohouse/gorose v1.0.5</span><br><span class="line">go: finding module <span class="keyword">for</span> package github.com/gohouse/converter</span><br><span class="line">go: found github.com/gohouse/converter <span class="keyword">in</span> github.com/gohouse/converter v0.0.3</span><br><span class="line">Hello, world!</span><br><span class="line">Hello AAA</span><br></pre></td></tr></table></figure>
+<p>这时候可以发现go.mod文件内容变成了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module hello</span><br><span class="line"></span><br><span class="line">go 1.15</span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">	github.com&#x2F;gohouse&#x2F;converter v0.0.3 &#x2F;&#x2F; indirect</span><br><span class="line">	github.com&#x2F;gohouse&#x2F;gorose v1.0.5 &#x2F;&#x2F; indirect</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>对应上面的log，可以发现go工具自动去github上下载了文件，放在了<code>$GOPATH/pkg/mod</code>路径下，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Chen\go\pkg\mod\github.com\gohouse</span><br><span class="line">$ ls</span><br><span class="line">&#39;converter@v0.0.3&#39;&#x2F;  &#39;gorose@v1.0.5&#39;&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-使用其它版本的包"><a href="#4-使用其它版本的包" class="headerlink" title="4 使用其它版本的包"></a>4 使用其它版本的包</h2><p>上例中是自动使用github上最新版本的包，这里我们可以使用旧版本的包，譬如我们想用gorose 1.0.4的包，可以执行指令<code>go mod edit -require=github.com/gohouse/gorose@v1.0.4</code>，然后运行程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ go run main\main.go</span><br><span class="line">go: downloading github.com/gohouse/gorose v1.0.4</span><br><span class="line">Hello, world!</span><br><span class="line">Hello AAA</span><br></pre></td></tr></table></figure>
+<p>这时候发现，go.mod中gorose的版本变成了v1.0.4：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">module hello</span><br><span class="line"></span><br><span class="line">go 1.15</span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">	github.com&#x2F;gohouse&#x2F;converter v0.0.3 &#x2F;&#x2F; indirect</span><br><span class="line">	github.com&#x2F;gohouse&#x2F;gorose v1.0.4 &#x2F;&#x2F; indirect</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>还有其它的一些<code>go mod</code>指令，大家也可以试试。</p>
+<p>除了go.mod之外，go命令还维护一个名为go.sum的文件，其中包含特定模块版本内容的预期加密哈希<br>go命令使用go.sum文件确保这些模块的未来下载检索与第一次下载相同的位，以确保项目所依赖的模块不会出现意外更改，无论是出于恶意、意外还是其他原因。 go.mod和go.sum都应检入版本控制。</p>
+
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p">谢谢你请我吃糖果</i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">指针</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++（二）—— 继承与派生</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+  
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -257,9 +482,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
