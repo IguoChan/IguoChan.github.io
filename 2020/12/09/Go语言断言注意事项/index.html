@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://iguochan.github.io">
   <title>Go语言断言注意事项 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。在使用断言的时候，我们需要确认">
+  <meta name="description" content="类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。在使用断言的时候，我们最好接收第二个参数，或者确认该断言必定成功，否则将引起系统的Panic！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go语言断言注意事项">
 <meta property="og:url" content="https://iguochan.github.io/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。在使用断言的时候，我们需要确认">
+<meta property="og:description" content="类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。在使用断言的时候，我们最好接收第二个参数，或者确认该断言必定成功，否则将引起系统的Panic！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-12-09T15:31:35.000Z">
-<meta property="article:modified_time" content="2020-12-09T16:10:13.434Z">
+<meta property="article:modified_time" content="2020-12-09T16:15:22.574Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
@@ -193,7 +193,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">602字</span>
+        <span class="post-count">627字</span>
       </span>
     </span>
 
@@ -212,7 +212,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。<br>在使用断言的时候，我们需要确认</p>
+        <p>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。<br>在使用断言的时候，我们最好<strong>接收第二个参数，或者确认该断言必定成功，否则将引起系统的Panic！</strong></p>
 <a id="more"></a>
 
 <h2 id="1-正确的使用方式"><a href="#1-正确的使用方式" class="headerlink" title="1 正确的使用方式"></a>1 正确的使用方式</h2><p>在Golang中，断言的语法格式如下所示：</p>
