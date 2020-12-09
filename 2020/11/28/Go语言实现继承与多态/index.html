@@ -16,7 +16,7 @@
 <meta property="og:description" content="Go被称为“互联网时代的C语音”，严格意义上不是面向对象编程的语言，但是Go语言结构体和接口的特性可以轻松地实现继承和多态。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-28T07:00:44.000Z">
-<meta property="article:modified_time" content="2020-11-28T09:49:14.262Z">
+<meta property="article:modified_time" content="2020-12-03T12:58:42.158Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
@@ -66,7 +66,7 @@
 	        
 				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
-				<li><a href="/tags/Go/">每日一Go</a></li>
+				<li><a href="/tags/Go/">每周一Go</a></li>
 	        
 			</ul>
 		</nav>
@@ -86,7 +86,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 13
+    		总文章数 15
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -151,7 +151,7 @@
 		        
 					<li style="width: 25%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Go/">每日一Go</a></li>
+					<li style="width: 25%"><a href="/tags/Go/">每周一Go</a></li>
 		        
 				</ul>
 			</nav>
@@ -227,7 +227,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go </span><br><span class="line">I am a Person, My name is Tom, is 16 years old!</span><br><span class="line">I am a Student, My name is Jerry, is 15 years old, my stuentId is 1001!</span><br></pre></td></tr></table></figure>
 <p>从上可以看出，利用Go语言实现继承是一件很方便的事情。</p>
 <h2 id="2-Go语言实现多态"><a href="#2-Go语言实现多态" class="headerlink" title="2 Go语言实现多态"></a>2 Go语言实现多态</h2><p>如下例子，我们定义一个名为<code>People</code>的接口，只需定义<code>Speak</code>和<code>Working</code>方法，无需实现该方法。然后对<code>Student</code>和<code>Teacher</code>对象都实现了该接口，即实现接口下的所有方法。</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> People <span class="keyword">interface</span> &#123;</span><br><span class="line">	Speak()</span><br><span class="line">	Working()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">	name		<span class="keyword">string</span></span><br><span class="line">	age			<span class="keyword">int</span></span><br><span class="line">	stuId		<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Teacher <span class="keyword">struct</span> &#123;</span><br><span class="line">	name		<span class="keyword">string</span></span><br><span class="line">	age 		<span class="keyword">int</span></span><br><span class="line">	teacherId	<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s Student)</span> <span class="title">Speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"I am a Student, My name is %s, is %d years old, my stuentId is %d!\n"</span>,s.name, s.age, s.stuId)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s Student)</span> <span class="title">Working</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"I am a Student, My work is reading book!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Teacher)</span> <span class="title">Speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"I am a Teacher, My name is %s, is %d years old, my teacherId is %d!\n"</span>,t.name, t.age, t.teacherId)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Teacher)</span> <span class="title">Working</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"I am a Teacher, My work is teaching book!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetPeople</span><span class="params">(p People)</span></span>  &#123;</span><br><span class="line">	p.Speak()</span><br><span class="line">	p.Working()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := Student &#123;<span class="string">"Jerry"</span>,<span class="number">15</span>,<span class="number">1001</span>&#125;</span><br><span class="line">	SetPeople(s)</span><br><span class="line"></span><br><span class="line">	t := Teacher &#123;<span class="string">"Tom"</span>, <span class="number">16</span>, <span class="number">2001</span>&#125;</span><br><span class="line">	SetPeople(t)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> People <span class="keyword">interface</span> &#123;</span><br><span class="line">	Speak()</span><br><span class="line">	Working()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Student <span class="keyword">struct</span> &#123;</span><br><span class="line">	name		<span class="keyword">string</span></span><br><span class="line">	age			<span class="keyword">int</span></span><br><span class="line">	stuId		<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Teacher <span class="keyword">struct</span> &#123;</span><br><span class="line">	name		<span class="keyword">string</span></span><br><span class="line">	age 		<span class="keyword">int</span></span><br><span class="line">	teacherId	<span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s Student)</span> <span class="title">Speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"I am a Student, My name is %s, is %d years old, my stuentId is %d!\n"</span>,s.name, s.age, s.stuId)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s Student)</span> <span class="title">Working</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"I am a Student, My work is reading book!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Teacher)</span> <span class="title">Speak</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"I am a Teacher, My name is %s, is %d years old, my teacherId is %d!\n"</span>,t.name, t.age, t.teacherId)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t Teacher)</span> <span class="title">Working</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"I am a Teacher, My work is teaching book!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetPeople</span><span class="params">(p People)</span></span> &#123;</span><br><span class="line">	p.Speak()</span><br><span class="line">	p.Working()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	s := Student &#123;<span class="string">"Jerry"</span>,<span class="number">15</span>,<span class="number">1001</span>&#125;</span><br><span class="line">	SetPeople(s)</span><br><span class="line"></span><br><span class="line">	t := Teacher &#123;<span class="string">"Tom"</span>, <span class="number">16</span>, <span class="number">2001</span>&#125;</span><br><span class="line">	SetPeople(t)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>SetPeople</code>函数接收一个<code>People</code>接口类型的值，如果一个实体类型实现了该接口，<code>SetPeople</code>函数会根据不同的类型实体实现不同的行为，这相当于实现了多态。也就是针对一套方法接口，对于不同的类型可以实现不同的行为，执行结果如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go </span><br><span class="line">I am a Student, My name is Jerry, is 15 years old, my stuentId is 1001!</span><br><span class="line">I am a Student, My work is reading book!</span><br><span class="line">I am a Teacher, My name is Tom, is 16 years old, my teacherId is 2001!</span><br><span class="line">I am a Teacher, My work is teaching book!</span><br></pre></td></tr></table></figure>
 
@@ -361,6 +361,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/12/06/Go-GIN/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Golang微框架Gin
+        
+      </div>
+    </a>
   
   
     <a href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" id="article-nav-older" class="article-nav-link-wrap">
@@ -526,7 +535,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,11 +551,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
               </li>
              
               <li class="article-tag-list-item">

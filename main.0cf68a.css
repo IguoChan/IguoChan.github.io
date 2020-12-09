@@ -2405,7 +2405,8 @@ pre .id {
   color: #696969;
   line-height: 1.8em;
   padding-right: 7.6923%;
-  padding-left: 7.6923%
+  padding-left: 7.6923%;
+  tab-size: 4
 }
 
 .article-entry p {

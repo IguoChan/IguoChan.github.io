@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Category: 工程构建 | IguoChan的博客</title>
+  <title>Golang微框架Gin | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IguoChan的博客">
-<meta property="og:url" content="https://iguochan.github.io/categories/%E5%B7%A5%E7%A8%8B%E6%9E%84%E5%BB%BA/index.html">
+  <meta name="description" content="框架是敏捷开发中的利器，更像是一些常用函数或者工具的集合。借助框架开发，不仅可以省去很多常用的封装带来的时间，也有助于团队的编码风格和形成规范。 框架能让开发者快速上手。Golang提供的net&#x2F;http库对于http协议的实现非常好，基于此的Gin框架是一个封装优雅，API友好的web微框架。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang微框架Gin">
+<meta property="og:url" content="https://iguochan.github.io/2020/12/06/Go-GIN/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="框架是敏捷开发中的利器，更像是一些常用函数或者工具的集合。借助框架开发，不仅可以省去很多常用的封装带来的时间，也有助于团队的编码风格和形成规范。 框架能让开发者快速上手。Golang提供的net&#x2F;http库对于http协议的实现非常好，基于此的Gin框架是一个封装优雅，API友好的web微框架。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-06T08:20:07.000Z">
+<meta property="article:modified_time" content="2020-12-06T14:48:07.151Z">
 <meta property="article:author" content="IguoChan">
+<meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
@@ -161,258 +166,261 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Go-GIN" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Golang微框架Gin
+    </h1>
+  
+
+        
+        <a href="/2020/12/06/Go-GIN/" class="archive-article-date">
+  	<time datetime="2020-12-06T08:20:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
+</a>
+
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>框架是敏捷开发中的利器，更像是一些常用函数或者工具的集合。借助框架开发，不仅可以省去很多常用的封装带来的时间，也有助于团队的编码风格和形成规范。</p>
+<p>框架能让开发者快速上手。Golang提供的net/http库对于http协议的实现非常好，基于此的Gin框架是一个封装优雅，API友好的web微框架。</p>
+<a id="more"></a>
+
+
+<h2 id="0-Hello-World"><a href="#0-Hello-World" class="headerlink" title="0 Hello World"></a>0 Hello World</h2><p>如下代码所示，简单的几行代码就能实现一个web服务。使用gin的Default方法创建一个路由handler。然后通过HTTP方法绑定路由规则和路由函数。不同于net/http库的路由函数，gin进行了封装，把request和response都封装到gin.Context的上下文环境。最后是启动路由的Run方法监听端口。麻雀虽小，五脏俱全。当然，除了GET方法，gin也支持POST,PUT,DELETE,OPTION等常用的restful方法。</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line"><span class="string">"net/http"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	router := gin.Default()</span><br><span class="line"></span><br><span class="line">	router.GET(<span class="string">"/"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		c.String(http.StatusOK, <span class="string">"Hello World"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	router.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在主机上运行代码并访问<a href="http://localhost:8000" target="_blank" rel="noopener">http://localhost:8000</a>，即可访问看到<code>Hello World</code>字样。</p>
+<p>查看<code>gin.Default()</code>源代码，如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Default returns an Engine instance with the Logger and Recovery middleware already attached.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Default</span><span class="params">()</span> *<span class="title">Engine</span></span> &#123;</span><br><span class="line">	debugPrintWARNINGDefault()</span><br><span class="line">	engine := New()</span><br><span class="line">	engine.Use(Logger(), Recovery())</span><br><span class="line">	<span class="keyword">return</span> engine</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现，<code>gin.Default()</code>函数内部调用New()函数来初始化一个gin实例，同时使用注册了<code>Logger</code>和<code>Recovery</code>两个中间件，所以我们也可以使用<code>gin.New()</code>函数来初始化一个无中间件启动的gin实例。</p>
+<h2 id="1-Gin框架的几个核心结构"><a href="#1-Gin框架的几个核心结构" class="headerlink" title="1 Gin框架的几个核心结构"></a>1 Gin框架的几个核心结构</h2><p>开发一个HTTP服务，首先需要启动一个TCP监听，然后需要一系列的handler来处理具体的业务逻辑，最后在再将具体的业务逻辑通过HTTP协议约定和相关的Method和URL进行绑定，以此来对外提供具体功能的HTTP服务。Gin中通过以下几个重要的模型来实现以上功能。</p>
+<h3 id="1-1-Engine"><a href="#1-1-Engine" class="headerlink" title="1.1 Engine"></a>1.1 Engine</h3><p>用来初始化一个gin对象实例，在该对象实例中包含了一些框架的基础功能。如前代码所示，首先我们使用<code>gin.Default()</code>或者<code>gin.New()</code>初始化一个实例。</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Engine <span class="keyword">struct</span> &#123;</span><br><span class="line">	<span class="comment">// 路由组，在实际开发过程中我们通常会使用路由组来组织和管理一些列的路由. 比如: /apis/,/v1/等分组路由</span></span><br><span class="line">	RouterGroup</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 开启自动重定向。如果当前路由没有匹配到，但是存在不带/开头的handler就会重定向. 比如: 用户输入/foo/但是存在一个/foo 就会自动重定向到该handler，并且会向客户端返回301或者307状态码(区别在于GET方法和其他方法)</span></span><br><span class="line">	RedirectTrailingSlash <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果开启该参数，没有handler注册时，路由会尝试自己去修复当前的请求地址.</span></span><br><span class="line">    <span class="comment">// 修复流程:</span></span><br><span class="line">    <span class="comment">// 1.首位多余元素会被删除(../ or //); 2.然后路由会对新的路径进行不区分大小写的查找;3.如果能正常找到对应的handler，路由就会重定向到正确的handler上并返回301或者307.(比如: 用户访问/FOO 和 /..//Foo可能会被重定向到/foo这个路由上)</span></span><br><span class="line">	RedirectFixedPath <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果开启该参数，当当前请求不能被路由时，路由会自己去检查其他方法是否被允许.在这种情况下会响应"Method Not Allowed"，并返回状态码405; 如果没有其他方法被允许，将会委托给NotFound的handler</span></span><br><span class="line">	HandleMethodNotAllowed <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 是否转发客户端ip</span></span><br><span class="line">	ForwardedByClientIP    <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果开启将会在请求中增加一个以"X-AppEngine..."开头的header</span></span><br><span class="line">	AppEngine <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果开启将会使用url.RawPath去查找参数(默认:false)</span></span><br><span class="line">	UseRawPath <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果开启，请求路径将不会被转义. 如果UseRawPath为false，该参数实际上就为true(因为使用的是url.Path)</span></span><br><span class="line">	UnescapePathValues <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// maxMemory参数的值(http.Request的ParseMultipartForm调用时的参数)</span></span><br><span class="line">	MaxMultipartMemory <span class="keyword">int64</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 是否删除额外的反斜线(开始时可解析有额外斜线的请求)</span></span><br><span class="line">	RemoveExtraSlash <span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 分隔符(render.Delims表示使用HTML渲染的一组左右分隔符,具体可见html/template库)</span></span><br><span class="line">	delims           render.Delims</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 设置在Context.SecureJSON中国的json前缀</span></span><br><span class="line">	secureJsonPrefix <span class="keyword">string</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 返回一个HTMLRender接口(用于渲染HTMLProduction和HTMLDebug两个结构体类型的模板)</span></span><br><span class="line">	HTMLRender       render.HTMLRender</span><br><span class="line"></span><br><span class="line">	<span class="comment">// html/template包中的FuncMap map[string]interface&#123;&#125; ,用来定义从名称到函数的映射</span></span><br><span class="line">	FuncMap          template.FuncMap</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 以下是gin框架内部定义的一些属性</span></span><br><span class="line">    <span class="comment">// HandlersChain 是一个HandlerFunc 的数组(HandlerFunc其实就是一个Context的指针,Context会在下一节讲解)</span></span><br><span class="line">	allNoRoute       HandlersChain</span><br><span class="line">	allNoMethod      HandlersChain</span><br><span class="line">	noRoute          HandlersChain</span><br><span class="line">	noMethod         HandlersChain</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 这里定义了一个可以临时存取对象的集合(sync.Pool是线程安全的，主要用来缓存为使用的item以减少GC压力，使得创建高效且线程安全的空闲队列)</span></span><br><span class="line">	pool             sync.Pool</span><br><span class="line"></span><br><span class="line">	<span class="comment">// methodTrees是methodTree的切片(methodTree是一个包含请求方法和node指针的结构体,node是一个管理path的节点树)</span></span><br><span class="line">	trees            methodTrees</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上，<code>New()</code>和<code>Default()</code>函数用于初始化<code>*Engine</code>实例。</p>
+
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p">谢谢你请我吃糖果</i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
-  	<time datetime="2020-07-06T15:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/">CMakeLists.txt 怎么写</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/cmake//" class="article-tag-list-link color1">cmake</a>
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/12/06/Go-GIN/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/21/%E9%93%BE%E6%8E%A5/" class="archive-article-date">
-  	<time datetime="2020-06-21T09:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+    <a href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Go语言断言注意事项
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Go语言实现继承与多态</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">链接</a>
-    </h1>
-  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
-        		</li>
-      		
-		</ul>
-	</div>
+       if (typeof LivereTower === 'function') { return; }
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理/链接//" class="article-tag-list-link color3">链接</a>
-        		</li>
-      		
-		</ul>
-	</div>
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
 
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/21/C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/" class="archive-article-date">
-  	<time datetime="2020-06-21T05:03:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/21/C%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%B5%85%E6%9E%90/">C语言编译原理浅析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/">Makefile 怎么写</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Makefile</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/Makefile//" class="article-tag-list-link color4">Makefile</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
   
-    </div></section>
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -445,10 +453,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

@@ -61,7 +61,7 @@
 	        
 				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
-				<li><a href="/tags/Go/">每日一Go</a></li>
+				<li><a href="/tags/Go/">每周一Go</a></li>
 	        
 			</ul>
 		</nav>
@@ -81,7 +81,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 13
+    		总文章数 15
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -146,7 +146,7 @@
 		        
 					<li style="width: 25%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 25%"><a href="/tags/Go/">每日一Go</a></li>
+					<li style="width: 25%"><a href="/tags/Go/">每周一Go</a></li>
 		        
 				</ul>
 			</nav>
@@ -162,6 +162,247 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/27/%E9%93%BE%E8%A1%A8/">链表的C语言实现</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/27/%E9%93%BE%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2020-06-27T10:45:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">14分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们将形如A<sub>1</sub>,A<sub>2</sub>,…,A<sub>N</sub>的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。</p>
+<p>为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而链表就是这样的结构。</p>
+        
+          <a class="article-more-a" href="/2020/06/27/%E9%93%BE%E8%A1%A8/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">list</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构/链表//" class="article-tag-list-link color3">链表</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/27/%E9%93%BE%E8%A1%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-链接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">链接</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/21/%E9%93%BE%E6%8E%A5/" class="archive-article-date">
+  	<time datetime="2020-06-21T09:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">7.9k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">31分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>链接是将各种代码和数据片段收集并组合成为一个单一文件的过程。链接是软件开发中的重要过程，其使得分离编译成为可能。即我们不用将一个大型的应用程序组织成为一个巨大的源文件，而是将其分解为更小、更好管理的模块，可以独立地修改和编译这些模块。不仅如此，我们还可以链接包含某些特定函数和功能的库文件，在前人的基础上进行深度开发，而不需要每个模块都亲历亲为。</p>
+        
+          <a class="article-more-a" href="/2020/06/21/%E9%93%BE%E6%8E%A5/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/编译原理/链接//" class="article-tag-list-link color3">链接</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-C语言编译原理浅析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -617,7 +858,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -633,11 +874,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Shell</a>
+                <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
               </li>
              
               <li class="article-tag-list-item">
