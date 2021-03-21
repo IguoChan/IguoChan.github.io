@@ -83,7 +83,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 18
+    		总文章数 19
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -168,6 +168,113 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Linux环境编程——IO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/09/Linux%E7%8E%AF%E5%A2%83%E7%BC%96%E7%A8%8B%E2%80%94%E2%80%94IO/">Linux环境编程——I/O</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/09/Linux%E7%8E%AF%E5%A2%83%E7%BC%96%E7%A8%8B%E2%80%94%E2%80%94IO/" class="archive-article-date">
+  	<time datetime="2020-08-09T12:06:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-09</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">234字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">1分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一切皆文件</strong>是Unix/Linux的基本哲学之一。普通文件、目录、字符设备、块设备和网络设备在Linux中均被当作文件来看待，虽然类型不同，但是Linux系统为它们提供了统一的操作接口。</p>
+<p>基于POSIX标准，Linux提供了文件I/O，文件I/O称之为不带缓存的I/O（接口包括open()、close()、read()、write()、ioctl()等），不带缓存意味者每次读（read）写（write）都调用内核中的一个系统调用（sys_read()和sys_write()）。这也就是一般所说的低级I/O——操作系统提供的基本I/O服务，与系统绑定，特定于Unix/Linux平台。</p>
+<p>标准I/O被称为高级磁盘I/O，是ANSI C建立的标准I/O模型，具备一定的可移植性。标准I/O提供三种类型的缓存，分别是全缓存、行缓存和不带缓存。</p>
+        
+          <a class="article-more-a" href="/2020/08/09/Linux%E7%8E%AF%E5%A2%83%E7%BC%96%E7%A8%8B%E2%80%94%E2%80%94IO/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Linux/Linux环境编程//" class="article-tag-list-link color5">Linux环境编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/09/Linux%E7%8E%AF%E5%A2%83%E7%BC%96%E7%A8%8B%E2%80%94%E2%80%94IO/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
