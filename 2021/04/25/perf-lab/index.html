@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://iguochan.github.io">
   <title>Performance-lab | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Performance-lab是利用书中的知识，对图像处理中的rotate和smooth操作函数进行优化。这个实验也没有一个标准的答案，这里就根据自己的理解和网上查到的知识进行一下优化。">
+  <meta name="description" content="Performance-lab是利用书中的知识，对图像处理中的rotate和smooth操作函数进行优化。这个实验也没有一个标准的答案，这里就根据自己的理解和网上查到的知识进行一下优化。 lab的具体内容可以在官网中下载，所有的lab代码在GitHub上。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Performance-lab">
 <meta property="og:url" content="https://iguochan.github.io/2021/04/25/perf-lab/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="Performance-lab是利用书中的知识，对图像处理中的rotate和smooth操作函数进行优化。这个实验也没有一个标准的答案，这里就根据自己的理解和网上查到的知识进行一下优化。">
+<meta property="og:description" content="Performance-lab是利用书中的知识，对图像处理中的rotate和smooth操作函数进行优化。这个实验也没有一个标准的答案，这里就根据自己的理解和网上查到的知识进行一下优化。 lab的具体内容可以在官网中下载，所有的lab代码在GitHub上。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-25T04:52:59.000Z">
-<meta property="article:modified_time" content="2021-04-25T06:44:01.510Z">
+<meta property="article:modified_time" content="2021-05-02T07:25:41.198Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="csapp">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@
             
 		</nav>
 		<nav class='header-all-article'>
-    		总文章数 21
+    		总文章数 22
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
@@ -219,6 +219,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Performance-lab是利用书中的知识，对图像处理中的rotate和smooth操作函数进行优化。这个实验也没有一个标准的答案，这里就根据自己的理解和网上查到的知识进行一下优化。</p>
+<p>lab的具体内容可以在<a href="http://csapp.cs.cmu.edu/3e/labs.html" target="_blank" rel="noopener">官网</a>中下载，所有的lab代码在<a href="https://github.com/IguoChan/CSAPP-Labs" target="_blank" rel="noopener">GitHub</a>上。</p>
 <a id="more"></a>
 
 <h2 id="1-Rotate"><a href="#1-Rotate" class="headerlink" title="1 Rotate"></a>1 Rotate</h2><p>我们首先查看原naive_rotate函数如下，其实进行的就是逆时针90°的旋转</p>
@@ -376,6 +377,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/05/01/cache-lab/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Cache-lab
+        
+      </div>
+    </a>
   
   
     <a href="/2021/04/04/attack-lab/" id="article-nav-older" class="article-nav-link-wrap">
@@ -541,10 +551,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -557,11 +563,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">csapp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">csapp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,10 +588,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">list</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
