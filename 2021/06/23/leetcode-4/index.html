@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Go语言断言注意事项 | IguoChan的博客</title>
+  <title>leetcode-4 寻找两个正序数组的中位数 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。在使用断言的时候，我们最好接收第二个参数，或者确认该断言必定成功，否则可能引起系统的Panic！">
+  <meta name="description" content="给定两个大小分别为m和n的正序（从小到大）数组nums1和nums2。请你找出并返回这两个正序数组的中位数。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Go语言断言注意事项">
-<meta property="og:url" content="https://iguochan.github.io/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
+<meta property="og:title" content="leetcode-4 寻找两个正序数组的中位数">
+<meta property="og:url" content="https://iguochan.github.io/2021/06/23/leetcode-4/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。在使用断言的时候，我们最好接收第二个参数，或者确认该断言必定成功，否则可能引起系统的Panic！">
+<meta property="og:description" content="给定两个大小分别为m和n的正序（从小到大）数组nums1和nums2。请你找出并返回这两个正序数组的中位数。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-09T15:31:35.000Z">
-<meta property="article:modified_time" content="2020-12-09T16:25:15.224Z">
+<meta property="article:published_time" content="2021-06-22T23:59:42.000Z">
+<meta property="article:modified_time" content="2021-06-24T16:52:39.874Z">
 <meta property="article:author" content="IguoChan">
-<meta property="article:tag" content="Go">
+<meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
@@ -184,20 +184,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Go语言断言注意事项" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode-4" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Go语言断言注意事项
+      leetcode-4 寻找两个正序数组的中位数
     </h1>
   
 
         
-        <a href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
-  	<time datetime="2020-12-09T15:31:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
+        <a href="/2021/06/23/leetcode-4/" class="archive-article-date">
+  	<time datetime="2021-06-22T23:59:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-23</time>
 </a>
 
         <!-- 不蒜子统计 -->
@@ -211,7 +211,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">704字</span>
+        <span class="post-count">1.9k字</span>
       </span>
     </span>
 
@@ -220,7 +220,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">2分</span>
+        <span class="post-count">8分</span>
       </span>
     </span>
 </div>
@@ -230,31 +230,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。<br>在使用断言的时候，我们最好<strong>接收第二个参数，或者确认该断言必定成功，否则可能引起系统的Panic！</strong></p>
+        <p>给定两个大小分别为m和n的正序（从小到大）数组nums1和nums2。请你找出并返回这两个正序数组的<strong>中位数</strong>。</p>
 <a id="more"></a>
+<p>示例 1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,3], nums2 &#x3D; [2]</span><br><span class="line">输出：2.00000</span><br><span class="line">解释：合并数组 &#x3D; [1,2,3] ，中位数 2</span><br></pre></td></tr></table></figure>
+<p>示例 2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,2], nums2 &#x3D; [3,4]</span><br><span class="line">输出：2.50000</span><br><span class="line">解释：合并数组 &#x3D; [1,2,3,4] ，中位数 (2 + 3) &#x2F; 2 &#x3D; 2.5</span><br></pre></td></tr></table></figure>
+<p>示例 3：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [0,0], nums2 &#x3D; [0,0]</span><br><span class="line">输出：0.00000</span><br></pre></td></tr></table></figure>
+<p>示例 4：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [], nums2 &#x3D; [1]</span><br><span class="line">输出：1.00000</span><br></pre></td></tr></table></figure>
+<p>示例 5：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [2], nums2 &#x3D; []</span><br><span class="line">输出：2.00000</span><br></pre></td></tr></table></figure>
 
-<h2 id="1-正确的使用方式"><a href="#1-正确的使用方式" class="headerlink" title="1 正确的使用方式"></a>1 正确的使用方式</h2><p>在Golang中，断言的语法格式如下所示：</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value, ok := x.(T)</span><br></pre></td></tr></table></figure>
-<p>其中，x表示一个接口的类型，T表示一个具体的类型（也可为接口类型）。</p>
-<p>该断言表达式会返回x的值（也就是value）和一个布尔值（也就是ok），可根据该布尔值判断x是否为T类型：</p>
+<p><strong>提示</strong>：</p>
 <ul>
-<li>如果T是具体某个类型，类型断言会检查x的动态类型是否等于具体类型T：如果检查成功，类型断言返回的结果是x的动态值，其类型是T，ok=true；如果检查失败，value为类型T的零值，ok=false；</li>
-<li>如果T是接口类型，类型断言会检查x的动态类型是否满足T。如果检查成功，x的动态值不会被提取，返回值是一个类型为T的接口值，ok=true；如果检查失败，value为类型接口的零值nil，ok=false；</li>
-<li>无论T是什么类型，如果x是nil接口值，类型断言都会失败。</li>
+<li>nums1.length == m</li>
+<li>nums2.length == n</li>
+<li>0 &lt;= m &lt;= 1000</li>
+<li>0 &lt;= n &lt;= 1000</li>
+<li>1 &lt;= m + n &lt;= 2000</li>
+<li>-10<sup>6</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>6</sup></li>
 </ul>
-<p>如下代码：</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">    x = <span class="number">10</span></span><br><span class="line">    value, ok := x.(<span class="keyword">int</span>)</span><br><span class="line">    fmt.Println(value, ok)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结果是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">10 <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>如果我们屏蔽<code>x = 10</code>那行，那么运行结果就如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">0 <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p><strong>进阶</strong>：你能设计一个时间复杂度为<strong>O(log(m+n))</strong>的算法解决此问题吗？</p>
+<h2 id="排序后返回"><a href="#排序后返回" class="headerlink" title="排序后返回"></a>排序后返回</h2><p>虽然在leetcode上这题给出的难度是困难，但是我觉得做出来还是不难的：</p>
+<ul>
+<li>因为两个数组是正序的，所以给两个数组排序只需O(m+n)的时间复杂度；</li>
+<li>为了避免每个步骤都必须检查数组越界，我们在数组尾部设置一个哨兵值，这里哨兵值采用10<sup>6</sup>+1；</li>
+</ul>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMedianSortedArrays</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">    l := <span class="built_in">len</span>(nums1) + <span class="built_in">len</span>(nums2)</span><br><span class="line">    nums3 := <span class="built_in">make</span>([]<span class="keyword">int</span>, l, l)</span><br><span class="line">    MAX := <span class="number">1000001</span></span><br><span class="line">    <span class="comment">// 这里我直接在nums1、nums2后面添加了，其实这种做法不好，也许存在nums1和nums2地址重合或者正好衔接的情况</span></span><br><span class="line">    <span class="comment">// 为了简便，我直接这么做了，leetcode的测试用例也没有考虑到这点</span></span><br><span class="line">    nums1 = <span class="built_in">append</span>(nums1, MAX)</span><br><span class="line">    nums2 = <span class="built_in">append</span>(nums2, MAX)</span><br><span class="line">    j := <span class="number">0</span></span><br><span class="line">    k := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; l; i++ &#123;</span><br><span class="line">        <span class="keyword">if</span> nums1[j] &lt; nums2[k] &#123;</span><br><span class="line">            nums3[i] = nums1[j]</span><br><span class="line">            j++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            nums3[i] = nums2[k]</span><br><span class="line">            k++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> l % <span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">float64</span>(nums3[l/<span class="number">2</span><span class="number">-1</span>]) + <span class="keyword">float64</span>(nums3[l/<span class="number">2</span>])) / <span class="number">2</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">float64</span>(nums3[l/<span class="number">2</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>时间复杂度：O(m+n)</li>
+<li>空间复杂度：O(m+n)</li>
+</ul>
+<h2 id="降低复杂度"><a href="#降低复杂度" class="headerlink" title="降低复杂度"></a>降低复杂度</h2><p><strong>以下分析来自<a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-s-114/" target="_blank" rel="noopener">官方解答</a></strong></p>
+<p>如何把时间复杂度降低到O(log(m+n)) 呢？如果对时间复杂度的要求有log，通常都需要用到<strong>二分查找</strong>，这道题也可以通过二分查找实现。</p>
+<p>根据中位数的定义，当m+n是奇数时，中位数是两个有序数组中的第(m+n)/2个元素，当m+n是偶数时，中位数是两个有序数组中的第(m+n)/2个元素和第(m+n)/2+1个元素的平均值。因此，这道题可以转化成寻找两个有序数组中的第k小的数，其中k为(m+n)/2或(m+n)/2+1。</p>
+<p>假设两个有序数组分别是A和B。要找到第k个元素，我们可以比较A[k/2−1]和B[k/2−1]，其中/表示整数除法。由于A[k/2−1]和B[k/2−1]的前面分别有A[0..k/2−2]和B[0..k/2−2]，即k/2−1个元素，对于A[k/2−1]和B[k/2−1]中的较小值，最多只会有(k/2−1)+(k/2−1)≤k−2个元素比它小，那么它就不能是第k小的数了。</p>
+<p>因此我们可以归纳出三种情况：</p>
+<ul>
+<li>如果A[k/2-1]&lt;B[k/2-1]，则比A[k/2-1]小的数最多只有A的前k/2-1个数和B的前k/2-1个数，即至多k-2个，因此A[k/2-1]不可能是第k个数，A[0]到A[k/2-1]也不可能是第k个数，可以全部排除；</li>
+<li>如果A[k/2-1]&gt;B[k/2-1]，同理可以排除B[0]到B[k/2-1]；</li>
+<li>如果A[k/2-1]=B[k/2-1]，也可以归结到第一种情况；</li>
+</ul>
+<p>可以分析得，每次比较后可以排除k/2个数（譬如A[k/2-1]&lt;=B[k/2-1]，那么A[0]~A[k/2-1]都一定不是第k大的数），所以每次查找完需要更新k值，一般而言是k=k-k/2，有以下三种特殊情形需要特殊处理：</p>
+<ul>
+<li>如果A[k/2-1]或者B[k/2-1]越界，那么我们可以选取数组中最后一个元素，对应的k值也应该减去排除的个数，而不是武断的减去k/2;</li>
+<li>如果一个数组为空，说明该数组中的元素都被排除了，我们可以直接返回另一个数组中第k小的元素；</li>
+<li>如果k=1，我们只要返回两个数组较小的首元素即可；</li>
+</ul>
+<p>用一个例子说明上述算法。假设两个有序数组如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A: 1 3 4 9</span><br><span class="line">B: 1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
+<p>两个有序数组的长度分别是4和9，长度之和是13，中位数是两个有序数组中的第7个元素，因此需要找到第k=7个元素。</p>
+<p>比较两个有序数组中下标为k/2−1=2的数，即A[2]和B[2]，如下面所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: 1 3 4 9</span><br><span class="line">       ↑</span><br><span class="line">B: 1 2 3 4 5 6 7 8 9</span><br><span class="line">       ↑</span><br></pre></td></tr></table></figure>
+<p>由于A[2]&gt;B[2]，因此排除B[0]到B[2]，即数组B的下标偏移（offset）变为3，同时更新k的值：k=k−k/2=4。</p>
+<p>下一步寻找，比较两个有序数组中下标为k/2−1=1的数，即A[1]和B[4]，如下面所示，其中方括号部分表示已经被排除的数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: 1 3 4 9</span><br><span class="line">     ↑</span><br><span class="line">B: [1 2 3] 4 5 6 7 8 9</span><br><span class="line">             ↑</span><br></pre></td></tr></table></figure>
+<p>由于A[1]&lt;B[4]，因此排除A[0]到A[1]，即数组A的下标偏移变为2，同时更新k的值：k=k−k/2=2。</p>
+<p>下一步寻找，比较两个有序数组中下标为k/2−1=0的数，即比较A[2]和B[3]，如下面所示，其中方括号部分表示已经被排除的数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: [1 3] 4 9</span><br><span class="line">         ↑</span><br><span class="line">B: [1 2 3] 4 5 6 7 8 9</span><br><span class="line">           ↑</span><br></pre></td></tr></table></figure>
+<p>由于A[2]=B[3]，根据之前的规则，排除A中的元素，因此排除A[2]，即数组A的下标偏移变为3，同时更新k的值：k=k−k/2=1。</p>
+<p>由于k的值变成1，因此比较两个有序数组中的未排除下标范围内的第一个数，其中较小的数即为第k个数，由于A[3]&gt;B[3]，因此第k个数是B[3]=4。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: [1 3 4] 9</span><br><span class="line">           ↑</span><br><span class="line">B: [1 2 3] 4 5 6 7 8 9</span><br><span class="line">           ↑</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-错误的使用方式"><a href="#2-错误的使用方式" class="headerlink" title="2 错误的使用方式"></a>2 错误的使用方式</h2><p><strong>如果不接收第二个参数也就是上面代码中的 ok，断言失败时会直接造成一个 panic！！！</strong><br>如下：</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> x <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">    x = <span class="number">10</span></span><br><span class="line">    v1 := x.(<span class="keyword">int</span>)</span><br><span class="line">    fmt.Println(v1)</span><br><span class="line"></span><br><span class="line">    v2 := x.(<span class="keyword">string</span>)</span><br><span class="line">    fmt.Println(v2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果如下，第一次断言（v1）是成功的，虽然没有接收第二个参数，是可以接收到正确的值的；第二次断言（v2）明显类型不对，断言失败，直接导致panic。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">10</span><br><span class="line">panic: interface conversion: interface &#123;&#125; is int, not string</span><br></pre></td></tr></table></figure>
-<p>当然，在interface是nil的时候，如果没有接收第二个参数，一定会造成panic，譬如我们将<code>x = 10</code>屏蔽，那么第一次断言的时候就会panic。</p>
-<p>这是我在工作中遇到的一个bug，同事写的代码中直接对interface进行断言却没有判断interface是否为nil（或者接收第二个参数），导致了系统的panic。Go语言虽然相比于C语言可以让程序员犯更少的错（毕竟指针是C程序员的Bug之源），但是书写的时候还是要注意。</p>
+<p>代码如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMedianSortedArrays</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">    l1 := <span class="built_in">len</span>(nums1)</span><br><span class="line">    l2 := <span class="built_in">len</span>(nums2)</span><br><span class="line"></span><br><span class="line">    getKthEle := <span class="function"><span class="keyword">func</span><span class="params">(k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">        index1, index2 := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        offset1, offset2 := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> <span class="literal">true</span> &#123;</span><br><span class="line">        	<span class="comment">// 找寻到数组1为空，说明第k个值在nums2[]中</span></span><br><span class="line">            <span class="keyword">if</span> index1 == l1 &#123;</span><br><span class="line">                <span class="keyword">return</span> nums2[index2 + k - <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        	<span class="comment">// 找寻到数组1为空，说明第k个值在nums2[]中</span></span><br><span class="line">            <span class="keyword">if</span> index2 == l2 &#123;</span><br><span class="line">                <span class="keyword">return</span> nums1[index1 + k - <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        	<span class="comment">// 最终的情形，剩下的数组中最小的那个数</span></span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">1</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> nums1[index1] &lt; nums2[index2] &#123;</span><br><span class="line">                    <span class="keyword">return</span> nums1[index1]</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> nums2[index2]</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 偏移量需要判断是否越界</span></span><br><span class="line">            half := k / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> index1 + half &lt; l1 &#123;</span><br><span class="line">                offset1 = half</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                offset1 = l1 - index1</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> index2 + half &lt; l2 &#123;</span><br><span class="line">                offset2 = half</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                offset2 = l2 - index2</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 循环判断条件，详见前面分析</span></span><br><span class="line">            <span class="keyword">if</span> nums1[index1 + offset1 <span class="number">-1</span>] &lt;= nums2[index2 + offset2 <span class="number">-1</span>] &#123;</span><br><span class="line">                k -= offset1</span><br><span class="line">                index1 += offset1</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                k -= offset2</span><br><span class="line">                index2 += offset2</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这条没有作用，但是不加编译不过</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l := l1 + l2</span><br><span class="line">    <span class="keyword">if</span> l % <span class="number">2</span> == <span class="number">1</span> &#123;</span><br><span class="line">    	<span class="comment">// 奇数时去中间一个数，即第k=(m+n)/2+1个数</span></span><br><span class="line">        k := l / <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">float64</span>(getKthEle(k))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    	<span class="comment">// 偶数时取第k1=(m+n)/2和k2=(m+n)/2+1个数的均值</span></span><br><span class="line">        k1, k2 := l / <span class="number">2</span>, l / <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">float64</span>(getKthEle(k1)) + <span class="keyword">float64</span>(getKthEle(k2)))/<span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>时间复杂度：O(log(m+n))</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<p>不过在leetcode上的运行时间并没有减少多少。。。</p>
 
       
 
@@ -303,7 +349,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">leetcode</a>
         		</li>
       		
 		</ul>
@@ -315,7 +361,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        			<a href="/categories/algoririthms//" class="article-tag-list-link color3">algoririthms</a>
         		</li>
       		
 		</ul>
@@ -370,7 +416,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/06/23/leetcode-4/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -384,18 +430,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/12/29/data-lab/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Data-lab
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/12/06/Go-GIN/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Golang微框架Gin</div>
+    <a href="/2021/06/20/leetcode-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode-3 无重复字符的最长子串</div>
       <i class="icon-circle-right"></i>
     </a>
   
