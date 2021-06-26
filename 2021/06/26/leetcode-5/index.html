@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>leetcode-4 寻找两个正序数组的中位数 | IguoChan的博客</title>
+  <title>leetcode-5 最长回文子串 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="给定两个大小分别为m和n的正序（从小到大）数组nums1和nums2。请你找出并返回这两个正序数组的中位数。">
+  <meta name="description" content="给你一个字符串s，找到s中最长的回文子串。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-4 寻找两个正序数组的中位数">
-<meta property="og:url" content="https://iguochan.github.io/2021/06/23/leetcode-4/index.html">
+<meta property="og:title" content="leetcode-5 最长回文子串">
+<meta property="og:url" content="https://iguochan.github.io/2021/06/26/leetcode-5/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="给定两个大小分别为m和n的正序（从小到大）数组nums1和nums2。请你找出并返回这两个正序数组的中位数。">
+<meta property="og:description" content="给你一个字符串s，找到s中最长的回文子串。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-22T23:59:42.000Z">
-<meta property="article:modified_time" content="2021-06-24T16:52:39.874Z">
+<meta property="article:published_time" content="2021-06-26T01:23:57.000Z">
+<meta property="article:modified_time" content="2021-06-26T01:49:48.869Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -184,20 +184,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-leetcode-4" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-leetcode-5" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      leetcode-4 寻找两个正序数组的中位数
+      leetcode-5 最长回文子串
     </h1>
   
 
         
-        <a href="/2021/06/23/leetcode-4/" class="archive-article-date">
-  	<time datetime="2021-06-22T23:59:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-23</time>
+        <a href="/2021/06/26/leetcode-5/" class="archive-article-date">
+  	<time datetime="2021-06-26T01:23:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-26</time>
 </a>
 
         <!-- 不蒜子统计 -->
@@ -211,7 +211,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.9k字</span>
+        <span class="post-count">587字</span>
       </span>
     </span>
 
@@ -220,7 +220,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">8分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -230,77 +230,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>给定两个大小分别为m和n的正序（从小到大）数组nums1和nums2。请你找出并返回这两个正序数组的<strong>中位数</strong>。</p>
+        <p>给你一个字符串s，找到s中最长的回文子串。</p>
 <a id="more"></a>
 <p>示例 1：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,3], nums2 &#x3D; [2]</span><br><span class="line">输出：2.00000</span><br><span class="line">解释：合并数组 &#x3D; [1,2,3] ，中位数 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;babad&quot;</span><br><span class="line">输出：&quot;bab&quot;</span><br><span class="line">解释：&quot;aba&quot; 同样是符合题意的答案。</span><br></pre></td></tr></table></figure>
 <p>示例 2：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [1,2], nums2 &#x3D; [3,4]</span><br><span class="line">输出：2.50000</span><br><span class="line">解释：合并数组 &#x3D; [1,2,3,4] ，中位数 (2 + 3) &#x2F; 2 &#x3D; 2.5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;cbbd&quot;</span><br><span class="line">输出：&quot;bb&quot;</span><br></pre></td></tr></table></figure>
 <p>示例 3：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [0,0], nums2 &#x3D; [0,0]</span><br><span class="line">输出：0.00000</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;a&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure>
 <p>示例 4：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [], nums2 &#x3D; [1]</span><br><span class="line">输出：1.00000</span><br></pre></td></tr></table></figure>
-<p>示例 5：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums1 &#x3D; [2], nums2 &#x3D; []</span><br><span class="line">输出：2.00000</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;ac&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure>
 
-<p><strong>提示</strong>：</p>
-<ul>
-<li>nums1.length == m</li>
-<li>nums2.length == n</li>
-<li>0 &lt;= m &lt;= 1000</li>
-<li>0 &lt;= n &lt;= 1000</li>
-<li>1 &lt;= m + n &lt;= 2000</li>
-<li>-10<sup>6</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>6</sup></li>
-</ul>
-<p><strong>进阶</strong>：你能设计一个时间复杂度为<strong>O(log(m+n))</strong>的算法解决此问题吗？</p>
-<h2 id="排序后返回"><a href="#排序后返回" class="headerlink" title="排序后返回"></a>排序后返回</h2><p>虽然在leetcode上这题给出的难度是困难，但是我觉得做出来还是不难的：</p>
-<ul>
-<li>因为两个数组是正序的，所以给两个数组排序只需O(m+n)的时间复杂度；</li>
-<li>为了避免每个步骤都必须检查数组越界，我们在数组尾部设置一个哨兵值，这里哨兵值采用10<sup>6</sup>+1；</li>
-</ul>
-<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMedianSortedArrays</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">    l := <span class="built_in">len</span>(nums1) + <span class="built_in">len</span>(nums2)</span><br><span class="line">    nums3 := <span class="built_in">make</span>([]<span class="keyword">int</span>, l, l)</span><br><span class="line">    MAX := <span class="number">1000001</span></span><br><span class="line">    <span class="comment">// 这里我直接在nums1、nums2后面添加了，其实这种做法不好，也许存在nums1和nums2地址重合或者正好衔接的情况</span></span><br><span class="line">    <span class="comment">// 为了简便，我直接这么做了，leetcode的测试用例也没有考虑到这点</span></span><br><span class="line">    nums1 = <span class="built_in">append</span>(nums1, MAX)</span><br><span class="line">    nums2 = <span class="built_in">append</span>(nums2, MAX)</span><br><span class="line">    j := <span class="number">0</span></span><br><span class="line">    k := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; l; i++ &#123;</span><br><span class="line">        <span class="keyword">if</span> nums1[j] &lt; nums2[k] &#123;</span><br><span class="line">            nums3[i] = nums1[j]</span><br><span class="line">            j++</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            nums3[i] = nums2[k]</span><br><span class="line">            k++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> l % <span class="number">2</span> == <span class="number">0</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">float64</span>(nums3[l/<span class="number">2</span><span class="number">-1</span>]) + <span class="keyword">float64</span>(nums3[l/<span class="number">2</span>])) / <span class="number">2</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">float64</span>(nums3[l/<span class="number">2</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>提示</strong>：<br>1 &lt;= s.length &lt;= 1000<br>s 仅由数字和英文字母（大写和/或小写）组成</p>
+<h2 id="重心扩展"><a href="#重心扩展" class="headerlink" title="重心扩展"></a>重心扩展</h2><p>很容易分析，回文字符串有两种，分别为长度为奇数和偶数的，但是都符合从中心扩展的特点，代码如下：</p>
+<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">longestPalindrome</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    l := <span class="built_in">len</span>(s)</span><br><span class="line">    <span class="keyword">if</span> l &lt;= <span class="number">1</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    sb := []<span class="keyword">byte</span>(s)</span><br><span class="line">    <span class="comment">// 记录最大长度对应的坐标</span></span><br><span class="line">    maxL, maxR := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; l - <span class="number">1</span>; i++ &#123;</span><br><span class="line">    	<span class="comment">// 第一种情形，偶数回文字符串</span></span><br><span class="line">        tmpL1, tmpR1 := i, i</span><br><span class="line">        <span class="keyword">if</span> sb[i] == sb[i+<span class="number">1</span>] &#123;</span><br><span class="line">            tmpR1++</span><br><span class="line">            <span class="keyword">for</span> offset := <span class="number">1</span>; i - offset &gt;= <span class="number">0</span> &amp;&amp; i + offset + <span class="number">1</span> &lt; l; offset++ &#123;</span><br><span class="line">                <span class="keyword">if</span> sb[i-offset] == sb[i+<span class="number">1</span>+offset] &#123;</span><br><span class="line">                    tmpL1--</span><br><span class="line">                    tmpR1++</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 第二种情形，奇数回文字符串，这里不能在第一种情形的else中，需要避免连续三个或以上的奇数个相同字符串的情况被漏掉</span></span><br><span class="line">        tmpL2, tmpR2 := i, i</span><br><span class="line">        <span class="keyword">for</span> offset := <span class="number">1</span>; i - offset &gt;= <span class="number">0</span> &amp;&amp; i + offset &lt; l; offset++ &#123;</span><br><span class="line">            <span class="keyword">if</span> sb[i-offset] == sb[i+offset] &#123;</span><br><span class="line">                tmpL2--</span><br><span class="line">                tmpR2++</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;   </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 判断最大长度是否需要更新</span></span><br><span class="line">        <span class="keyword">if</span> tmpR1 - tmpL1 &gt; maxR - maxL &#123;</span><br><span class="line">            maxL, maxR = tmpL1, tmpR1</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> tmpR2 - tmpL2 &gt; maxR - maxL &#123;</span><br><span class="line">            maxL, maxR = tmpL2, tmpR2</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 很重要的一步，判断如果以第i个数或者i/i+1为中心的回文字符串的最大长度是否已经</span></span><br><span class="line">        <span class="comment">// 小于现有的最大长度，如果是的话，那继续循环下去没有意义，直接退出循环即可</span></span><br><span class="line">        <span class="keyword">if</span> l - i &lt;= (maxR - maxL)/<span class="number">2</span> &#123;</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">string</span>(sb[maxL:maxR+<span class="number">1</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
-<li>时间复杂度：O(m+n)</li>
-<li>空间复杂度：O(m+n)</li>
-</ul>
-<h2 id="降低复杂度"><a href="#降低复杂度" class="headerlink" title="降低复杂度"></a>降低复杂度</h2><p><strong>以下分析来自<a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-s-114/" target="_blank" rel="noopener">官方解答</a></strong></p>
-<p>如何把时间复杂度降低到O(log(m+n)) 呢？如果对时间复杂度的要求有log，通常都需要用到<strong>二分查找</strong>，这道题也可以通过二分查找实现。</p>
-<p>根据中位数的定义，当m+n是奇数时，中位数是两个有序数组中的第(m+n)/2个元素，当m+n是偶数时，中位数是两个有序数组中的第(m+n)/2个元素和第(m+n)/2+1个元素的平均值。因此，这道题可以转化成寻找两个有序数组中的第k小的数，其中k为(m+n)/2或(m+n)/2+1。</p>
-<p>假设两个有序数组分别是A和B。要找到第k个元素，我们可以比较A[k/2−1]和B[k/2−1]，其中/表示整数除法。由于A[k/2−1]和B[k/2−1]的前面分别有A[0..k/2−2]和B[0..k/2−2]，即k/2−1个元素，对于A[k/2−1]和B[k/2−1]中的较小值，最多只会有(k/2−1)+(k/2−1)≤k−2个元素比它小，那么它就不能是第k小的数了。</p>
-<p>因此我们可以归纳出三种情况：</p>
-<ul>
-<li>如果A[k/2-1]&lt;B[k/2-1]，则比A[k/2-1]小的数最多只有A的前k/2-1个数和B的前k/2-1个数，即至多k-2个，因此A[k/2-1]不可能是第k个数，A[0]到A[k/2-1]也不可能是第k个数，可以全部排除；</li>
-<li>如果A[k/2-1]&gt;B[k/2-1]，同理可以排除B[0]到B[k/2-1]；</li>
-<li>如果A[k/2-1]=B[k/2-1]，也可以归结到第一种情况；</li>
-</ul>
-<p>可以分析得，每次比较后可以排除k/2个数（譬如A[k/2-1]&lt;=B[k/2-1]，那么A[0]~A[k/2-1]都一定不是第k大的数），所以每次查找完需要更新k值，一般而言是k=k-k/2，有以下三种特殊情形需要特殊处理：</p>
-<ul>
-<li>如果A[k/2-1]或者B[k/2-1]越界，那么我们可以选取数组中最后一个元素，对应的k值也应该减去排除的个数，而不是武断的减去k/2;</li>
-<li>如果一个数组为空，说明该数组中的元素都被排除了，我们可以直接返回另一个数组中第k小的元素；</li>
-<li>如果k=1，我们只要返回两个数组较小的首元素即可；</li>
-</ul>
-<p>用一个例子说明上述算法。假设两个有序数组如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A: 1 3 4 9</span><br><span class="line">B: 1 2 3 4 5 6 7 8 9</span><br></pre></td></tr></table></figure>
-<p>两个有序数组的长度分别是4和9，长度之和是13，中位数是两个有序数组中的第7个元素，因此需要找到第k=7个元素。</p>
-<p>比较两个有序数组中下标为k/2−1=2的数，即A[2]和B[2]，如下面所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: 1 3 4 9</span><br><span class="line">       ↑</span><br><span class="line">B: 1 2 3 4 5 6 7 8 9</span><br><span class="line">       ↑</span><br></pre></td></tr></table></figure>
-<p>由于A[2]&gt;B[2]，因此排除B[0]到B[2]，即数组B的下标偏移（offset）变为3，同时更新k的值：k=k−k/2=4。</p>
-<p>下一步寻找，比较两个有序数组中下标为k/2−1=1的数，即A[1]和B[4]，如下面所示，其中方括号部分表示已经被排除的数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: 1 3 4 9</span><br><span class="line">     ↑</span><br><span class="line">B: [1 2 3] 4 5 6 7 8 9</span><br><span class="line">             ↑</span><br></pre></td></tr></table></figure>
-<p>由于A[1]&lt;B[4]，因此排除A[0]到A[1]，即数组A的下标偏移变为2，同时更新k的值：k=k−k/2=2。</p>
-<p>下一步寻找，比较两个有序数组中下标为k/2−1=0的数，即比较A[2]和B[3]，如下面所示，其中方括号部分表示已经被排除的数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: [1 3] 4 9</span><br><span class="line">         ↑</span><br><span class="line">B: [1 2 3] 4 5 6 7 8 9</span><br><span class="line">           ↑</span><br></pre></td></tr></table></figure>
-<p>由于A[2]=B[3]，根据之前的规则，排除A中的元素，因此排除A[2]，即数组A的下标偏移变为3，同时更新k的值：k=k−k/2=1。</p>
-<p>由于k的值变成1，因此比较两个有序数组中的未排除下标范围内的第一个数，其中较小的数即为第k个数，由于A[3]&gt;B[3]，因此第k个数是B[3]=4。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A: [1 3 4] 9</span><br><span class="line">           ↑</span><br><span class="line">B: [1 2 3] 4 5 6 7 8 9</span><br><span class="line">           ↑</span><br></pre></td></tr></table></figure>
-
-<p>代码如下：</p>
-<figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">findMedianSortedArrays</span><span class="params">(nums1 []<span class="keyword">int</span>, nums2 []<span class="keyword">int</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">    l1 := <span class="built_in">len</span>(nums1)</span><br><span class="line">    l2 := <span class="built_in">len</span>(nums2)</span><br><span class="line"></span><br><span class="line">    getKthEle := <span class="function"><span class="keyword">func</span><span class="params">(k <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">        index1, index2 := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        offset1, offset2 := <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> <span class="literal">true</span> &#123;</span><br><span class="line">        	<span class="comment">// 找寻到数组1为空，说明第k个值在nums2[]中</span></span><br><span class="line">            <span class="keyword">if</span> index1 == l1 &#123;</span><br><span class="line">                <span class="keyword">return</span> nums2[index2 + k - <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        	<span class="comment">// 找寻到数组1为空，说明第k个值在nums2[]中</span></span><br><span class="line">            <span class="keyword">if</span> index2 == l2 &#123;</span><br><span class="line">                <span class="keyword">return</span> nums1[index1 + k - <span class="number">1</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        	<span class="comment">// 最终的情形，剩下的数组中最小的那个数</span></span><br><span class="line">            <span class="keyword">if</span> k == <span class="number">1</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> nums1[index1] &lt; nums2[index2] &#123;</span><br><span class="line">                    <span class="keyword">return</span> nums1[index1]</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> nums2[index2]</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 偏移量需要判断是否越界</span></span><br><span class="line">            half := k / <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> index1 + half &lt; l1 &#123;</span><br><span class="line">                offset1 = half</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                offset1 = l1 - index1</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> index2 + half &lt; l2 &#123;</span><br><span class="line">                offset2 = half</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                offset2 = l2 - index2</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 循环判断条件，详见前面分析</span></span><br><span class="line">            <span class="keyword">if</span> nums1[index1 + offset1 <span class="number">-1</span>] &lt;= nums2[index2 + offset2 <span class="number">-1</span>] &#123;</span><br><span class="line">                k -= offset1</span><br><span class="line">                index1 += offset1</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                k -= offset2</span><br><span class="line">                index2 += offset2</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这条没有作用，但是不加编译不过</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    l := l1 + l2</span><br><span class="line">    <span class="keyword">if</span> l % <span class="number">2</span> == <span class="number">1</span> &#123;</span><br><span class="line">    	<span class="comment">// 奇数时去中间一个数，即第k=(m+n)/2+1个数</span></span><br><span class="line">        k := l / <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">float64</span>(getKthEle(k))</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    	<span class="comment">// 偶数时取第k1=(m+n)/2和k2=(m+n)/2+1个数的均值</span></span><br><span class="line">        k1, k2 := l / <span class="number">2</span>, l / <span class="number">2</span> + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">float64</span>(getKthEle(k1)) + <span class="keyword">float64</span>(getKthEle(k2)))/<span class="number">2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><ul>
-<li>时间复杂度：O(log(m+n))</li>
+<li>时间复杂度：O(n<sup>2</sup>)，虽然时间复杂度看起来是这么多，但是内部循环首先达不到n级别，且最后的长度判断会避免很多不必要的循环，所以应该达不到O(n<sup>2</sup>)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
-<p>不过在leetcode上的运行时间并没有减少多少。。。</p>
+<h2 id="Manacher-算法"><a href="#Manacher-算法" class="headerlink" title="Manacher 算法"></a>Manacher 算法</h2><p>详见<a href="https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/" target="_blank" rel="noopener">官方解答——方法三</a>。</p>
+<p>但是跑下来的分数还没有上一种方法高，也是很奇怪。</p>
 
       
 
@@ -416,7 +366,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/06/23/leetcode-4/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/06/26/leetcode-5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -430,18 +380,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/26/leetcode-5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          leetcode-5 最长回文子串
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/06/20/leetcode-3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">leetcode-3 无重复字符的最长子串</div>
+    <a href="/2021/06/23/leetcode-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">leetcode-4 寻找两个正序数组的中位数</div>
       <i class="icon-circle-right"></i>
     </a>
   
