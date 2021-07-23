@@ -65,8 +65,6 @@
 	        
 				<li><a href="/categories/csapp/">CSAPP</a></li>
 	        
-				<li><a href="/categories/algoririthms">ALGO</a></li>
-	        
 				<li><a href="/tags/leetcode/">LeetCode</a></li>
 	        
 			</ul>
@@ -134,8 +132,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -152,19 +148,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/">分类</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/">分类</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Go/">GO</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/Go/">GO</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/csapp/">CSAPP</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/csapp/">CSAPP</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/algoririthms">ALGO</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/tags/leetcode/">LeetCode</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/leetcode/">LeetCode</a></li>
 		        
 				</ul>
 			</nav>
@@ -181,20 +175,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-go-mod包管理工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-cache-lab" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">Go go.mod包管理工具</a>
+      <a class="article-title" href="/2021/05/01/cache-lab/">Cache-lab</a>
     </h1>
   
 
         
-        <a href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="archive-article-date">
-  	<time datetime="2020-10-24T07:44:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-24</time>
+        <a href="/2021/05/01/cache-lab/" class="archive-article-date">
+  	<time datetime="2021-05-01T15:45:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-01</time>
 </a>
 
         
@@ -203,7 +197,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.4k字</span>
+        <span class="post-count">3.8k字</span>
       </span>
     </span>
 
@@ -212,7 +206,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
+        <span class="post-count">19分</span>
       </span>
     </span>
 </div>
@@ -222,11 +216,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>近来入职旷厂转行做后端开发，开始接触Go语言，刚入手时学习的是<a href="http://shouce.jb51.net/gopl-zh/index.html" target="_blank" rel="noopener">Go语言圣经</a>，其中利用<code>GOPATH</code>这个变量来管理Go工程，但是这样会很麻烦，不管是在Linux环境中还是Windows中，都需要在不同的工程中设置该变量。</p>
-<p>go modules是Golang 1.11新加的特性，是Go包的集合。modules是源代码交换和版本控制的单元。 go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于<code>GOPATH</code>的方法来指定在给定构建中使用哪些源文件。</p>
-<p>Modules和传统的GOPATH不同，不需要包含例如src，bin这样的子目录，一个源代码目录甚至是空目录都可以作为Modules，只要其中包含有go.mod文件。</p>
+        <p>其实在我们做csapp的lab时，最重要的是需要去阅读writeup，也就是实验基本的要求。本次实验分为两个部分，Part A要求我们模拟一个缓存命中计数器，PartB部分需要进行矩阵运算优化。</p>
+<p>lab的具体内容可以在<a href="http://csapp.cs.cmu.edu/3e/labs.html" target="_blank" rel="noopener">官网</a>中下载，所有的lab代码在<a href="https://github.com/IguoChan/CSAPP-Labs" target="_blank" rel="noopener">GitHub</a>上。</p>
         
-          <a class="article-more-a" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/#more">more >></a>
+          <a class="article-more-a" href="/2021/05/01/cache-lab/#more">more >></a>
         
       
 
@@ -244,7 +237,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">csapp</a>
         		</li>
       		
 		</ul>
@@ -256,7 +249,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        			<a href="/categories/csapp//" class="article-tag-list-link color1">csapp</a>
         		</li>
       		
 		</ul>
@@ -265,7 +258,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/05/01/cache-lab/">展开全文 >></a>
         </p>
       
 
@@ -295,20 +288,20 @@
 
 
   
-    <article id="post-CPP——继承与派生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-attack-lab" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/">C++（二）—— 继承与派生</a>
+      <a class="article-title" href="/2021/04/04/attack-lab/">Attack-lab</a>
     </h1>
   
 
         
-        <a href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" class="archive-article-date">
-  	<time datetime="2020-09-08T13:55:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
+        <a href="/2021/04/04/attack-lab/" class="archive-article-date">
+  	<time datetime="2021-04-04T09:25:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-04</time>
 </a>
 
         
@@ -317,7 +310,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.4k字</span>
+        <span class="post-count">4.5k字</span>
       </span>
     </span>
 
@@ -326,7 +319,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
+        <span class="post-count">21分</span>
       </span>
     </span>
 </div>
@@ -336,9 +329,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C++ 中的继承是类与类之间的关系，继承（Inheritance）可以理解为一个类从另一个类获取成员变量和成员函数的过程。例如类B继承于类A，那么B就拥有A的成员变量和成员函数。派生（Derive）和继承是一个概念，只是站的角度不同。继承是儿子接收父亲的产业，派生是父亲把产业传承给儿子。被继承的类称为父类或基类，继承的类称为子类或派生类。“子类”和“父类”通常放在一起称呼，“基类”和“派生类”通常放在一起称呼。</p>
+        <p>Attack-lab是针对CSAPP中对应的第三章3.10部分的内容，在这个实验中，我们需要针对不同的目的编写攻击字符串来填充一个有漏洞的程序的栈来达到执行攻击代码的目的。实验的内容分为两部分，前面三个是代码注入，后两个是回归导向编程ROP攻击。</p>
+<p>lab的具体内容可以在<a href="http://csapp.cs.cmu.edu/3e/labs.html" target="_blank" rel="noopener">官网</a>中下载，所有的lab代码在<a href="https://github.com/IguoChan/CSAPP-Labs" target="_blank" rel="noopener">GitHub</a>上。</p>
         
-          <a class="article-more-a" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/#more">more >></a>
+          <a class="article-more-a" href="/2021/04/04/attack-lab/#more">more >></a>
         
       
 
@@ -356,7 +350,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">csapp</a>
         		</li>
       		
 		</ul>
@@ -368,7 +362,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
+        			<a href="/categories/csapp//" class="article-tag-list-link color1">csapp</a>
         		</li>
       		
 		</ul>
@@ -377,121 +371,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-CPP——类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">C++（一）—— 类和对象</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2020-08-16T11:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-16</time>
-</a>
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">9.1k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">35分</span>
-      </span>
-    </span>
-</div>
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>C和C++最大的区别就是C语言是面向过程的语言，而C++是面向对象的语言。C++最初叫做“带类的C”，顾名思义，理论上C++可以认为是C语言的超集。</p>
-<p>类和对象是C++的重要特性，它们使得C++成为面向对象的编程语言，可以用来开发中大型项目。C++中的类（class）可以看作C语言中结构体（struct）的升级版，不同的是，类的成员不但可以是变量，还可以是函数。通过类定义出来的变量被称作对象。</p>
-<p>本文的内容大多学习于《C++ Primer》和<a href="http://c.biancheng.net/cplus/" target="_blank" rel="noopener">C++入门教程</a>，大家可以移步学习。在此，我也是仿照该教程敲代码学习一遍，做一做学习笔记。</p>
-        
-          <a class="article-more-a" href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/#more">more >></a>
-        
-      
-
-        
-        
-          <div hidden="hidden"></div>
-        
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/04/04/attack-lab/">展开全文 >></a>
         </p>
       
 
@@ -628,20 +508,20 @@
 
 
   
-    <article id="post-指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Go语言实现继承与多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/%E6%8C%87%E9%92%88/">指针</a>
+      <a class="article-title" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">Go语言实现继承与多态</a>
     </h1>
   
 
         
-        <a href="/2020/07/18/%E6%8C%87%E9%92%88/" class="archive-article-date">
-  	<time datetime="2020-07-18T01:54:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
+        <a href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2020-11-28T07:00:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-28</time>
 </a>
 
         
@@ -650,7 +530,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.4k字</span>
+        <span class="post-count">899字</span>
       </span>
     </span>
 
@@ -659,7 +539,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">13分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -669,9 +549,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>指针是C语言的核心概念，也是C语言的特色和精华所在，只有掌握了指针，才算的上真正地掌握了C语言。</p>
+        <p>Go被称为“互联网时代的C语音”，严格意义上不是面向对象编程的语言，但是Go语言结构体和接口的特性可以轻松地实现继承和多态。</p>
         
-          <a class="article-more-a" href="/2020/07/18/%E6%8C%87%E9%92%88/#more">more >></a>
+          <a class="article-more-a" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/#more">more >></a>
         
       
 
@@ -689,11 +569,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">指针</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -705,7 +581,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -714,7 +590,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/18/%E6%8C%87%E9%92%88/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">展开全文 >></a>
         </p>
       
 
@@ -744,20 +620,20 @@
 
 
   
-    <article id="post-学习Shell脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Go语言断言注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/">学习Shell脚本</a>
+      <a class="article-title" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Go语言断言注意事项</a>
     </h1>
   
 
         
-        <a href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2020-07-12T02:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-12</time>
+        <a href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2020-12-09T15:31:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
 </a>
 
         
@@ -766,7 +642,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.8k字</span>
+        <span class="post-count">704字</span>
       </span>
     </span>
 
@@ -775,7 +651,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">11分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -785,10 +661,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>操作系统是一组软件，这组软件是控制整个硬件与管理系统的监测，不会让用户随意操作，因此需要一种统一的、可以调用其它命令（也就是程序）的界面应用程序，用于调用内核提供的功能，为了和内“核”相区分，这种程序被命名为“壳”程序，即Shell，也就是命令行模式。Shell有很多版本，Linux默认是bash（Bourne Again Shell）。</p>
-<p>但是在面对许多重复性、同质性的工作，在命令行上一次次的敲击命令显得太低效，这个时候就需要通过Shell脚本（Shell Script）去实现了。Shell脚本就是利用Shell的功能所写的一个程序，这个程序是纯文本文件，它将一些Shell的语法与命令写在里面，搭配正则表达式、管道命令与数据流重定向等功能，最终达到处理目的。</p>
+        <p>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。<br>在使用断言的时候，我们最好<strong>接收第二个参数，或者确认该断言必定成功，否则可能引起系统的Panic！</strong></p>
         
-          <a class="article-more-a" href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/#more">more >></a>
+          <a class="article-more-a" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/#more">more >></a>
         
       
 
@@ -806,11 +681,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -822,11 +693,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux/Shell//" class="article-tag-list-link color1">Shell</a>
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -835,7 +702,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
         </p>
       
 
@@ -865,20 +732,20 @@
 
 
   
-    <article id="post-CMakeLists.txt 怎么写" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Go-闭包时的for-range" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/">CMakeLists.txt 怎么写</a>
+      <a class="article-title" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/">Go-闭包时的for-range</a>
     </h1>
   
 
         
-        <a href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
-  	<time datetime="2020-07-06T15:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
+        <a href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/" class="archive-article-date">
+  	<time datetime="2021-03-07T02:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
 </a>
 
         
@@ -887,7 +754,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.7k字</span>
+        <span class="post-count">722字</span>
       </span>
     </span>
 
@@ -896,7 +763,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">11分</span>
+        <span class="post-count">3分</span>
       </span>
     </span>
 </div>
@@ -906,10 +773,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过<a href="https://iguochan.github.io/2020/06/21/compile-principle/">预处理、编译和汇编</a>生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>成可执行文件。</p>
-<p>但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是<a href="https://iguochan.github.io/2020/06/17/Makefile/">Makefile</a>。</p>
+        <p>for-range关键字可以用来遍历array、slice、map和string，可以返回一个值或两个值，对于array、slice和string，返回一个值时返回的时索引，两个值时返回的是索引和索引对应位置的值；对于map而言，返回一个值时是key值，双值时是key和value。</p>
         
-          <a class="article-more-a" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/#more">more >></a>
+          <a class="article-more-a" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/#more">more >></a>
         
       
 
@@ -927,11 +793,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -943,11 +805,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/cmake//" class="article-tag-list-link color1">cmake</a>
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -956,248 +814,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/27/%E9%93%BE%E8%A1%A8/">链表的C语言实现</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/27/%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2020-06-27T10:45:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-27</time>
-</a>
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">14分</span>
-      </span>
-    </span>
-</div>
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们将形如A<sub>1</sub>,A<sub>2</sub>,…,A<sub>N</sub>的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。</p>
-<p>为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而链表就是这样的结构。</p>
-        
-          <a class="article-more-a" href="/2020/06/27/%E9%93%BE%E8%A1%A8/#more">more >></a>
-        
-      
-
-        
-        
-          <div hidden="hidden"></div>
-        
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">list</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构/链表//" class="article-tag-list-link color3">链表</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/27/%E9%93%BE%E8%A1%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-链接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">链接</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/21/%E9%93%BE%E6%8E%A5/" class="archive-article-date">
-  	<time datetime="2020-06-21T09:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
-</a>
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">7.9k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">31分</span>
-      </span>
-    </span>
-</div>
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>链接是将各种代码和数据片段收集并组合成为一个单一文件的过程。链接是软件开发中的重要过程，其使得分离编译成为可能。即我们不用将一个大型的应用程序组织成为一个巨大的源文件，而是将其分解为更小、更好管理的模块，可以独立地修改和编译这些模块。不仅如此，我们还可以链接包含某些特定函数和功能的库文件，在前人的基础上进行深度开发，而不需要每个模块都亲历亲为。</p>
-        
-          <a class="article-more-a" href="/2020/06/21/%E9%93%BE%E6%8E%A5/#more">more >></a>
-        
-      
-
-        
-        
-          <div hidden="hidden"></div>
-        
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理/链接//" class="article-tag-list-link color3">链接</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/">展开全文 >></a>
         </p>
       
 
@@ -1351,6 +968,345 @@
 
 
   
+    <article id="post-Go-wrap和GC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/07/Go-wrap%E5%92%8CGC/">Go-wrap和GC</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/07/Go-wrap%E5%92%8CGC/" class="archive-article-date">
+  	<time datetime="2021-03-07T03:49:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">434字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">2分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="golang的wrap"><a href="#golang的wrap" class="headerlink" title="golang的wrap"></a>golang的wrap</h2><p>在golang中，我们有时候会对对象包装一层wrap，当我们通过调用子对象的方法时，系统持有的是子对象，而非wrap。</p>
+        
+          <a class="article-more-a" href="/2021/03/07/Go-wrap%E5%92%8CGC/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/07/Go-wrap%E5%92%8CGC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Go-GIN" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/06/Go-GIN/">Golang微框架Gin</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/06/Go-GIN/" class="archive-article-date">
+  	<time datetime="2020-12-06T08:20:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1.3k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">4分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>框架是敏捷开发中的利器，更像是一些常用函数或者工具的集合。借助框架开发，不仅可以省去很多常用的封装带来的时间，也有助于团队的编码风格和形成规范。</p>
+<p>框架能让开发者快速上手。Golang提供的net/http库对于http协议的实现非常好，基于此的Gin框架是一个封装优雅，API友好的web微框架。</p>
+        
+          <a class="article-more-a" href="/2020/12/06/Go-GIN/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/06/Go-GIN/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-CPP——类和对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">C++（一）—— 类和对象</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-08-16T11:21:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-16</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">9.1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">35分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>C和C++最大的区别就是C语言是面向过程的语言，而C++是面向对象的语言。C++最初叫做“带类的C”，顾名思义，理论上C++可以认为是C语言的超集。</p>
+<p>类和对象是C++的重要特性，它们使得C++成为面向对象的编程语言，可以用来开发中大型项目。C++中的类（class）可以看作C语言中结构体（struct）的升级版，不同的是，类的成员不但可以是变量，还可以是函数。通过类定义出来的变量被称作对象。</p>
+<p>本文的内容大多学习于《C++ Primer》和<a href="http://c.biancheng.net/cplus/" target="_blank" rel="noopener">C++入门教程</a>，大家可以移步学习。在此，我也是仿照该教程敲代码学习一遍，做一做学习笔记。</p>
+        
+          <a class="article-more-a" href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/16/CPP%E2%80%94%E2%80%94%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1460,15 +1416,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1480,11 +1436,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">csapp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">csapp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1497,18 +1465,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">list</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
             
             <div class="clearfix"></div>

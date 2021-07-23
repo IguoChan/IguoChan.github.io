@@ -65,8 +65,6 @@
 	        
 				<li><a href="/categories/csapp/">CSAPP</a></li>
 	        
-				<li><a href="/categories/algoririthms">ALGO</a></li>
-	        
 				<li><a href="/tags/leetcode/">LeetCode</a></li>
 	        
 			</ul>
@@ -134,8 +132,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -152,19 +148,17 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
+					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/">分类</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/">分类</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/Go/">GO</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/Go/">GO</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/csapp/">CSAPP</a></li>
+					<li style="width: 16.666666666666668%"><a href="/categories/csapp/">CSAPP</a></li>
 		        
-					<li style="width: 14.285714285714286%"><a href="/categories/algoririthms">ALGO</a></li>
-		        
-					<li style="width: 14.285714285714286%"><a href="/tags/leetcode/">LeetCode</a></li>
+					<li style="width: 16.666666666666668%"><a href="/tags/leetcode/">LeetCode</a></li>
 		        
 				</ul>
 			</nav>
@@ -181,20 +175,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Makefile 怎么写" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CPP——继承与派生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/">Makefile 怎么写</a>
+      <a class="article-title" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/">C++（二）—— 继承与派生</a>
     </h1>
   
 
         
-        <a href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
-  	<time datetime="2020-06-17T12:15:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/" class="archive-article-date">
+  	<time datetime="2020-09-08T13:55:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
 </a>
 
         
@@ -203,7 +197,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">4.6k字</span>
+        <span class="post-count">2.4k字</span>
       </span>
     </span>
 
@@ -212,7 +206,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">17分</span>
+        <span class="post-count">9分</span>
       </span>
     </span>
 </div>
@@ -222,9 +216,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile来构建工程了，会不会编写Makefile也就从一个侧面说明一个工程师是否有构建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考陈皓大神的《<a href="https://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="noopener">跟我一起写Makefile</a>》，和<a href="https://www.gnu.org/software/make/manual/make.html#toc-Overview-of-make" target="_blank" rel="noopener">GNU Make</a>文档。</p>
+        <p>C++ 中的继承是类与类之间的关系，继承（Inheritance）可以理解为一个类从另一个类获取成员变量和成员函数的过程。例如类B继承于类A，那么B就拥有A的成员变量和成员函数。派生（Derive）和继承是一个概念，只是站的角度不同。继承是儿子接收父亲的产业，派生是父亲把产业传承给儿子。被继承的类称为父类或基类，继承的类称为子类或派生类。“子类”和“父类”通常放在一起称呼，“基类”和“派生类”通常放在一起称呼。</p>
         
-          <a class="article-more-a" href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/#more">more >></a>
+          <a class="article-more-a" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/#more">more >></a>
         
       
 
@@ -242,7 +236,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Makefile</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
@@ -254,11 +248,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/Makefile//" class="article-tag-list-link color4">Makefile</a>
+        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
         		</li>
       		
 		</ul>
@@ -267,7 +257,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/17/Makefile%20%E6%80%8E%E4%B9%88%E5%86%99/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/08/CPP%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F/">展开全文 >></a>
         </p>
       
 
@@ -297,20 +287,20 @@
 
 
   
-    <article id="post-一路走来的流水账" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CMakeLists.txt 怎么写" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/17/%E4%B8%80%E8%B7%AF%E8%B5%B0%E6%9D%A5%E7%9A%84%E6%B5%81%E6%B0%B4%E8%B4%A6/">一路走来的流水账</a>
+      <a class="article-title" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/">CMakeLists.txt 怎么写</a>
     </h1>
   
 
         
-        <a href="/2020/06/17/%E4%B8%80%E8%B7%AF%E8%B5%B0%E6%9D%A5%E7%9A%84%E6%B5%81%E6%B0%B4%E8%B4%A6/" class="archive-article-date">
-  	<time datetime="2020-06-17T11:45:33.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/" class="archive-article-date">
+  	<time datetime="2020-07-06T15:12:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
 </a>
 
         
@@ -319,7 +309,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.4k字</span>
+        <span class="post-count">2.7k字</span>
       </span>
     </span>
 
@@ -328,7 +318,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">4分</span>
+        <span class="post-count">11分</span>
       </span>
     </span>
 </div>
@@ -338,9 +328,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我是个没有什么计划的人，至少学生生涯是这样的，生命节点中做出的选择，有些时候前有引路人，有些时候是临到关头，不得不做出的奋力一击……</p>
+        <p>写程序的大体步骤就是：首先用编辑器编写源代码，如.c文件；然后经过<a href="https://iguochan.github.io/2020/06/21/compile-principle/">预处理、编译和汇编</a>生成可重定位目标文件，也就是.o（Unix下）文件；最后通过链接器将所有的.o以及用到的库文件<a href="https://iguochan.github.io/2020/06/21/linking/">链接</a>成可执行文件。</p>
+<p>但是当源文件越来越多时，一个个地编译就会特别麻烦，于是人们设计了一种批量处理源文件的工具，也就是Make，一种自动化编译工具，可以通过一条命令实现完全编译。为了实现以上功能，需要编写一个规则文件，也就是<a href="https://iguochan.github.io/2020/06/17/Makefile/">Makefile</a>。</p>
         
-          <a class="article-more-a" href="/2020/06/17/%E4%B8%80%E8%B7%AF%E8%B5%B0%E6%9D%A5%E7%9A%84%E6%B5%81%E6%B0%B4%E8%B4%A6/#more">more >></a>
+          <a class="article-more-a" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/#more">more >></a>
         
       
 
@@ -358,17 +349,36 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">cmake</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工程构建/cmake//" class="article-tag-list-link color1">cmake</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/17/%E4%B8%80%E8%B7%AF%E8%B5%B0%E6%9D%A5%E7%9A%84%E6%B5%81%E6%B0%B4%E8%B4%A6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/06/CMakeLists.txt%20%E6%80%8E%E4%B9%88%E5%86%99/">展开全文 >></a>
         </p>
       
 
@@ -507,15 +517,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,11 +537,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">csapp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Makefile</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">csapp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,18 +566,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">list</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">cmake</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">leetcode</a>
               </li>
             
             <div class="clearfix"></div>
