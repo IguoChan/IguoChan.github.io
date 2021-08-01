@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>Category: Go | IguoChan的博客</title>
+  <title>散列表 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="IguoChan的博客">
-<meta property="og:url" content="https://iguochan.github.io/categories/Go/index.html">
+  <meta name="description" content="许多应用都需要一种动态集合结构，至少要支持INSERT、SEARCH和DELETE字典操作，散列表（hash table）是实现字典操作的一种有效数据结构。可以简单地理解散列表是存储键值对（key-value）的数据结构。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="散列表">
+<meta property="og:url" content="https://iguochan.github.io/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
+<meta property="og:description" content="许多应用都需要一种动态集合结构，至少要支持INSERT、SEARCH和DELETE字典操作，散列表（hash table）是实现字典操作的一种有效数据结构。可以简单地理解散列表是存储键值对（key-value）的数据结构。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://iguochan.github.io/img/%E5%AE%8C%E5%85%A8%E6%95%A3%E5%88%97.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/%E9%93%BE%E6%8E%A5%E6%B3%95.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%9F%A5.jpg">
+<meta property="og:image" content="https://iguochan.github.io/img/%E5%8F%8C%E9%87%8D%E6%95%A3%E5%88%97.jpg">
+<meta property="article:published_time" content="2021-07-27T12:36:13.000Z">
+<meta property="article:modified_time" content="2021-08-01T08:22:06.099Z">
 <meta property="article:author" content="IguoChan">
+<meta property="article:tag" content="hash table">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://iguochan.github.io/img/%E5%AE%8C%E5%85%A8%E6%95%A3%E5%88%97.jpg">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
   
@@ -173,332 +183,283 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-散列表" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      散列表
+    </h1>
+  
+
+        
+        <a href="/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/" class="archive-article-date">
+  	<time datetime="2021-07-27T12:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-27</time>
+</a>
+
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2.8k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">10分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>许多应用都需要一种动态集合结构，至少要支持INSERT、SEARCH和DELETE<strong>字典</strong>操作，<strong>散列表（hash table）</strong>是实现字典操作的一种有效数据结构。可以简单地理解散列表是存储键值对（key-value）的数据结构。</p>
+<a id="more"></a>
+
+<h2 id="0-直接寻址表"><a href="#0-直接寻址表" class="headerlink" title="0 直接寻址表"></a>0 直接寻址表</h2><p>散列表是普通数组概念的推广，由于普通数组可以直接寻址，使得能在O(1)时间内访问数组的任意位置。当表中的所有的键都是较小的整数时（或者集中在一个较小的范围内），我们可以直接使用数组来实现直接寻址表，记为<code>T[0..m-1]</code>。其中每个位置，或称为槽（slot），对应全域中的一个关键字。其基本的操作伪代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">DIRECT-ADDRESS-SEARCH(T, k)</span><br><span class="line">	return T[k]</span><br><span class="line"></span><br><span class="line">DIRECT-ADDRESS-INSERT(T, v, k)</span><br><span class="line">	T[k] &#x3D; v</span><br><span class="line"></span><br><span class="line">DIRECT-ADDRESS-DELETE(T, k)</span><br><span class="line">	T[k] &#x3D; NIL</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-散列表"><a href="#1-散列表" class="headerlink" title="1 散列表"></a>1 散列表</h2><p>直接寻址的缺点是非常明显的：如果全域很大，则可能一台标准计算机的可用内存都不够用，还有实际存储的关键字集合相对全域可能很小，使得分配的空间绝大多数都被浪费掉。</p>
+<p>当存储在字典中的关键字集合比所有可能的关键字全域要小许多时，散列表需要的存储空间比直接寻址表少很多。散列表中查找一个元素的优势依然得到保持，只需要O(1)时间。问题是这是针对<strong>平均情况时间</strong>的，而对直接寻址而言，它适用于<strong>最坏情况时间</strong>。</p>
+<p>存在一个问题：两个关键字可能映射到一个槽中，我们称这种情况为<strong>冲突</strong>。一方面我们可以通过精心设计的散列函数来尽可能地减少冲突的次数；另一方面仍需要有解决可能出现冲突的方法。下面我们就着重介绍这两部分。</p>
+<h3 id="1-1-散列函数"><a href="#1-1-散列函数" class="headerlink" title="1.1 散列函数"></a>1.1 散列函数</h3><p>好的散列函数应（近似地）满足简单均匀散列假设：<strong>每个关键字都被等可能地散列到槽位中的任何一个，并与其他关键字散列到哪个槽位无关</strong>。遗憾的是，一般无法检查这一条件是否成立。本节将介绍由《算法导论》书本介绍的三种散列方法，其中两种本质上属于启发式方法，而第三种方法（全域散列）则利用了随机技术来提供可证明的良好性能。</p>
+<h4 id="1-1-1-除法散列法"><a href="#1-1-1-除法散列法" class="headerlink" title="1.1.1 除法散列法"></a>1.1.1 除法散列法</h4><p>通过取关键字k处于槽数m的余数，将关键字映射到m个槽中的某一个，即散列函数为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k) &#x3D; k mod m</span><br></pre></td></tr></table></figure>
+
+<p>除法散列法最重要的就是m的选择，选择一个不太接近2的整数幂的素数，常常是m的一个较好的选择。</p>
+<h4 id="1-1-2-乘法散列法"><a href="#1-1-2-乘法散列法" class="headerlink" title="1.1.2 乘法散列法"></a>1.1.2 乘法散列法</h4><p>构造散列函数的乘法散列法包含两个步骤：</p>
+<ul>
+<li>用关键字k乘以常数A(0&lt;A&lt;1)，并提取A的小数部分kA；</li>
+<li>用m乘以这个值，再向下取整。</li>
+</ul>
+<p>散列函数为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k) &#x3D; | m(kA mod 1) |</span><br></pre></td></tr></table></figure>
+<p>乘法散列法对m的选择不是特别关键，但是A的选值会影响效率，某些文献认为黄金比例<code>0.618</code>是一个比较理想的值。</p>
+<h4 id="1-1-3-全域散列法"><a href="#1-1-3-全域散列法" class="headerlink" title="1.1.3 全域散列法"></a>1.1.3 全域散列法</h4><p>如果让一个恶意的对手来针对某个特定的散列函数选择要散列的关键字，那么他会将n个关键字全部散列到同一个槽里。为了避免这种情况，唯一有效的改进方法是随机地选择散列函数，使之独立与要存储的关键字。这种方法称为全域散列(universal hashing)。全域散列在执行开始时，就从一组精心设计的函数中，随机地选择一个作为散列函数。因为随机地选择散列函数，算法在每一次执行时都会有所不同，甚至相同的输入都会如此（不明白如果插入时和寻找时散列函数不同是怎么做到准确查找的，难道是还得记录已入表的k值对应的函数？）。这样就可以确保对于任何输入，算法都具有较好的平均情况性能。</p>
+<h4 id="1-1-4-完全散列"><a href="#1-1-4-完全散列" class="headerlink" title="1.1.4 完全散列"></a>1.1.4 完全散列</h4><p>如果某种散列技术可以在查找时，最坏情况内存访问次数为O(1)的话，则称其为完全散列（perfect hashing）。当关键字集合是静态的时，这种最坏情况的性能是可以达到的。所谓静态就是指一旦各关键字存入表中后，关键字集合就不再变化了。</p>
+<p>我们可以用一种两级的散列方案来实现完全散列，其中每级上采用的都是全域散列。如下图：<br><img src="/img/%E5%AE%8C%E5%85%A8%E6%95%A3%E5%88%97.jpg" alt="完全散列"></p>
+<p>首先第一级使用全域散列把元素散列到各个槽中，这与其它的散列表没什么不一样。但在处理碰撞时，并不像链接法（碰撞处理方法）一样使用链表，而是对在同一个槽中的元素再进行一次散列操作。也就是说，每一个（有元素的）槽里都维护着一张散列表，该表的大小为槽中元素数的平方，例如，有3个元素在同一个槽的话，该槽的二级散列表大小为9。不仅如此，每个槽都使用不同的散列函数，在全域散列函数簇h(k) = ((a*k+b) mod p) mod m中选择不同的a值和b值，但所有槽共用一个p值如101。每个槽中的（二级）散列函数可以保证不发生碰撞情况。</p>
+<p>可 以证明，当二级散列表的大小为槽内元素数的平方时，从全域散列函数簇中随机选择一个散列函数，会产生碰撞的概率小于1/2。所以每个槽随机选择散列函数后，如果产生了碰撞，可以再次尝试选择其它散列函数，但这种尝试的次数是非常少的。</p>
+<p>虽然二级散列表的大小要求是槽内元素数的平方，看起来很大，但可以证明，当散列表的槽的数量和元素数量相同时(m=n)，所有的二级散列表的大小的总量的期望值会小于2*n，即Ө(n)。</p>
+<h3 id="1-2-解冲突"><a href="#1-2-解冲突" class="headerlink" title="1.2 解冲突"></a>1.2 解冲突</h3><h4 id="1-2-1-链接法"><a href="#1-2-1-链接法" class="headerlink" title="1.2.1 链接法"></a>1.2.1 链接法</h4><p>链接法就是把散列到同一槽中的所有元素都放到一个链表中。若选定的散列表长度为m，则可将散列表定义为一个由m个头指针组成的指针数组T[0..m-1]。凡是散列地址为i的结点，均插入到以T[i]为头指针的单链表中。T中各分量的初值均应为空指针。如下：<br><img src="/img/%E9%93%BE%E6%8E%A5%E6%B3%95.jpg" alt="链接法"></p>
+<h4 id="1-2-2-开放寻址法"><a href="#1-2-2-开放寻址法" class="headerlink" title="1.2.2 开放寻址法"></a>1.2.2 开放寻址法</h4><p>开放寻址法的思路是：在产生冲突的情况下，在hashtable中寻找其他空闲的槽位插入；当然，如何寻找其他空闲的槽位，我们有几种方法，包括：线性探查、二次探查、双重散列、随机散列。</p>
+<p><strong>从开放寻址法的散列表中删除操作元素比较困难。在必须删除关键字的应用中，更常见的做法是采用链接法来解决冲突。</strong></p>
+<h5 id="1-2-2-1-线性探查"><a href="#1-2-2-1-线性探查" class="headerlink" title="1.2.2.1 线性探查"></a>1.2.2.1 线性探查</h5><p>给定一个普通的散列函数h’:U–&gt;{0,1,…,m-1}，称为辅助散列函数，线性探查方法采用的散列函数为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k,i) &#x3D; (h&#39;(k) + i) mod m, i &#x3D; 0,1,2...m-1</span><br></pre></td></tr></table></figure>
+<p>给定一个关键字k，首先探查槽T[h’(k)],即由辅助三列函数所给出的槽位。再探测T[h’(k)+1]，依次类推，直到槽T[m-1]。然后，又绕到槽T[0],T[1],…,直到最后探测到槽T[h’(k)-1]。</p>
+<p>线性探测方法比较容易实现，但它存在着一个问题，称为一次群集。随着连续被占用的槽不断增加，平均查找时间也随之不断增加。集群现象很容易出现，这是因为当一个空槽前有i个满的槽时，该空槽下一个将被占用的概率是(i+1)/m。连续被占用的槽就会变得越来越长，因而平均查询时间也会越来越大。采用例子进行说明线性探测过程，已知一组关键字为(26，36，41，38，44，15，68，12，6，51)，用除法散列构造散列函数，初始情况如下图所示：<br><img src="/img/%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%9F%A5.jpg" alt="线性探查"></p>
+<h5 id="1-2-2-2-二次探查"><a href="#1-2-2-2-二次探查" class="headerlink" title="1.2.2.2 二次探查"></a>1.2.2.2 二次探查</h5><p>二次探查采用如下形式的散列函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k,i)&#x3D;(h&#39;(k)+c₁i+c₂i²) mod m  , i &#x3D; 0,1,...,m-1</span><br></pre></td></tr></table></figure>
+<p>其中h’是一个辅助散列函数，c₁和c₂为正的辅助常数，i=0,1,…m-1。初始的探查位置为T[h’(k)]，后续的探查位置要加上一个偏移量，该偏移量以二次的方式依赖于探查序号i。这种探查方法的效果要比线性探查好很多，但是，为了能够充分利用散列表，c₁，c₂和m的值要受到限制。此外，如果两个关键字的初始探查位置相同，那么它们的探查序列也是相同的。这一性质可导致一种轻度的群集，称为二次群集。</p>
+<h5 id="1-2-2-3-双重散列"><a href="#1-2-2-3-双重散列" class="headerlink" title="1.2.2.3 双重散列"></a>1.2.2.3 双重散列</h5><p>双重散列(double hashing)是用于开放寻址法的最好方法之一，因为它所产生的排列具有随机选择队列的许多特性。双重散列采用如下形式的散列函数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k,i)&#x3D;(h₁(k)+ih₂(k)) mod m, i &#x3D; 0,1,...,m-1</span><br></pre></td></tr></table></figure>
+<p>其中h₁和h₂均为辅助散列函数。初始探查位置为T[h₁(k)]，后续的探查位置是前一个位置加上偏移量h₂(k)模m。因此，不像线性探查或二次探查，这里的探查序列以两种不同方式依赖于关键字k，因为初始探查位置、偏移量或者两则都可能发生变化。下图给出了一个使用双重散列法进行插入的例子。<br><img src="/img/%E5%8F%8C%E9%87%8D%E6%95%A3%E5%88%97.jpg" alt="双重散列"><br>上图说明：双重散列法的插入。此处，散列表的大小为13，h₁(k)=k mod13，h₂(k)＝1+(k mod 11)。以元素14为例：因为h₁(14)=(14 mod13)=1，槽1已被79占用，–》h₂(14)＝1+(14 mod 11)=4，则h(14,1)=h₁(14)+h₂(14)=1+4=5,槽5已被98占用，–》h(14,2)=h₁(14)+2<em>h₂(14)=1+2</em>4=9，槽9空闲，则插入到槽9中；所以在探查了槽1和槽5，并发现它们被占用后，关键字14插入了槽9中。</p>
+
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p">谢谢你请我吃糖果</i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/07/Go-wrap%E5%92%8CGC/" class="archive-article-date">
-  	<time datetime="2021-03-07T03:49:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/07/Go-wrap%E5%92%8CGC/">Go-wrap和GC</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">hash table</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/" class="archive-article-date">
-  	<time datetime="2021-03-07T02:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/">Go-闭包时的for-range</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
-  	<time datetime="2020-12-09T15:31:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
-</a>
+      </div>
+    </span>
+  </div>
+</div>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Go语言断言注意事项</a>
-    </h1>
-  
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/" alt="微信分享二维码">
+    </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/12/06/Go-GIN/" class="archive-article-date">
-  	<time datetime="2020-12-06T08:20:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-06</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/07/25/%E8%AF%9D%E4%B8%80%E8%AF%9D%E8%81%8C%E5%9C%BAPUA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">话一话职场PUA</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/12/06/Go-GIN/">Golang微框架Gin</a>
-    </h1>
-  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC81MDU5MS8yNzA3NA==">
+<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
+       if (typeof LivereTower === 'function') { return; }
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
 
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" class="archive-article-date">
-  	<time datetime="2020-11-28T07:00:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-28</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">Go语言实现继承与多态</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="archive-article-date">
-  	<time datetime="2020-10-24T07:44:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-24</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">Go go.mod包管理工具</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
   
-    </div></section>
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -531,10 +492,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
