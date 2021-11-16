@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>话一话职场PUA | IguoChan的博客</title>
+  <title>go-slice底层实现 | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作已逾三年，第一份工作在某汽车电子公司，从事Linux应用开发，现矿厂后端开发在职。忽然在知乎刷到职场PUA，今日也来从自己的经历谈一谈这个话题吧。">
+  <meta name="description" content="切片是 Go 中的一种基本的数据结构，使用这种结构可以用来管理数据集合。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="话一话职场PUA">
-<meta property="og:url" content="https://iguochan.github.io/2021/07/25/%E8%AF%9D%E4%B8%80%E8%AF%9D%E8%81%8C%E5%9C%BAPUA/index.html">
+<meta property="og:title" content="go-slice底层实现">
+<meta property="og:url" content="https://iguochan.github.io/2021/08/03/go-slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="工作已逾三年，第一份工作在某汽车电子公司，从事Linux应用开发，现矿厂后端开发在职。忽然在知乎刷到职场PUA，今日也来从自己的经历谈一谈这个话题吧。">
+<meta property="og:description" content="切片是 Go 中的一种基本的数据结构，使用这种结构可以用来管理数据集合。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-25T13:16:53.000Z">
-<meta property="article:modified_time" content="2021-07-31T15:41:23.861Z">
+<meta property="article:published_time" content="2021-08-03T15:17:45.000Z">
+<meta property="article:modified_time" content="2021-08-03T15:21:36.629Z">
 <meta property="article:author" content="IguoChan">
-<meta property="article:tag" content="随笔">
+<meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="IguoChan的博客" type="application/atom+xml">
@@ -178,20 +178,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-话一话职场PUA" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-go-slice底层实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      话一话职场PUA
+      go-slice底层实现
     </h1>
   
 
         
-        <a href="/2021/07/25/%E8%AF%9D%E4%B8%80%E8%AF%9D%E8%81%8C%E5%9C%BAPUA/" class="archive-article-date">
-  	<time datetime="2021-07-25T13:16:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-25</time>
+        <a href="/2021/08/03/go-slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+  	<time datetime="2021-08-03T15:17:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
 </a>
 
         <!-- 不蒜子统计 -->
@@ -205,7 +205,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">31字</span>
       </span>
     </span>
 
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">5分</span>
+        <span class="post-count">1分</span>
       </span>
     </span>
 </div>
@@ -224,25 +224,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>工作已逾三年，第一份工作在某汽车电子公司，从事Linux应用开发，现矿厂后端开发在职。忽然在知乎刷到职场PUA，今日也来从自己的经历谈一谈这个话题吧。</p>
-<a id="more"></a>
-
-<p>我性格张扬，求学生涯一帆风顺，无论是在求学生涯的哪个阶段，我的成绩都是名列前茅的（研究生不表，MEMS实在没有意思），高中半学半玩上的985，考研三个月上的清华，说实话，我从来没有对自己的能力产生过怀疑。。。然而，我却在第一份工作时一度对自己的能力产生怀疑（其实也就三天吧，哈哈。。。），现在想想，这应该是属于被PUA了。</p>
-<p>事情其实是这样的，因为性格的随性，研究生毕业时又实在不想再从事MEMS行业，只是觉得自己对软件更感兴趣，便都是投的软件岗，而专业和此相去甚远也使得找工作并不轻松（给清华丢脸了），稀里糊涂就去了前公司。刚进去时岗位是做裸机嵌入式开发，在浩哥（导师）的指导下，我一边复习C语言，一边码代码，第一个月就基本完成了CANFD（汽车网络CAN协议的升级）网络层协议栈的升级，说实话成就感还是挺大的，浩哥对我的帮助很大，在这里对浩哥表达感谢。。。后续基本上就是做了两个部门的项目后，就因为公司接了一个大单，继续嵌入式Linux的开发工程师，我就转做嵌入式Linux了，由于部门没有人会这些，中途还去天津分公司学习工作了总计两三个月左右。。。</p>
-<p>这里首先说一下前公司的工资制度，工资由月工资和年终奖组成，普通员工的比例大概在3:7到4:6之间，年终奖其实就是工资的一部分。公司财年从4.1到另一年的3.31，年终奖的计算按照财年，新员工只有转正后才正式计入（试用期工资是80%，五险一金按照前一年的总收入缴纳，新员工第一年按照试用期的工资缴纳，这一点真的是坑爹），但是年终奖却要等到9-10月份才能发，也就是说公司会压半年的年终奖。。。这方面真的是吐槽不尽。</p>
-<p>我是7.16号入职，10月份转正，转正当月算正式员工，所以第一个财年我的年终奖是6个月的（10-3），也就是应该拿到offer的一半（offer规定，只要绩效在B以上，就能给齐）。左等右等等到20年的十一，年终奖姗姗来迟，但是却比应得的少了5k，假期归来确认了工资条后，我就找了部门经理问清楚是咋回事：</p>
-<p>经理：某姐（他的直属上级）说你的绩效没有达到预期，扣了5k。</p>
-<p>我：如果没有达到预期，我的绩效为什么是B+，按照offer达到B以上就是满额的年终奖；如果你们不想给我这么多，为什么财年结束不说，这过了半年才这么干，不是耽误我找下家吗？</p>
-<p>经理当即表示公司的制度不完善，很多东西不一定是按章办事的，巴拉巴拉一大堆。。。</p>
-<p>看我脸色还是铁青的，经理上来就是一波：你看正宇比你厉害吧，他工资就没你高，你看键哥也比你厉害吧，工资也没你高。。。</p>
-<p>我：正宇健哥能力强那公司应该涨他们的工资，和我的合同没有关系</p>
-<p>正宇和健哥都是比我早一到两年的老员工，而且他俩做的是裸机嵌入式，我做的是Linux，业务并无交叉，不知道他当时是怎么比出来的。从后来做V2X协议栈他对Linux和系统编程什么都不懂以及离职时总裁的挽留其实可以看出，我的能力绝不是他可以评判的，但是当时这些话的打击还是巨大的，让我深深地怀疑自己的能力。。。虽然当时我的回应挺刚的，但是做不到心无波澜。。。</p>
-<p>谈话结束地并不愉快，对公司的愤懑和对自我的怀疑，泛满心头。。。</p>
-<p>不知是怕我离职还是什么，经理通过一定的途径（据他说是打电话给总裁）给我要回了那5k块钱，随着下一个月的工资一起发下来，虽然多交了一点税，但是还是为挽回了损失开心了一波。</p>
-<p>说来好笑，那时候我真的对经理给我挽回损失万分感谢，他和我说，为了给我要回那份钱，得罪了很多人，向总裁承诺了什么什么的。。。那时候我点头如捣蒜，心里一心想着要好好工作报答经理知遇之恩。。。</p>
-<p>后来我回过神来，我应该是被一帮人、或者一个体制给胡萝卜加大棒了，或者说是PUA了。。。首先这是公司的过错，它们没有按照offer或者合同办事，夺走了我合法收入，可能因为害怕我离职什么的（当时经理约我面谈应该是想劝服我接受这个事实，最后不欢而散后我是准备回去投简历的），所以又将这笔钱返给我了，但是却要说的如何如何、得罪了谁谁谁之类的。。。</p>
-<p>其实在上家单位的成长还是不错的，从非软件专业到Linux，也算是借助这个平台学到了很多，后来还升了管理层（然而并不涨薪），除了上述那件事对我的影响比较大，让我明白了这个世界不仅有白纸黑字的规则，还有潜规则。。。</p>
-<p>打工人还是要认清资本老爷和管家的嘴脸。。。站定自己的立场，早日逃离。。。</p>
+        <p>切片是 Go 中的一种基本的数据结构，使用这种结构可以用来管理数据集合。</p>
 
       
 
@@ -291,13 +273,24 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -347,7 +340,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/07/25/%E8%AF%9D%E4%B8%80%E8%AF%9D%E8%81%8C%E5%9C%BAPUA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iguochan.github.io/2021/08/03/go-slice%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -361,18 +354,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          散列表
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/07/18/%E4%B8%80%E8%B7%AF%E8%B5%B0%E6%9D%A5%E7%9A%84%E6%B5%81%E6%B0%B4%E8%B4%A6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">一路走来的流水账</div>
+    <a href="/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">散列表</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -530,10 +514,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
@@ -546,11 +526,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Go</a>
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">cmake</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Go</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -578,11 +562,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">list</a>
+                <a href="javascript:void(0)" class="js-tag color1">hash table</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">hash table</a>
+                <a href="javascript:void(0)" class="js-tag color5">list</a>
               </li>
             
             <div class="clearfix"></div>
