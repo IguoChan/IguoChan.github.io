@@ -5,6 +5,7 @@ categories:
 - 工程构建
 - Makefile
 tags: Makefile
+top: 100
 ---
 在接触Linux之前，我曾经做过一段时间的裸机嵌入式开发，那个时候我并不知道什么是Makefile，因为Windows的IDE帮我做好了构建整个工程的工作，我要做的就像是往搭好框架的房子里码砖。当接触Linux后，我就不得不自己编写Makefile来构建工程了，会不会编写Makefile也就从一个侧面说明一个工程师是否有构建大型工程的能力。这里记录一下本人的学习Makefile的过程，本文主要参考陈皓大神的《[跟我一起写Makefile](https://blog.csdn.net/haoel/article/details/2886)》，和[GNU Make](https://www.gnu.org/software/make/manual/make.html#toc-Overview-of-make)文档。
 <!-- more -->
