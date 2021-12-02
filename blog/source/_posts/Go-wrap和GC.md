@@ -2,7 +2,7 @@
 title: Go-wrap和GC
 date: 2021-03-07 11:49:39
 tags: Go
-categories: Go
+categories: 语言
 ---
 ## golang的wrap
 在golang中，我们有时候会对对象包装一层wrap，当我们通过调用子对象的方法时，系统持有的是子对象，而非wrap。

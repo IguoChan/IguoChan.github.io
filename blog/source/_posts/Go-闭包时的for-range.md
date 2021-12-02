@@ -2,7 +2,7 @@
 title: Go-闭包时的for-range
 date: 2021-03-07 10:00:19
 tags: Go
-categories: Go
+categories: 语言
 ---
 for-range关键字可以用来遍历array、slice、map和string，可以返回一个值或两个值，对于array、slice和string，返回一个值时返回的时索引，两个值时返回的是索引和索引对应位置的值；对于map而言，返回一个值时是key值，双值时是key和value。
 <!-- more -->

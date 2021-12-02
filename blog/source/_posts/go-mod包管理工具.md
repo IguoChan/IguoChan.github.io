@@ -2,7 +2,7 @@
 title: Go go.mod包管理工具
 date: 2020-10-24 15:44:13
 tags: Go
-categories: Go
+categories: 语言
 ---
 近来入职旷厂转行做后端开发，开始接触Go语言，刚入手时学习的是[Go语言圣经](http://shouce.jb51.net/gopl-zh/index.html)，其中利用```GOPATH```这个变量来管理Go工程，但是这样会很麻烦，不管是在Linux环境中还是Windows中，都需要在不同的工程中设置该变量。
 
