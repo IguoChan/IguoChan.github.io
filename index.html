@@ -59,13 +59,15 @@
 	        
 				<li><a href="/categories/">分类</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li>
 	        
-				<li><a href="/categories/Go/">GO</a></li>
+				<li><a href="/categories/%E8%AF%AD%E8%A8%80/">GO/C</a></li>
 	        
 				<li><a href="/categories/csapp/">CSAPP</a></li>
 	        
 				<li><a href="/tags/leetcode/">LeetCode</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -132,6 +134,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -148,17 +152,19 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/">分类</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/">分类</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Go/">GO</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/%E8%AF%AD%E8%A8%80/">GO/C</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/csapp/">CSAPP</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/csapp/">CSAPP</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/leetcode/">LeetCode</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/leetcode/">LeetCode</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -174,6 +180,124 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/">红黑树（C语言实现）</a>
+    </h1>
+  
+
+        
+        <a href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/" class="archive-article-date">
+  	<time datetime="2021-11-23T00:57:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-23</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">5.1k字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">21分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前面介绍了<a href="https://iguochan.github.io/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a>，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。</p>
+<p><strong>红黑树（Red-Black Tree）</strong>是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lg<em>n</em>)，<em>n</em>为节点个数。</p>
+        
+          <a class="article-more-a" href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-指针" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -257,7 +381,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/C-C//" class="article-tag-list-link color1">C/C++</a>
+        			<a href="/categories/语言//" class="article-tag-list-link color3">语言</a>
         		</li>
       		
 		</ul>
@@ -424,7 +548,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/27/%E9%93%BE%E8%A1%A8/">链表的C语言实现</a>
+      <a class="article-title" href="/2020/06/27/%E9%93%BE%E8%A1%A8/">链表（C语言实现）</a>
     </h1>
   
 
@@ -542,7 +666,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/">散列表</a>
+      <a class="article-title" href="/2021/07/27/%E6%95%A3%E5%88%97%E8%A1%A8/">散列表（C语言实现）</a>
     </h1>
   
 
@@ -652,231 +776,6 @@
 
 
   
-    <article id="post-红黑树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/">红黑树（C语言实现）</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2021-11-23T00:57:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-23</time>
-</a>
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">3.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">13分</span>
-      </span>
-    </span>
-</div>
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前面介绍了<a href="https://iguochan.github.io/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a>，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。</p>
-<p><strong>红黑树（Red-Black Tree）</strong>是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lg<em>n</em>)，<em>n</em>为节点个数。</p>
-        
-          <a class="article-more-a" href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/#more">more >></a>
-        
-      
-
-        
-        
-          <div hidden="hidden"></div>
-        
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二叉搜索树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树（C语言实现）</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" class="archive-article-date">
-  	<time datetime="2021-11-21T03:03:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-21</time>
-</a>
-
-        
-          <div style="margin-top:10px;">
-    <span class="post-time">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-keyboard-o"></i>
-        <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.3k字</span>
-      </span>
-    </span>
-
-    <span class="post-time">
-      &nbsp; | &nbsp;
-      <span class="post-meta-item-icon">
-        <i class="fa fa-hourglass-half"></i>
-        <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">9分</span>
-      </span>
-    </span>
-</div>
-          
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>二叉树是一棵树，其中每个结点都不能有多于两个的儿子。对于一种特殊类型的二叉树，即二叉查找树。对于二叉查找树，若其左子树不为空，则左子树上的所有值小于根节点；若其右子树不为空，则其右子树上所有的结点都大于根节点，且其左右子树都是二叉查找树，以此递归，即可得出二叉查找树。</p>
-        
-          <a class="article-more-a" href="/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/#more">more >></a>
-        
-      
-
-        
-        
-          <div hidden="hidden"></div>
-        
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/数据结构//" class="article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-go-slice底层实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -948,7 +847,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Go//" class="article-tag-list-link color3">Go</a>
+        			<a href="/categories/语言//" class="article-tag-list-link color3">语言</a>
         		</li>
       		
 		</ul>
@@ -987,20 +886,20 @@
 
 
   
-    <article id="post-链接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-go-mod包管理工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">链接</a>
+      <a class="article-title" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">Go go.mod包管理工具</a>
     </h1>
   
 
         
-        <a href="/2020/06/21/%E9%93%BE%E6%8E%A5/" class="archive-article-date">
-  	<time datetime="2020-06-21T09:47:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
+        <a href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="archive-article-date">
+  	<time datetime="2020-10-24T07:44:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-24</time>
 </a>
 
         
@@ -1009,7 +908,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">7.9k字</span>
+        <span class="post-count">1.4k字</span>
       </span>
     </span>
 
@@ -1018,7 +917,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">31分</span>
+        <span class="post-count">5分</span>
       </span>
     </span>
 </div>
@@ -1028,9 +927,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>链接是将各种代码和数据片段收集并组合成为一个单一文件的过程。链接是软件开发中的重要过程，其使得分离编译成为可能。即我们不用将一个大型的应用程序组织成为一个巨大的源文件，而是将其分解为更小、更好管理的模块，可以独立地修改和编译这些模块。不仅如此，我们还可以链接包含某些特定函数和功能的库文件，在前人的基础上进行深度开发，而不需要每个模块都亲历亲为。</p>
+        <p>近来入职旷厂转行做后端开发，开始接触Go语言，刚入手时学习的是<a href="http://shouce.jb51.net/gopl-zh/index.html" target="_blank" rel="noopener">Go语言圣经</a>，其中利用<code>GOPATH</code>这个变量来管理Go工程，但是这样会很麻烦，不管是在Linux环境中还是Windows中，都需要在不同的工程中设置该变量。</p>
+<p>go modules是Golang 1.11新加的特性，是Go包的集合。modules是源代码交换和版本控制的单元。 go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于<code>GOPATH</code>的方法来指定在给定构建中使用哪些源文件。</p>
+<p>Modules和传统的GOPATH不同，不需要包含例如src，bin这样的子目录，一个源代码目录甚至是空目录都可以作为Modules，只要其中包含有go.mod文件。</p>
         
-          <a class="article-more-a" href="/2020/06/21/%E9%93%BE%E6%8E%A5/#more">more >></a>
+          <a class="article-more-a" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/#more">more >></a>
         
       
 
@@ -1048,11 +949,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">gcc</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -1064,15 +961,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建//" class="article-tag-list-link color5">工程构建</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理//" class="article-tag-list-link color5">编译原理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工程构建/编译原理/链接//" class="article-tag-list-link color3">链接</a>
+        			<a href="/categories/语言//" class="article-tag-list-link color3">语言</a>
         		</li>
       		
 		</ul>
@@ -1081,7 +970,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/21/%E9%93%BE%E6%8E%A5/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/24/go-mod%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">展开全文 >></a>
         </p>
       
 
@@ -1111,20 +1000,20 @@
 
 
   
-    <article id="post-学习Shell脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Go语言断言注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/">学习Shell脚本</a>
+      <a class="article-title" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">Go语言断言注意事项</a>
     </h1>
   
 
         
-        <a href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2020-07-12T02:39:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-12</time>
+        <a href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2020-12-09T15:31:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-09</time>
 </a>
 
         
@@ -1133,7 +1022,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.8k字</span>
+        <span class="post-count">704字</span>
       </span>
     </span>
 
@@ -1142,7 +1031,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">11分</span>
+        <span class="post-count">2分</span>
       </span>
     </span>
 </div>
@@ -1152,10 +1041,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>操作系统是一组软件，这组软件是控制整个硬件与管理系统的监测，不会让用户随意操作，因此需要一种统一的、可以调用其它命令（也就是程序）的界面应用程序，用于调用内核提供的功能，为了和内“核”相区分，这种程序被命名为“壳”程序，即Shell，也就是命令行模式。Shell有很多版本，Linux默认是bash（Bourne Again Shell）。</p>
-<p>但是在面对许多重复性、同质性的工作，在命令行上一次次的敲击命令显得太低效，这个时候就需要通过Shell脚本（Shell Script）去实现了。Shell脚本就是利用Shell的功能所写的一个程序，这个程序是纯文本文件，它将一些Shell的语法与命令写在里面，搭配正则表达式、管道命令与数据流重定向等功能，最终达到处理目的。</p>
+        <p>类型断言（Type Assertion）是一个使用在接口值上的操作，用于检查接口类型变量所持有的值是否实现了期望的接口或者具体的类型。<br>在使用断言的时候，我们最好<strong>接收第二个参数，或者确认该断言必定成功，否则可能引起系统的Panic！</strong></p>
         
-          <a class="article-more-a" href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/#more">more >></a>
+          <a class="article-more-a" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/#more">more >></a>
         
       
 
@@ -1173,11 +1061,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Shell</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -1189,11 +1073,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Linux//" class="article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Linux/Shell//" class="article-tag-list-link color1">Shell</a>
+        			<a href="/categories/语言//" class="article-tag-list-link color3">语言</a>
         		</li>
       		
 		</ul>
@@ -1202,7 +1082,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/12/%E5%AD%A6%E4%B9%A0Shell%E8%84%9A%E6%9C%AC/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/12/09/Go%E8%AF%AD%E8%A8%80%E6%96%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
         </p>
       
 
@@ -1232,20 +1112,20 @@
 
 
   
-    <article id="post-shell-lab" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Go语言实现继承与多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/05/shell-lab/">Shell-lab</a>
+      <a class="article-title" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">Go语言实现继承与多态</a>
     </h1>
   
 
         
-        <a href="/2021/05/05/shell-lab/" class="archive-article-date">
-  	<time datetime="2021-05-05T06:46:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-05</time>
+        <a href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2020-11-28T07:00:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-28</time>
 </a>
 
         
@@ -1254,7 +1134,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">1.6k字</span>
+        <span class="post-count">899字</span>
       </span>
     </span>
 
@@ -1263,7 +1143,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-hourglass-half"></i>
         <span class="post-meta-item-text">  阅读时长: </span>
-        <span class="post-count">7分</span>
+        <span class="post-count">4分</span>
       </span>
     </span>
 </div>
@@ -1273,10 +1153,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>该实验主要是实现一个简易的shell，其实在书本上有着许多地方和实验是息息相关的，最重要的就是搞懂书本。其实本次实验是标准的Unix环境编程，具体的函数大家可以参考《UNIX环境高级编程》，这本书讲的十分详细。</p>
-<p>lab的具体内容可以在<a href="http://csapp.cs.cmu.edu/3e/labs.html" target="_blank" rel="noopener">官网</a>中下载，所有的lab代码在<a href="https://github.com/IguoChan/CSAPP-Labs" target="_blank" rel="noopener">GitHub</a>上。</p>
+        <p>Go被称为“互联网时代的C语音”，严格意义上不是面向对象编程的语言，但是Go语言结构体和接口的特性可以轻松地实现继承和多态。</p>
         
-          <a class="article-more-a" href="/2021/05/05/shell-lab/#more">more >></a>
+          <a class="article-more-a" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/#more">more >></a>
         
       
 
@@ -1294,7 +1173,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">csapp</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
         		</li>
       		
 		</ul>
@@ -1306,7 +1185,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/csapp//" class="article-tag-list-link color1">csapp</a>
+        			<a href="/categories/语言//" class="article-tag-list-link color3">语言</a>
         		</li>
       		
 		</ul>
@@ -1315,7 +1194,119 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/05/shell-lab/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/11/28/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Go-闭包时的for-range" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/">Go-闭包时的for-range</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/" class="archive-article-date">
+  	<time datetime="2021-03-07T02:00:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
+</a>
+
+        
+          <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">722字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+          
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>for-range关键字可以用来遍历array、slice、map和string，可以返回一个值或两个值，对于array、slice和string，返回一个值时返回的时索引，两个值时返回的是索引和索引对应位置的值；对于map而言，返回一个值时是key值，双值时是key和value。</p>
+        
+          <a class="article-more-a" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/#more">more >></a>
+        
+      
+
+        
+        
+          <div hidden="hidden"></div>
+        
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/语言//" class="article-tag-list-link color3">语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/07/Go-%E9%97%AD%E5%8C%85%E6%97%B6%E7%9A%84for-range/">展开全文 >></a>
         </p>
       
 

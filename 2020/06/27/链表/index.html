@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://iguochan.github.io">
-  <title>链表的C语言实现 | IguoChan的博客</title>
+  <title>链表（C语言实现） | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="我们将形如A1,A2,…,AN的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。 为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表的C语言实现">
+<meta property="og:title" content="链表（C语言实现）">
 <meta property="og:url" content="https://iguochan.github.io/2020/06/27/%E9%93%BE%E8%A1%A8/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
 <meta property="og:description" content="我们将形如A1,A2,…,AN的结构称之为表，这个表的大下是N，大小为0的表是空表。表可以采用简单的数组实现方式，但是数组实现表时还需要对表的大小进行最大值进行估计，通常估计的较大，这会造成存储空间浪费。另外，数组实现表时，其对于删除和插入的开销是昂贵的，例如在0位置插入，需要将整个数组后移一个位置。所以简单的数组一般不用来实现表。 为了避免插入和删除的开销，需要允许表可以存储在不连续的空间上，而">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://iguochan.github.io/img/l_append.png">
 <meta property="og:image" content="https://iguochan.github.io/img/l_prepend.png">
 <meta property="article:published_time" content="2020-06-27T10:45:46.000Z">
-<meta property="article:modified_time" content="2021-07-27T12:37:09.635Z">
+<meta property="article:modified_time" content="2021-11-30T12:50:00.100Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="list">
 <meta name="twitter:card" content="summary">
@@ -69,13 +69,15 @@
 	        
 				<li><a href="/categories/">分类</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li>
 	        
-				<li><a href="/categories/Go/">GO</a></li>
+				<li><a href="/categories/%E8%AF%AD%E8%A8%80/">GO/C</a></li>
 	        
 				<li><a href="/categories/csapp/">CSAPP</a></li>
 	        
 				<li><a href="/tags/leetcode/">LeetCode</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -142,6 +144,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -158,17 +162,19 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/">分类</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/">分类</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/Go/">GO</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/%E8%AF%AD%E8%A8%80/">GO/C</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/categories/csapp/">CSAPP</a></li>
+					<li style="width: 14.285714285714286%"><a href="/categories/csapp/">CSAPP</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/leetcode/">LeetCode</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/leetcode/">LeetCode</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -190,7 +196,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      链表的C语言实现
+      链表（C语言实现）
     </h1>
   
 
