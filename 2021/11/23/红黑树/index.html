@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://iguochan.github.io">
   <title>红黑树（C语言实现） | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前面介绍了二叉搜索树，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。 红黑树（Red-Black Tree）是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lgn)，n为节点个数。">
+  <meta name="description" content="前面介绍了二叉搜索树，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。 红黑树（Red-Black Tree）是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lgn)，n为节点个数。 以下介绍红黑树的C语言代码实现，代码链接。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="红黑树（C语言实现）">
 <meta property="og:url" content="https://iguochan.github.io/2021/11/23/%E7%BA%A2%E9%BB%91%E6%A0%91/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="前面介绍了二叉搜索树，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。 红黑树（Red-Black Tree）是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lgn)，n为节点个数。">
+<meta property="og:description" content="前面介绍了二叉搜索树，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。 红黑树（Red-Black Tree）是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lgn)，n为节点个数。 以下介绍红黑树的C语言代码实现，代码链接。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://iguochan.github.io/img/%E7%BA%A2%E9%BB%91%E6%A0%91-%E6%83%85%E5%86%B51.png">
 <meta property="og:image" content="https://iguochan.github.io/img/%E7%BA%A2%E9%BB%91%E6%A0%91-%E6%83%85%E5%86%B52-1.png">
@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://iguochan.github.io/img/%E7%BA%A2%E9%BB%91%E6%A0%91-case3.png">
 <meta property="og:image" content="https://iguochan.github.io/img/%E7%BA%A2%E9%BB%91%E6%A0%91-case4.png">
 <meta property="article:published_time" content="2021-11-23T00:57:27.000Z">
-<meta property="article:modified_time" content="2021-12-05T09:16:58.207Z">
+<meta property="article:modified_time" content="2021-12-05T09:22:47.346Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="tree">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">5.3k字</span>
+        <span class="post-count">5.4k字</span>
       </span>
     </span>
 
@@ -246,6 +246,7 @@
       
         <p>前面介绍了<a href="https://iguochan.github.io/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">二叉搜索树</a>，其支持的搜索、插入和删除等操作，时间复杂度均为O(h)，h是树高。但是二叉搜索树对书的“平衡”没有要求，当其退化到近似链表结构后，树的高度比较高时，这些操作可能并不比在链表上快。</p>
 <p><strong>红黑树（Red-Black Tree）</strong>是平衡搜索树中的一种，可以保证在最坏情况下基本动态集合操作的时间复杂度为O(lg<em>n</em>)，<em>n</em>为节点个数。</p>
+<p>以下介绍红黑树的C语言代码实现，<a href="https://github.com/IguoChan/data-structure/tree/main/tree" target="_blank" rel="noopener">代码链接</a>。</p>
 <a id="more"></a>
 
 <h2 id="1-红黑树的性质"><a href="#1-红黑树的性质" class="headerlink" title="1 红黑树的性质"></a>1 红黑树的性质</h2><p>红黑树是一棵二叉搜索树，它的每个节点上增加了一个存储位来表示节点的颜色，可以是<strong>红</strong>或者<strong>黑</strong>。通过对一条从根到叶子的简单路径上各个节点的颜色进行约束，红黑树确保没有一条路径会比其它路径长出2倍，因而是<strong>近似于平衡的</strong>。</p>

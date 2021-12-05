@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://iguochan.github.io">
   <title>二叉搜索树（C语言实现） | IguoChan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二叉树是一棵树，其中每个结点都不能有多于两个的儿子。对于一种特殊类型的二叉树，即二叉查找树。对于二叉查找树，若其左子树不为空，则左子树上的所有值小于根节点；若其右子树不为空，则其右子树上所有的结点都大于根节点，且其左右子树都是二叉查找树，以此递归，即可得出二叉查找树。">
+  <meta name="description" content="二叉树是一棵树，其中每个结点都不能有多于两个的儿子。对于一种特殊类型的二叉树，即二叉查找树。对于二叉查找树，若其左子树不为空，则左子树上的所有值小于根节点；若其右子树不为空，则其右子树上所有的结点都大于根节点，且其左右子树都是二叉查找树，以此递归，即可得出二叉查找树。 以下介绍二叉搜索树的C语言代码实现，代码链接。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉搜索树（C语言实现）">
 <meta property="og:url" content="https://iguochan.github.io/2021/11/21/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
 <meta property="og:site_name" content="IguoChan的博客">
-<meta property="og:description" content="二叉树是一棵树，其中每个结点都不能有多于两个的儿子。对于一种特殊类型的二叉树，即二叉查找树。对于二叉查找树，若其左子树不为空，则左子树上的所有值小于根节点；若其右子树不为空，则其右子树上所有的结点都大于根节点，且其左右子树都是二叉查找树，以此递归，即可得出二叉查找树。">
+<meta property="og:description" content="二叉树是一棵树，其中每个结点都不能有多于两个的儿子。对于一种特殊类型的二叉树，即二叉查找树。对于二叉查找树，若其左子树不为空，则左子树上的所有值小于根节点；若其右子树不为空，则其右子树上所有的结点都大于根节点，且其左右子树都是二叉查找树，以此递归，即可得出二叉查找树。 以下介绍二叉搜索树的C语言代码实现，代码链接。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://iguochan.github.io/img/%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89.png">
 <meta property="og:image" content="https://iguochan.github.io/img/%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%A0%91.png">
 <meta property="article:published_time" content="2021-11-21T03:03:54.000Z">
-<meta property="article:modified_time" content="2021-12-05T09:15:38.557Z">
+<meta property="article:modified_time" content="2021-12-05T09:22:52.006Z">
 <meta property="article:author" content="IguoChan">
 <meta property="article:tag" content="tree">
 <meta name="twitter:card" content="summary">
@@ -214,7 +214,7 @@
       <span class="post-meta-item-icon">
         <i class="fa fa-keyboard-o"></i>
         <span class="post-meta-item-text">  字数统计: </span>
-        <span class="post-count">2.3k字</span>
+        <span class="post-count">2.4k字</span>
       </span>
     </span>
 
@@ -234,6 +234,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>二叉树是一棵树，其中每个结点都不能有多于两个的儿子。对于一种特殊类型的二叉树，即二叉查找树。对于二叉查找树，若其左子树不为空，则左子树上的所有值小于根节点；若其右子树不为空，则其右子树上所有的结点都大于根节点，且其左右子树都是二叉查找树，以此递归，即可得出二叉查找树。</p>
+<p>以下介绍二叉搜索树的C语言代码实现，<a href="https://github.com/IguoChan/data-structure/tree/main/tree" target="_blank" rel="noopener">代码链接</a>。</p>
 <a id="more"></a>
 
 <h2 id="0-树"><a href="#0-树" class="headerlink" title="0 树"></a>0 树</h2><p><strong>定义</strong>：一棵树是一些节点的集合。这个集合可以是空集；若非空，则一棵树由称作<strong>根</strong>（root）的节点r以及0个或者多个非空的（子）树T1、T2……组成，这些子树中每一棵的根都被来自根r的一条<strong>有向的边</strong>（edge）所连接。<br><img src="/img/%E6%A0%91%E7%9A%84%E5%AE%9A%E4%B9%89.png" alt="树的定义"></p>
